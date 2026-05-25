@@ -1,0 +1,6 @@
+{
+  "name": "TimeSince",
+  "description": "A sleek, minimalist habit and chore tracker that focuses on elapsed time and natural rhythms instead of punitive streaks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

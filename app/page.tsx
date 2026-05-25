@@ -1,20 +1,16 @@
 import Image from 'next/image';
-import { 
-  Activity, 
-  ShieldCheck, 
-  BrainCircuit, 
-  Home, 
-  ArrowRight, 
-  CheckCircle2, 
-  Clock, 
-  ListX, 
-  Palette, 
-  Pencil, 
-  Lock, 
-  BarChart2, 
-  Layers, 
-  Smartphone,
-  HeartPulse
+import {
+  Activity,
+  ShieldCheck,
+  ArrowRight,
+  CheckCircle2,
+  Clock,
+  ListX,
+  Palette,
+  Pencil,
+  Lock,
+  BarChart2,
+  Layers,
 } from 'lucide-react';
 import * as motion from 'motion/react-client';
 import mainScreensImg from '../assets/features/main-screens.png';
@@ -39,7 +35,7 @@ export default function LandingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <motion.span 
+          <motion.span
             className="inline-flex items-center gap-2 rounded-full bg-white/80 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold text-purple-700 ring-1 ring-inset ring-purple-600/20 mb-8 shadow-sm"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -55,11 +51,11 @@ export default function LandingPage() {
             </span>
           </h1>
           <p className="mx-auto max-w-2xl text-xl text-gray-600 leading-relaxed mb-12">
-            In a world obsessed with rigid schedules, hourly calendars, and stressful daily streaks, we often lose track of the dynamic, fluid rhythms of our actual lives. 
+            In a world obsessed with rigid schedules, hourly calendars, and stressful daily streaks, we often lose track of the dynamic, fluid rhythms of our actual lives.
             TimeSince is designed to help you monitor the natural space between your moments.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <motion.a 
+            <motion.a
               href="#download"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -68,10 +64,10 @@ export default function LandingPage() {
               Get TimeSince Free <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </motion.a>
             <div className="flex flex-col items-start gap-1">
-               <span className="text-sm font-medium flex items-center gap-1.5 text-gray-700">
-                  <ShieldCheck className="w-4 h-4 text-green-600" /> 100% Private, Local Storage
-               </span>
-               <span className="text-sm text-gray-500">No servers. No ads. No accounts.</span>
+              <span className="text-sm font-medium flex items-center gap-1.5 text-gray-700">
+                <ShieldCheck className="w-4 h-4 text-green-600" /> 100% Private, Local Storage
+              </span>
+              <span className="text-sm text-gray-500">No servers. No ads. No accounts.</span>
             </div>
           </div>
         </motion.div>
@@ -176,7 +172,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex-1 w-full flex items-center justify-center relative">
-                 <Image src={customImg} alt="Dynamic Event Customization" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+                <Image src={customImg} alt="Dynamic Event Customization" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
               </div>
             </div>
 
@@ -192,7 +188,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex-1 w-full flex items-center justify-center relative">
-                 <Image src={customInputsImg} alt="Advanced Custom Logging" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+                <Image src={customInputsImg} alt="Advanced Custom Logging" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
               </div>
             </div>
 
@@ -208,7 +204,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex-1 w-full flex items-center justify-center relative">
-                 <Image src={privateImg} alt="Privacy-First Hidden Events" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+                <Image src={privateImg} alt="Privacy-First Hidden Events" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
               </div>
             </div>
 
@@ -224,7 +220,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex-1 w-full flex items-center justify-center relative">
-                 <Image src={rythmImg} alt="Rhythm Analytics" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+                <Image src={rythmImg} alt="Rhythm Analytics" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
               </div>
             </div>
 
@@ -240,7 +236,7 @@ export default function LandingPage() {
                 </p>
               </div>
               <div className="flex-1 w-full flex items-center justify-center relative">
-                 <Image src={timelineImg} alt="A Beautiful Timeline" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+                <Image src={timelineImg} alt="A Beautiful Timeline" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
               </div>
             </div>
           </div>
@@ -254,28 +250,28 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-100/50 via-white to-white pointer-events-none"></div>
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center z-10">
           <motion.div
-             initial={{ scale: 0.9, opacity: 0 }}
-             whileInView={{ scale: 1, opacity: 1 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.5 }}
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-             <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl font-display mb-8">
-               Ready to find your <br />
-               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">natural rhythm?</span>
-             </h2>
-             <p className="mx-auto max-w-2xl text-xl leading-8 text-gray-600 mb-10">
-               Stop punishing yourself with broken streaks. Start tracking what matters with an app designed for sustainable, guilt-free consistency.
-             </p>
-             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-               <button className="rounded-full bg-gray-900 px-10 py-4 text-lg font-bold text-white transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 flex items-center gap-3">
-                 Download for iOS
-               </button>
-             </div>
-             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-600 font-medium">
-               <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Free forever features</span>
-               <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Local-only privacy</span>
-               <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> No account required</span>
-             </div>
+            <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl font-display mb-8">
+              Ready to find your <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">natural rhythm?</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-xl leading-8 text-gray-600 mb-10">
+              Stop punishing yourself with broken streaks. Start tracking what matters with an app designed for sustainable, guilt-free consistency.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <button className="rounded-full bg-gray-900 px-10 py-4 text-lg font-bold text-white transition-all shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 flex items-center gap-3">
+                Download for iOS
+              </button>
+            </div>
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-600 font-medium">
+              <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Free forever features</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Local-only privacy</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> No account required</span>
+            </div>
           </motion.div>
         </div>
       </section>

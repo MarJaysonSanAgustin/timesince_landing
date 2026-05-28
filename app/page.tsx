@@ -280,7 +280,7 @@ export default function LandingPage() {
           >
             <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl font-display mb-8">
               Habit tracking, <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">minus the guilt trip.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">without the guilt trip.</span>
             </h2>
             <p className="mx-auto max-w-2xl text-xl leading-8 text-gray-600 mb-10">
               Say goodbye to broken streaks and stressful notifications. Discover a simpler, kinder way to track what matters at your own natural pace.

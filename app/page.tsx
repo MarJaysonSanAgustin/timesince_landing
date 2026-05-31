@@ -53,7 +53,9 @@ export default function LandingPage() {
             </p>
             <div className="flex items-center gap-4">
               <motion.a
-                href="#download"
+                href="https://apps.apple.com/us/app/habit-tracker-timesince/id6769251517"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-block transition-transform"
@@ -286,7 +288,7 @@ export default function LandingPage() {
               Say goodbye to broken streaks and stressful notifications. Discover a simpler, kinder way to track what matters at your own natural pace.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a href="#download" className="inline-block hover:scale-105 active:scale-95 transition-transform">
+              <a href="https://apps.apple.com/us/app/habit-tracker-timesince/id6769251517" target="_blank" rel="noopener noreferrer" className="inline-block hover:scale-105 active:scale-95 transition-transform">
                 <Image src={badgeIosImg} alt="Download on the App Store" className="h-[50px] w-auto" />
               </a>
             </div>

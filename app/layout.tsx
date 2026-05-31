@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/privacy" className="hover:text-gray-900 transition-colors">Privacy</a>
               <a href="/terms" className="hover:text-gray-900 transition-colors">Terms</a>
             </nav>
-            <a href="#download" className="hidden sm:inline-flex items-center justify-center rounded-full bg-gray-900 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800">
+            <a href="https://apps.apple.com/us/app/habit-tracker-timesince/id6769251517" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex items-center justify-center rounded-full bg-gray-900 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800">
               Get the App
             </a>
           </div>

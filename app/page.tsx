@@ -2,7 +2,6 @@ import Image from 'next/image';
 import {
   Activity,
   ShieldCheck,
-  ArrowRight,
   CheckCircle2,
   Clock,
   ListX,
@@ -11,15 +10,29 @@ import {
   Lock,
   BarChart2,
   Layers,
+  LayoutGrid,
+  Mic,
+  Nfc,
+  Ban,
+  BellRing,
+  CloudCheck,
 } from 'lucide-react';
 import * as motion from 'motion/react-client';
 import handAppImg from '../assets/features/hand-app.png';
 import customImg from '../assets/features/custom.png';
 import customInputsImg from '../assets/features/custom-inputs.png';
 import privateImg from '../assets/features/private.png';
-import rythmImg from '../assets/features/rythm.png';
+import rythmImg from '../assets/features/rhythm.png';
 import timelineImg from '../assets/features/timeline.png';
+import widgetImg from '../assets/features/widget.png';
+import siriImg from '../assets/features/siri.png';
+import nfcImg from '../assets/features/nfc.png';
+import quitImg from '../assets/features/quit.png';
+import remindersImg from '../assets/features/reminders.png';
+import icloudImg from '../assets/features/icloud.png';
 import badgeIosImg from '../assets/badge-ios-en.svg';
+import { SITE } from '../lib/site';
+import { faqs } from '../lib/faq';
 
 export default function LandingPage() {
   return (
@@ -53,7 +66,7 @@ export default function LandingPage() {
             </p>
             <div className="flex items-center gap-4">
               <motion.a
-                href="https://apps.apple.com/us/app/habit-tracker-timesince/id6769251517"
+                href={SITE.appStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -73,7 +86,7 @@ export default function LandingPage() {
                   <ShieldCheck className="w-4 h-4 text-green-600" /> 100% Private
                 </span>
               </div>
-              <span className="text-sm text-gray-500">No servers. No ads. No accounts.</span>
+              <span className="text-sm text-gray-500">No accounts. No ads. No tracking.</span>
             </div>
           </motion.div>
 
@@ -92,7 +105,7 @@ export default function LandingPage() {
               <Image
                 src={handAppImg}
                 alt="TimeSince App on Phone"
-                className="w-full max-w-[600px] h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                className="w-full max-w-[400px] h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                 priority
               />
             </div>
@@ -108,7 +121,7 @@ export default function LandingPage() {
               Why standard trackers fail.
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Standard habit trackers and to-do lists assume life operates on rigid, daily schedules. When a task doesn't have a fixed deadline, it slips through the cracks.
+              Standard habit trackers and to-do lists assume life operates on rigid, daily schedules. When a task doesn&apos;t have a fixed deadline, it slips through the cracks.
             </p>
           </div>
 
@@ -117,8 +130,8 @@ export default function LandingPage() {
               <div className="w-12 h-12 bg-gray-200 text-gray-800 rounded-2xl flex items-center justify-center mb-6">
                 <Clock className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 font-display">The "When Did I Last...?" Guesswork</h3>
-              <p className="text-gray-600 leading-relaxed">Forgetting vital, irregular chores, medical routines, or social connections because they don't happen every single day.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 font-display">The &quot;When Did I Last...?&quot; Guesswork</h3>
+              <p className="text-gray-600 leading-relaxed">Forgetting vital, irregular chores, medical routines, or social connections because they don&apos;t happen every single day.</p>
             </motion.div>
 
             <motion.div whileHover={{ y: -5 }} className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm transition-all hover:shadow-md">
@@ -126,7 +139,7 @@ export default function LandingPage() {
                 <Activity className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3 font-display">Rigid Tracker Anxiety</h3>
-              <p className="text-gray-600 leading-relaxed">Stressing over broken "daily streaks" for habits that naturally recur every few days or weeks. Life always happens.</p>
+              <p className="text-gray-600 leading-relaxed">Stressing over broken &quot;daily streaks&quot; for habits that naturally recur every few days or weeks. Life always happens.</p>
             </motion.div>
 
             <motion.div whileHover={{ y: -5 }} className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm transition-all hover:shadow-md">
@@ -162,7 +175,7 @@ export default function LandingPage() {
               Track the rhythm, not the routine.
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              By focusing purely on the time since you last did something, TimeSince offers a relaxing, data-rich way to capture your life's unique tempos.
+              By focusing purely on the time since you last did something, TimeSince offers a relaxing, data-rich way to capture your life&apos;s unique tempos.
             </p>
           </div>
         </div>
@@ -182,7 +195,7 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={customImg} alt="Dynamic Event Customization" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+              <Image src={customImg} alt="Choosing a color and icon for a new event" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
             </div>
           </div>
         </div>
@@ -268,7 +281,152 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Feature 6: Home Screen Widget */}
+      <section className="w-full bg-gray-100 py-4">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
+            <div className="flex-1 space-y-6">
+              <div className="w-16 h-16 bg-fuchsia-100 text-fuchsia-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
+                <LayoutGrid className="w-8 h-8" />
+              </div>
+              <h3 className="text-3xl font-extrabold font-display text-gray-900">Logging you don&apos;t have to <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-purple-600">remember.</span></h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                The best log is the one you never had to remember to make. Add the TimeSince widget to your home screen and tap once to log or reset an event, no need to unlock into the app.
+              </p>
+            </div>
+            <div className="flex-1 w-full flex items-center justify-center relative">
+              <Image src={widgetImg} alt="TimeSince home screen widget" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {/* Feature 7: Siri Shortcuts */}
+      <section className="w-full bg-gray-100 py-4">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+            <div className="flex-1 space-y-6">
+              <div className="w-16 h-16 bg-violet-100 text-violet-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
+                <Mic className="w-8 h-8" />
+              </div>
+              <h3 className="text-3xl font-extrabold font-display text-gray-900">Just say <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">&ldquo;log it.&rdquo;</span></h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Ask Siri to log or reset any event, or ask how long it&apos;s been, right from Siri, Spotlight, the Shortcuts app, or the Action Button.
+              </p>
+            </div>
+            <div className="flex-1 w-full flex items-center justify-center relative">
+              <Image src={siriImg} alt="Logging an event with Siri" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature 8: NFC tags */}
+      <section className="w-full bg-gray-100 py-4">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
+            <div className="flex-1 space-y-6">
+              <div className="w-16 h-16 bg-teal-100 text-teal-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
+                <Nfc className="w-8 h-8" />
+              </div>
+              <h3 className="text-3xl font-extrabold font-display text-gray-900">Tap a tag, <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-cyan-600">done.</span></h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Pair a cheap NFC sticker with any event, then stick it somewhere relevant: a pillbox, a water filter, a fridge. Tapping your phone against it logs that event instantly, no app required.
+              </p>
+            </div>
+            <div className="flex-1 w-full flex items-center justify-center relative">
+              <Image src={nfcImg} alt="Logging an event by tapping an NFC tag" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature 9: Quit mode */}
+      <section className="w-full bg-gray-100 py-4">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+            <div className="flex-1 space-y-6">
+              <div className="w-16 h-16 bg-rose-100 text-rose-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
+                <Ban className="w-8 h-8" />
+              </div>
+              <h3 className="text-3xl font-extrabold font-display text-gray-900">Quitting something? <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-500">Climb, don&apos;t break.</span></h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Turn on Quitting mode and your counter climbs for as long as you stay away from it. If you slip, logging a reset just starts the count again, with no penalty, no lost history, no shame.
+              </p>
+            </div>
+            <div className="flex-1 w-full flex items-center justify-center relative">
+              <Image src={quitImg} alt="A counter tracking days since quitting a habit" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature 10: Reminders & alarms */}
+      <section className="w-full bg-gray-100 py-4">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
+            <div className="flex-1 space-y-6">
+              <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
+                <BellRing className="w-8 h-8" />
+              </div>
+              <h3 className="text-3xl font-extrabold font-display text-gray-900">Reminders that <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500">actually reach you.</span></h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Set up to 5 reminders per event, one-time or repeating, at a custom time or relative to your last log. On supported devices, alarms can ring through silent mode and Focus so the important ones never get missed.
+              </p>
+            </div>
+            <div className="flex-1 w-full flex items-center justify-center relative">
+              <Image src={remindersImg} alt="Reminders scheduled for an event" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feature 11: iCloud backup */}
+      <section className="w-full bg-gray-100 py-4">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+            <div className="flex-1 space-y-6">
+              <div className="w-16 h-16 bg-sky-100 text-sky-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
+                <CloudCheck className="w-8 h-8" />
+              </div>
+              <h3 className="text-3xl font-extrabold font-display text-gray-900">Your data, backed up to <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-600">your iCloud.</span></h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Your database is encrypted on your device from the start. Turn on backup and a copy goes straight to your own private iCloud account, never to a server we run. Export to JSON anytime for a copy you fully control.
+              </p>
+            </div>
+            <div className="flex-1 w-full flex items-center justify-center relative">
+              <Image src={icloudImg} alt="iCloud backup enabled in Settings" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ preview */}
+      <section className="w-full bg-gray-100 py-32" id="faq">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="font-display text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+              Frequently asked questions
+            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              The short answers. For the full list, visit the <a href="/faq" className="text-purple-600 hover:underline">FAQ page</a>.
+            </p>
+          </div>
+          <div className="space-y-4">
+            {faqs
+              .filter((item) => item.featured)
+              .map((item) => (
+                <details key={item.question} className="group bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-5 open:shadow-md transition-shadow">
+                  <summary className="flex cursor-pointer list-none items-center justify-between font-semibold text-gray-900">
+                    {item.question}
+                    <span className="ml-4 shrink-0 text-purple-600 transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                  </summary>
+                  <p className="mt-3 text-gray-600 leading-relaxed">{item.answer}</p>
+                </details>
+              ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="w-full bg-white py-32 relative overflow-hidden" id="download">
@@ -288,13 +446,13 @@ export default function LandingPage() {
               Say goodbye to broken streaks and stressful notifications. Discover a simpler, kinder way to track what matters at your own natural pace.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a href="https://apps.apple.com/us/app/habit-tracker-timesince/id6769251517" target="_blank" rel="noopener noreferrer" className="inline-block hover:scale-105 active:scale-95 transition-transform">
+              <a href={SITE.appStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-block hover:scale-105 active:scale-95 transition-transform">
                 <Image src={badgeIosImg} alt="Download on the App Store" className="h-[50px] w-auto" />
               </a>
             </div>
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-600 font-medium">
               <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Generous free version</span>
-              <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> 100% private & offline</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Private by design</span>
               <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Start without signing up</span>
             </div>
           </motion.div>

@@ -40,7 +40,7 @@ export default function TermsAndConditions() {
         <div>
           <h2 className="text-gray-900 font-display text-2xl font-bold mb-2">3. Subscriptions and purchases</h2>
           <p>
-            The free tier of {SITE.name} lets you track up to <strong>3 active events</strong>, with core logging, reminders, and the widget. <strong>{SITE.name} Pro</strong> removes that limit and adds hidden events, archiving, custom logging fields (notes, photos, numbers), NFC pairing, Siri Shortcuts, and iCloud backup upload. Pro is offered as an auto-renewable subscription and, separately, as a one-time lifetime purchase. A lifetime purchase is not a subscription: it does not renew and is not billed again.
+            The free tier of {SITE.name} lets you track up to <strong>3 active events</strong>, with core logging, reminders, the widget, and iCloud sync. <strong>{SITE.name} Pro</strong> removes that limit and adds hidden events, archiving, custom logging fields (notes, photos, numbers), NFC pairing, Siri Shortcuts, and exporting your data to a file. iCloud sync is free for everyone and is not part of Pro. Pro is offered as an auto-renewable subscription and, separately, as a one-time lifetime purchase. A lifetime purchase is not a subscription: it does not renew and is not billed again.
           </p>
           <p className="mt-2 font-semibold">For auto-renewable subscriptions:</p>
           <ul className="list-disc pl-6 space-y-2 mt-2">

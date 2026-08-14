@@ -391,7 +391,7 @@ export default function LandingPage() {
               </div>
               <h3 className="text-3xl font-extrabold font-display text-gray-900">Your data, backed up to <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-600">your iCloud.</span></h3>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Your database is encrypted on your device from the start. Turn on backup and a copy goes straight to your own private iCloud account, never to a server we run. Export to JSON anytime for a copy you fully control.
+                Your database is encrypted on your device from the start. Turn on sync and a copy goes straight to your own private iCloud account, never to a server we run. It&apos;s free for everyone, and it stays off until you switch it on.
               </p>
             </div>
             <div className="flex-1 w-full flex items-center justify-center relative">

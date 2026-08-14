@@ -43,7 +43,7 @@ export default function PrivacyPolicy() {
             This transfer goes directly to Apple&apos;s iCloud infrastructure under your Apple ID and is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:underline">Apple&apos;s privacy policy</a>. We do not operate this storage and cannot read its contents.
           </p>
           <p className="mt-2">
-            Uploading a backup is opt-in and requires TimeSince Pro. Restoring your own data from a backup is always free. Choosing &quot;Erase Everywhere&quot; in Settings removes your iCloud backups along with your on-device data.
+            iCloud sync is free for everyone and is <strong>off until you turn it on</strong>; nothing enables it for you. Choosing &quot;Erase Everywhere&quot; in Settings removes your iCloud backups along with your on-device data.
           </p>
         </div>
 

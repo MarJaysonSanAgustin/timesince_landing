@@ -10,7 +10,7 @@ export function GET() {
     '',
     `> ${SITE.description}`,
     '',
-    `${SITE.name} is an iOS habit, chore, and routine tracker that measures elapsed time instead of daily streaks. Logging an event resets its counter; missing a day never breaks anything. Data is stored locally on-device, encrypted, with optional backup to the user's own private iCloud account; there is no developer-operated server. Free tier: up to 3 active events. TimeSince Pro (subscription or one-time lifetime purchase) adds unlimited events, hidden events, custom logging fields, NFC pairing, Siri Shortcuts, and iCloud backup upload.`,
+    `${SITE.name} is an iOS habit, chore, and routine tracker that measures elapsed time instead of daily streaks. Logging an event resets its counter; missing a day never breaks anything. Data is stored locally on-device, encrypted, with optional backup to the user's own private iCloud account; there is no developer-operated server. iCloud sync is free for everyone and off by default. Free tier: up to 3 active events. TimeSince Pro (subscription or one-time lifetime purchase) adds unlimited events, hidden events, custom logging fields, NFC pairing, Siri Shortcuts, and file export.`,
     '',
     '## App',
     `- [Homepage](${SITE.url}): overview and features`,

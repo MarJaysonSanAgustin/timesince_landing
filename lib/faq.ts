@@ -106,7 +106,7 @@ export const faqs: FaqItem[] = [
     category: 'Privacy & data',
     question: 'How does iCloud backup work?',
     answer:
-      'If you turn it on, TimeSince writes a copy of your data to your own private iCloud account, not to a server we run. Restoring from it is always free; enabling upload requires Pro.',
+      'If you turn it on, TimeSince writes a copy of your data to your own private iCloud account, not to a server we run. It’s free for everyone, and it stays off until you switch it on.',
   },
   {
     category: 'Privacy & data',
@@ -125,14 +125,14 @@ export const faqs: FaqItem[] = [
     category: 'Pricing',
     question: "What's included for free?",
     answer:
-      'Up to 3 active events, with logging, reminders, categories, and the home screen widget. No time limit, no trial required.',
+      'Up to 3 active events, with logging, reminders, categories, the home screen widget, and iCloud sync. No time limit, no trial required.',
     featured: true,
   },
   {
     category: 'Pricing',
     question: 'What does TimeSince Pro add?',
     answer:
-      'Unlimited events, hidden events, archiving, custom logging fields (notes, photos, numbers), NFC pairing, Siri Shortcuts, and iCloud backup upload.',
+      'Unlimited events, hidden events, archiving, custom logging fields (notes, photos, numbers), NFC pairing, Siri Shortcuts, and exporting your data to a file. iCloud sync is not part of Pro; it’s free for everyone.',
   },
   {
     category: 'Pricing',

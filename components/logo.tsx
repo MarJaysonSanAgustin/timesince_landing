@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import iosLightIcon from '../assets/icons/ios-light.png';
+import iosLightIcon from '@/assets/icons/ios-light.png';
 
 interface LogoProps {
   className?: string;
@@ -26,7 +26,6 @@ export const LogoIcon: React.FC<LogoProps> = ({
   );
 };
 
-export const LogoFullSvg: React.FC<LogoProps> = LogoIcon;
 
 interface FullLogoLayoutProps extends LogoProps {
   showText?: boolean;

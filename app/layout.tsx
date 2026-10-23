@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import './globals.css';
-import { Logo, LogoIcon } from '../components/logo';
+import { Logo, LogoIcon } from '@/components/logo';
 import { Analytics } from '@vercel/analytics/next';
 import { Menu } from 'lucide-react';
-import { SITE } from '../lib/site';
+import { SITE } from '@/lib/site';
 
 const nunitoSans = Nunito({
   subsets: ['latin'],

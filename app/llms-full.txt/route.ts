@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { SITE } from '../../lib/site';
-import { faqs, faqCategories } from '../../lib/faq';
-import { getAllPosts, getPostBySlug } from '../../lib/blog';
+import { SITE } from '@/lib/site';
+import { faqs, faqCategories } from '@/lib/faq';
+import { getAllPosts, getPostBySlug } from '@/lib/blog';
 
 export function GET() {
   const lines: string[] = [`# ${SITE.name}: full reference`, '', `> ${SITE.description}`, ''];

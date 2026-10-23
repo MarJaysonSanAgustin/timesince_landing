@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
-import { SITE } from '../lib/site';
-import { getAllPosts } from '../lib/blog';
+import { SITE } from '@/lib/site';
+import { getAllPosts } from '@/lib/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [

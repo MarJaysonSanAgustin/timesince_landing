@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { SITE } from '../../lib/site';
-import { getAllPosts } from '../../lib/blog';
+import { SITE } from '@/lib/site';
+import { getAllPosts } from '@/lib/blog';
 
 export function GET() {
   const posts = getAllPosts();

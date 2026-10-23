@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { SITE } from '../../../lib/site';
-import { getAllPosts, getPostBySlug } from '../../../lib/blog';
-import { blogVisuals, defaultBlogVisual } from '../../../lib/blog-visuals';
-import { mdxComponents } from '../../../components/mdx';
+import { SITE } from '@/lib/site';
+import { getAllPosts, getPostBySlug } from '@/lib/blog';
+import { blogVisuals, defaultBlogVisual } from '@/lib/blog-visuals';
+import { mdxComponents } from '@/components/mdx';
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));

@@ -18,21 +18,21 @@ import {
   CloudCheck,
 } from 'lucide-react';
 import * as motion from 'motion/react-client';
-import handAppImg from '../assets/features/hand-app.png';
-import customImg from '../assets/features/custom.png';
-import customInputsImg from '../assets/features/custom-inputs.png';
-import privateImg from '../assets/features/private.png';
-import rythmImg from '../assets/features/rhythm.png';
-import timelineImg from '../assets/features/timeline.png';
-import widgetImg from '../assets/features/widget.png';
-import siriImg from '../assets/features/siri.png';
-import nfcImg from '../assets/features/nfc.png';
-import quitImg from '../assets/features/quit.png';
-import remindersImg from '../assets/features/reminders.png';
-import icloudImg from '../assets/features/icloud.png';
-import badgeIosImg from '../assets/badge-ios-en.svg';
-import { SITE } from '../lib/site';
-import { faqs } from '../lib/faq';
+import handAppImg from '@/assets/features/hand-app.png';
+import customImg from '@/assets/features/custom.png';
+import customInputsImg from '@/assets/features/custom-inputs.png';
+import privateImg from '@/assets/features/private.png';
+import rythmImg from '@/assets/features/rhythm.png';
+import timelineImg from '@/assets/features/timeline.png';
+import widgetImg from '@/assets/features/widget.png';
+import siriImg from '@/assets/features/siri.png';
+import nfcImg from '@/assets/features/nfc.png';
+import quitImg from '@/assets/features/quit.png';
+import remindersImg from '@/assets/features/reminders.png';
+import icloudImg from '@/assets/features/icloud.png';
+import badgeIosImg from '@/assets/badge-ios-en.svg';
+import { SITE } from '@/lib/site';
+import { faqs } from '@/lib/faq';
 
 export default function LandingPage() {
   return (

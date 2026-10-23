@@ -11,6 +11,7 @@ export const strings = {
     guides: 'Guides',
     scenarios: 'Scenarios',
     faq: 'FAQ',
+    whatsNew: "What's new",
     privacy: 'Privacy',
     terms: 'Terms',
     support: 'Feedback & Support',

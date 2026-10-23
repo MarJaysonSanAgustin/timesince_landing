@@ -1,5 +1,6 @@
 import { SITE } from '@/lib/site';
 import { FEATURES } from '@/lib/features';
+import { latestVersion } from '@/lib/changelog';
 
 /**
  * JSON-LD builders. Pure functions, so the same facts feed the page and the
@@ -40,6 +41,7 @@ export function softwareApplication() {
     applicationCategory: 'LifestyleApplication',
     applicationSubCategory: 'Interval tracker',
     operatingSystem: `iOS ${SITE.minimumIos}`,
+    softwareVersion: latestVersion,
     downloadUrl: SITE.appStoreUrl,
     installUrl: SITE.appStoreUrl,
     author: { '@type': 'Person', name: SITE.developerName, url: `${SITE.url}/about` },

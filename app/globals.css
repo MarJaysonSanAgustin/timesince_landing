@@ -103,36 +103,61 @@
   overflow: hidden;
 }
 
-/* 5pt dash, 5pt gap — the app's _PerforationPainter. CSS `dashed` gives no
-   control over dash length, so the rule is painted as a repeating gradient. */
+/* The tear line. Fine dashes, inset past the notches so the rule starts where
+   the paper does — a long chunky dash reads as a dotted border, not a
+   perforation. */
 .ticket-perforation {
   position: relative;
-  height: 14px;
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--color-hair) 0 5px,
-    transparent 5px 10px
-  );
-  background-size: 100% 1px;
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 17px;
 }
 
-/* The notches. `overflow: hidden` on .ticket clips each circle in half, which
-   is exactly the bite a perforated edge takes out of the paper. */
-.ticket-perforation::before,
+.ticket-perforation::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--color-hair) 0 3px,
+    transparent 3px 7px
+  );
+}
+
+/* The notch, clipped in half by the ticket's own overflow — the bite a
+   perforated edge takes out of the paper.
+   The fill alone will not read: paper on a white card is a 3% luminance
+   difference. The app draws its hairline "round the outside, notches
+   included", so each circle carries a ring of the ticket's own edge colour,
+   which is what makes the bite visible. */
 .ticket-perforation::after {
   content: "";
   position: absolute;
-  top: 1px;
-  width: 12px;
-  height: 12px;
-  border-radius: 9999px;
-  background-color: var(--color-paper);
+  top: 0;
+  /* Flush with the ticket's edges, NOT offset outward: the circle centres must
+     sit ON the edge so the ticket's overflow clips each one in half. Offset
+     them and both circles fall entirely outside the clip and vanish. */
+  left: 0;
+  right: 0;
+  height: 17px;
+  background-image:
+    radial-gradient(
+      circle 9px at 0 50%,
+      var(--color-paper) 88%,
+      var(--color-line) 89%,
+      var(--color-line) 100%,
+      transparent 100%
+    ),
+    radial-gradient(
+      circle 9px at 100% 50%,
+      var(--color-paper) 88%,
+      var(--color-line) 89%,
+      var(--color-line) 100%,
+      transparent 100%
+    );
+  background-repeat: no-repeat;
 }
-
-.ticket-perforation::before { left: -6px; }
-.ticket-perforation::after  { right: -6px; }
 
 /* A stub row: label left, value right, no rule, no icon tile (rule 5). */
 .stub-row {

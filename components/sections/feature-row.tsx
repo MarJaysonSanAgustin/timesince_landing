@@ -46,11 +46,20 @@ export function FeatureRow({
 
             <p className="text-lg leading-relaxed text-muted">{feature.deck}</p>
 
-            <div className="stub-row border-t border-hair pt-4">
-              <span className="stub-label">
-                {feature.tier === 'pro' ? 'TimeSince Pro' : 'Free'}
-              </span>
-              {feature.requires && <span className="meta">{feature.requires}</span>}
+            {/* Stub rows: label left, value right (ADR-012 rule 5). */}
+            <div className="space-y-2 border-t border-line pt-4">
+              <div className="stub-row">
+                <span className="stub-label">INCLUDED IN</span>
+                <span className="stub-value text-sm">
+                  {feature.tier === 'pro' ? 'TimeSince Pro' : 'Free tier'}
+                </span>
+              </div>
+              {feature.requires && (
+                <div className="stub-row">
+                  <span className="stub-label">REQUIRES</span>
+                  <span className="stub-value text-sm">{feature.requires}</span>
+                </div>
+              )}
             </div>
 
             {showLearnMore && (

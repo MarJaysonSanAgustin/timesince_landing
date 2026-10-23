@@ -50,6 +50,7 @@ export default function GuidesHub() {
                     title={g.data.title}
                     deck={g.data.deck}
                     no={i + 1}
+                    kind={g.data.kind}
                   />
                 ))}
               </div>
@@ -67,6 +68,7 @@ export default function GuidesHub() {
                     title={g.data.title}
                     deck={g.data.deck}
                     no={i + 1}
+                    kind={g.data.kind}
                   />
                 ))}
               </div>
@@ -89,29 +91,34 @@ function GuideCard({
   title,
   deck,
   no,
+  kind,
 }: {
   href: string;
   title: string;
   deck: string;
   no: number;
+  kind: 'guide' | 'note';
 }) {
   return (
-    <Link href={href} className="ticket group block transition-transform hover:-translate-y-0.5">
-      {/* The block. Ink, not colour — a guide belongs to the app. */}
-      <div className="accent-neutral accent-block px-6 py-5">
-        <p className="meta" style={{ color: 'inherit', opacity: 0.7 }}>
+    <Link href={href} className="ticket group flex flex-col transition-transform hover:-translate-y-0.5">
+      {/* The block. Ink, not colour — a guide belongs to the app, not a counter. */}
+      <div className="accent-neutral accent-block px-5 pb-4 pt-3.5">
+        <p className="meta" style={{ color: 'inherit', opacity: 0.55 }}>
           NO. {String(no).padStart(3, '0')}
         </p>
-        <h3 className="mt-1 font-semibold leading-snug">{title}</h3>
+        <h3 className="mt-0.5 text-base font-semibold leading-snug group-hover:underline">
+          {title}
+        </h3>
       </div>
+
       <div className="ticket-perforation" />
-      <div className="px-6 py-5">
-        <p className="text-sm leading-relaxed text-muted">{deck}</p>
-        <div className="stub-row mt-4 border-t border-hair pt-3">
-          <span className="stub-label">READ</span>
-          <span className="stub-value text-xs group-hover:underline">
-            {strings.content.readGuide} &rarr;
-          </span>
+
+      {/* The stub: the deck, then one label-left / value-right row. */}
+      <div className="flex flex-1 flex-col px-5 pb-4">
+        <p className="flex-1 text-sm leading-relaxed text-muted">{deck}</p>
+        <div className="stub-row mt-4 border-t border-line pt-3">
+          <span className="stub-label">{kind === 'note' ? 'NOTE' : 'GUIDE'}</span>
+          <span className="text-sm font-medium text-ube">{strings.content.readGuide} &rarr;</span>
         </div>
       </div>
     </Link>

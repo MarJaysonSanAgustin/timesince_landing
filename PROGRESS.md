@@ -117,13 +117,24 @@ on the homepage. Legal boilerplate preserved; the `an counter` article bug the r
 introduced was caught and fixed.
 
 **Design translation** — must land before Phase 2 generates OG images
-- [ ] Replace gradient accents with **flat blocks** (ADR-012 rule 8 forbids gradients)
-- [ ] Paper ground: warm `#F1EFEA` + 16pt dots, replacing plain white
-- [ ] Add the **mono voice** for counts, dates, intervals, serials
-- [ ] Adopt the three inks (ink / muted Lc67 / faint Lc45), drop ad-hoc greys
-- [ ] Demote purple to an accent; no large purple fills
-- [ ] Ticket components: block │ perforation │ stub
-- [ ] Drop `prose-purple` and the gradient OG image
+- [x] Replace gradient accents with **flat blocks** (ADR-012 rule 8 forbids gradients)
+- [x] Paper ground: warm `#F1EFEA` + 16pt dots, replacing plain white
+- [x] Add the **mono voice** for counts, dates, intervals, serials
+- [x] Adopt the three inks (ink / muted Lc67 / faint Lc45), drop ad-hoc greys
+- [x] Demote purple to an accent; no large purple fills
+- [x] Ticket components: block │ perforation │ stub
+- [x] Drop `prose-purple` and the gradient OG image
+
+**Verified 2026-10-23:** `npm run verify` clean. Zero legacy colour utilities and zero
+gradients left in `app/` or `components/`. `lib/apca.ts` matches the published APCA reference
+values, and the derived light muted (`#6C6870`) lands within two points of the `#6E6880` the
+app's own ADR cites. `npm run check:contrast` passes all 15 rendered pairs, surfacing one
+inherited limitation: `warm` (#FB8C00) reads at Lc 56.3, so it is for headings and icons only.
+
+Still open from this pass:
+- [ ] Dark mode — the ink derivation already handles it; the site is light-only
+- [ ] A web face closer to the app's iOS system sans (Nunito is friendly, not the app's voice)
+- [ ] Whether to offer the paper picker on the web, or ship warm + dots only
 
 **Now unblocked by research**
 - [ ] `/whats-new` — 13 dated releases are in [docs/research.md](docs/research.md)

@@ -22,9 +22,13 @@ frontmatter validation · Vercel.
 - **No `public/` for images.** Images live in `assets/` and are imported as ES modules so
   `next/image` gets static dimensions. `public/` is only for files needing a fixed URL and
   no optimization (QR code, `.well-known/`).
-- **Server components by default.** `components/site/mobile-menu.tsx` is the only client
-  component; keep it that way. Content pages ship zero animation — `motion` is for the
-  homepage and feature pages only.
+- **Server components by default.** The only client components are
+  `components/site/mobile-menu.tsx` and the three calculators in `components/tools/`, which
+  need state by definition. Content pages ship zero animation — `motion` is for the homepage
+  and feature pages only.
+- **Tools run entirely in the browser.** No fetch, no analytics on the input, nothing stored.
+  Every tool page says so, and `check:seo` asserts the sentence is present — the claim is the
+  reason the tools exist, and it has to stay true.
 - **No Tailwind color literals in content files.** Content carries a zod-validated accent
   enum (`brand`/`warm`/`cool`/`calm`/`alert`/`neutral`); the CSS custom properties behind
   those six static classes do the rest. Tailwind's scanner cannot see composed class strings.

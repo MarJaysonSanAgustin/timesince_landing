@@ -17,6 +17,8 @@ export type CtaPlacement =
   | 'web_404'
   | 'web_whats_new'
   | 'web_about'
+  | 'web_tools_hub'
+  | `web_tool_${string}`
   | 'web_guides_hub'
   | 'web_features_hub'
   | 'web_scenarios_hub'

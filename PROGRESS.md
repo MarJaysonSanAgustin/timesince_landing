@@ -176,11 +176,11 @@ covers scenarios. Clusters still empty: `health`, `relationships` — no evidenc
 
 ## Phase 4 — Tools
 
-- [ ] `/tools` hub
-- [ ] Days Since Calculator
-- [ ] Days Between Dates
-- [ ] Average Interval Calculator
-- [ ] Measure conversion before building more
+- [x] `/tools` hub
+- [x] Days Since Calculator
+- [x] Days Between Dates
+- [x] Average Interval Calculator
+- [ ] Measure conversion before building more — **do this before tool #4**
 
 ## Phase 5 — About & What's New
 

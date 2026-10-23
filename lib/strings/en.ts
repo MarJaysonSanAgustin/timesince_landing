@@ -13,6 +13,7 @@ export const strings = {
     faq: 'FAQ',
     whatsNew: "What's new",
     about: 'About',
+    tools: 'Tools',
     privacy: 'Privacy',
     terms: 'Terms',
     support: 'Feedback & Support',

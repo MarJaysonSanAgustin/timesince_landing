@@ -76,7 +76,7 @@ export default function GuidesHub() {
       <CtaBlock
         placement="web_guides_hub"
         headline="Track what matters, without the pressure"
-        sub={`${SITE.name} is free for up to three events, with no account and no ads.`}
+        sub={`${SITE.name} is free for up to three counters, with no account and no ads.`}
       />
     </div>
   );

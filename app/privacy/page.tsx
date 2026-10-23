@@ -23,21 +23,21 @@ export default function PrivacyPolicy() {
         <div className="p-6 bg-purple-50 rounded-2xl border border-purple-100 not-prose">
           <h3 className="text-gray-900 font-bold mb-2">In short</h3>
           <p className="text-sm text-gray-700">
-            No accounts. No ads. No behavioral analytics or tracking SDKs in the app. Your events, logs, notes, and photos are encrypted and stored on your device. If you turn on iCloud backup, a copy goes to your own private iCloud, never to a server we run. We do not sell or share your personal data.
+            No accounts. No ads. No behavioral analytics or tracking SDKs in the app. Your counters, logs, notes, and photos are encrypted and stored on your device. If you turn on iCloud backup, a copy goes to your own private iCloud, never to a server we run. We do not sell or share your personal data.
           </p>
         </div>
 
         <div>
           <h2 className="text-gray-900 font-display text-2xl font-bold mb-2">1. What stays on your device</h2>
           <p>
-            Events, habits, routines, chores, and log entries (titles, icons, colors, categories, notes, photos, timestamps, and intervals) are stored in a local database on your device. That database is <strong>encrypted with SQLCipher</strong>, and the encryption key is generated on your device and held in the iOS Keychain. We have no server that stores your tracking data, and we cannot access it.
+            Counters, habits, routines, chores, and log entries (titles, icons, colors, categories, notes, photos, timestamps, and intervals) are stored in a local database on your device. That database is <strong>encrypted with SQLCipher</strong>, and the encryption key is generated on your device and held in the iOS Keychain. We have no server that stores your tracking data, and we cannot access it.
           </p>
         </div>
 
         <div>
           <h2 className="text-gray-900 font-display text-2xl font-bold mb-2">2. iCloud backup (optional)</h2>
           <p>
-            If you turn on iCloud backup, {SITE.name} writes a copy of your data to <strong>your own private iCloud account</strong>: events, categories, logs (including note text and photos), custom field values, reminders, and your profile name and photo. That data lives inside a container only you and your devices can access, and you can see the file yourself in the Files app under &quot;{SITE.name}&quot;.
+            If you turn on iCloud backup, {SITE.name} writes a copy of your data to <strong>your own private iCloud account</strong>: counters, categories, logs (including note text and photos), custom field values, reminders, and your profile name and photo. That data lives inside a container only you and your devices can access, and you can see the file yourself in the Files app under &quot;{SITE.name}&quot;.
           </p>
           <p className="mt-2">
             This transfer goes directly to Apple&apos;s iCloud infrastructure under your Apple ID and is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:underline">Apple&apos;s privacy policy</a>. We do not operate this storage and cannot read its contents.
@@ -75,19 +75,19 @@ export default function PrivacyPolicy() {
               <tbody className="text-gray-600">
                 <tr className="border-b border-gray-100">
                   <td className="py-2 pr-4 align-top">Camera</td>
-                  <td className="py-2 align-top">Taking a photo for an event icon or a log entry.</td>
+                  <td className="py-2 align-top">Taking a photo for a counter icon or a log entry.</td>
                 </tr>
                 <tr className="border-b border-gray-100">
                   <td className="py-2 pr-4 align-top">Photo Library</td>
-                  <td className="py-2 align-top">Choosing an existing photo for an event icon or a log entry.</td>
+                  <td className="py-2 align-top">Choosing an existing photo for a counter icon or a log entry.</td>
                 </tr>
                 <tr className="border-b border-gray-100">
                   <td className="py-2 pr-4 align-top">Face ID / Touch ID</td>
-                  <td className="py-2 align-top">Unlocking your Hidden events and hidden log entries.</td>
+                  <td className="py-2 align-top">Unlocking your Hidden counters and hidden log entries.</td>
                 </tr>
                 <tr className="border-b border-gray-100">
                   <td className="py-2 pr-4 align-top">NFC</td>
-                  <td className="py-2 align-top">Pairing a physical NFC tag with an event so tapping your phone on it logs that event.</td>
+                  <td className="py-2 align-top">Pairing a physical NFC tag with a counter so tapping your phone on it logs that counter.</td>
                 </tr>
                 <tr className="border-b border-gray-100">
                   <td className="py-2 pr-4 align-top">Alarms</td>
@@ -115,7 +115,7 @@ export default function PrivacyPolicy() {
         <div>
           <h2 className="text-gray-900 font-display text-2xl font-bold mb-2">7. Biometrics</h2>
           <p>
-            Face ID and Touch ID are used only to unlock Hidden events and hidden logs within the app. Biometric data is handled entirely by Apple&apos;s Secure Enclave; {SITE.name} never sees or stores it.
+            Face ID and Touch ID are used only to unlock Hidden counters and hidden logs within the app. Biometric data is handled entirely by Apple&apos;s Secure Enclave; {SITE.name} never sees or stores it.
           </p>
         </div>
 
@@ -136,7 +136,7 @@ export default function PrivacyPolicy() {
         <div>
           <h2 className="text-gray-900 font-display text-2xl font-bold mb-2">10. Data deletion</h2>
           <p>
-            In Settings &rarr; Your data, &quot;Erase on This Device&quot; permanently deletes all local events, categories, and logs from your device. &quot;Erase Everywhere&quot; also deletes any iCloud backup copies. Neither action can be undone.
+            In Settings &rarr; Your data, &quot;Erase on This Device&quot; permanently deletes all local counters, categories, and logs from your device. &quot;Erase Everywhere&quot; also deletes any iCloud backup copies. Neither action can be undone.
           </p>
         </div>
 

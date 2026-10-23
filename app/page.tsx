@@ -27,16 +27,16 @@ export default function LandingPage() {
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               <span className="h-2 w-2 rounded-full bg-purple-600 animate-pulse"></span>
-              A New Era In Habit Building
+              Plants watered. Parents called. Car oil changed.
             </motion.span>
             <h1 className="font-display text-5xl font-extrabold tracking-tight text-gray-900 sm:text-7xl mb-6 leading-[1.05]">
-              Consistency without<br />
+              How long since<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-violet-500 to-blue-500">
-                the anxiety.
+                you last did it?
               </span>
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed mb-10 max-w-lg">
-              <strong className="font-semibold text-gray-900">No streaks, no pressure, no guilt.</strong> Life happens. Build habits at your own pace without the pressure of a perfect streak.
+              TimeSince counts the time since you last did something, and keeps counting. <strong className="font-semibold text-gray-900">No streaks, no due dates, nothing to break.</strong> Come back after a day or a month; what you already did is still there.
             </p>
             <div className="flex items-center gap-4">
               <motion.a
@@ -95,7 +95,7 @@ export default function LandingPage() {
               Why standard trackers fail.
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Standard habit trackers and to-do lists assume life operates on rigid, daily schedules. When a task doesn&apos;t have a fixed deadline, it slips through the cracks.
+              Habit trackers and to-do lists assume life runs on rigid daily schedules. When something recurs every few weeks on no fixed date, it slips through the cracks entirely.
             </p>
           </div>
 
@@ -121,7 +121,7 @@ export default function LandingPage() {
                 <ListX className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3 font-display">Scattered Information</h3>
-              <p className="text-gray-600 leading-relaxed">Using messy notebooks or general spreadsheets to keep track of various household maintenance, health logs, and personal events.</p>
+              <p className="text-gray-600 leading-relaxed">Using messy notebooks or general spreadsheets to keep track of various household maintenance, health logs, and personal counters.</p>
             </motion.div>
 
             <motion.div whileHover={{ y: -5 }} className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm transition-all hover:shadow-md">
@@ -195,7 +195,7 @@ export default function LandingPage() {
 
       {/* CTA Section */}
       <section className="w-full bg-white py-32 relative overflow-hidden" id="download">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-100/50 via-white to-white pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-100/50 via-white to-white pointer-counters-none"></div>
         <div className="relative mx-auto max-w-4xl px-6 lg:px-8 text-center z-10">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -204,11 +204,11 @@ export default function LandingPage() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl font-display mb-8">
-              Habit tracking, <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">without the guilt trip.</span>
+              Tracking that asks <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">nothing of you.</span>
             </h2>
             <p className="mx-auto max-w-2xl text-xl leading-8 text-gray-600 mb-10">
-              Say goodbye to broken streaks and stressful notifications. Discover a simpler, kinder way to track what matters at your own natural pace.
+              When it has been a while, TimeSince just says so. No red, no catching up, no streak to rebuild. Free for your first three counters, with no account and no ads.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <a href={SITE.appStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-block hover:scale-105 active:scale-95 transition-transform">
@@ -216,7 +216,7 @@ export default function LandingPage() {
               </a>
             </div>
             <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-600 font-medium">
-              <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Generous free version</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Free for 3 counters</span>
               <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Private by design</span>
               <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-green-500" /> Start without signing up</span>
             </div>

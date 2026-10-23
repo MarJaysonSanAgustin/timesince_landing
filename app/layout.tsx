@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SITE } from '@/lib/site';
+import { siteGraph } from '@/lib/schema';
 import { SiteHeader } from '@/components/site/header';
 import { SiteFooter } from '@/components/site/footer';
 
@@ -24,12 +25,14 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   keywords: [
-    'habit tracker',
+    'days since counter',
+    'time since tracker',
+    'how long since app',
+    'interval tracker iphone',
     'chore tracker',
-    'time since app',
-    'quit smoking tracker',
+    'ADHD tracker',
     'streak-free habit tracker',
-    'ADHD habit tracker',
+    'quit counter',
   ],
   alternates: {
     canonical: '/',
@@ -48,32 +51,7 @@ export const metadata: Metadata = {
   },
 };
 
-// TODO(phase-2): move to lib/schema.ts and fix applicationCategory + offers.
-// `HealthApplication` invites health-claim scrutiny and `price: 0` misstates a
-// freemium app with a paid tier. See PLAN.md §4.
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Organization',
-      name: SITE.name,
-      url: SITE.url,
-      logo: `${SITE.url}/icon.png`,
-    },
-    {
-      '@type': 'SoftwareApplication',
-      name: SITE.fullName,
-      operatingSystem: 'iOS',
-      applicationCategory: 'HealthApplication',
-      url: SITE.url,
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-      },
-    },
-  ],
-};
+const jsonLd = siteGraph();
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

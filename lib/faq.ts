@@ -11,14 +11,14 @@ export const faqs: FaqItem[] = [
     category: 'Getting started',
     question: 'What is TimeSince?',
     answer:
-      "TimeSince is a habit, chore, and routine tracker that measures how long it's been since you last did something, instead of demanding an unbroken daily streak.",
+      "TimeSince is an interval tracker for iPhone: it counts the time since you last did something, and keeps counting. Chores, medication, car maintenance, calling home, habits you are building or quitting — anything that recurs without a fixed schedule.",
     featured: true,
   },
   {
     category: 'Getting started',
     question: 'How is it different from a streak tracker?',
     answer:
-      "Most trackers reset to zero and treat that as failure. TimeSince just keeps counting: logging an event resets the timer, but missing a day never breaks anything or wipes out progress.",
+      "Most trackers reset to zero and treat that as failure. TimeSince just keeps counting: logging a counter resets the timer, but missing a day never breaks anything or wipes out progress.",
     featured: true,
   },
   {
@@ -51,7 +51,7 @@ export const faqs: FaqItem[] = [
     category: 'Using it',
     question: 'Can I track quitting something, like smoking?',
     answer:
-      'Yes: turn on Quitting mode for an event and the counter climbs for as long as you go without it. If you slip, logging a reset just starts the count again. No penalty, no lost history.',
+      'Yes: turn on Quitting mode for a counter and the counter climbs for as long as you go without it. If you slip, logging a reset just starts the count again. No penalty, no lost history.',
   },
   {
     category: 'Using it',
@@ -69,7 +69,7 @@ export const faqs: FaqItem[] = [
     category: 'Using it',
     question: 'What are NFC tags and where do I get them?',
     answer:
-      'They’re inexpensive NTAG215 stickers you can buy online. Pair one with an event in TimeSince, stick it somewhere relevant (a pillbox, a water filter, a fridge), and tapping your phone on it logs that event instantly.',
+      'They’re inexpensive NTAG215 stickers you can buy online. Pair one with a counter in TimeSince, stick it somewhere relevant (a pillbox, a water filter, a fridge), and tapping your phone on it logs that counter instantly.',
   },
   {
     category: 'Using it',
@@ -79,9 +79,9 @@ export const faqs: FaqItem[] = [
   },
   {
     category: 'Using it',
-    question: 'Can I hide sensitive events?',
+    question: 'Can I hide sensitive counters?',
     answer:
-      'Yes. Hidden events are removed from the main list and unlock only with Face ID or Touch ID.',
+      'Yes. Hidden counters are removed from the main list and unlock only with Face ID or Touch ID.',
   },
   // Privacy & data
   {
@@ -125,26 +125,26 @@ export const faqs: FaqItem[] = [
     category: 'Pricing',
     question: "What's included for free?",
     answer:
-      'Up to 3 active events, with logging, reminders, categories, the home screen widget, and iCloud sync. No time limit, no trial required.',
+      'Up to 3 active counters, with logging, reminders, categories, the home screen widget, and iCloud sync. No time limit, no trial required.',
     featured: true,
   },
   {
     category: 'Pricing',
     question: 'What does TimeSince Pro add?',
     answer:
-      'Unlimited events, hidden events, archiving, custom logging fields (notes, photos, numbers), NFC pairing, Siri Shortcuts, and exporting your data to a file. iCloud sync is not part of Pro; it’s free for everyone.',
+      'Unlimited counters, hidden counters, archiving, custom logging fields (notes, photos, numbers), NFC pairing, Siri Shortcuts, and exporting your data to a file. iCloud sync is not part of Pro; it’s free for everyone.',
   },
   {
     category: 'Pricing',
     question: 'Subscription or one-time purchase?',
     answer:
-      'Both are offered: an auto-renewable subscription or a one-time lifetime purchase. See the App Store listing for current pricing.',
+      'Both. TimeSince Pro is US$1.99 a month or US$14.99 a year, and there is a one-time lifetime purchase at US$39.99 that never renews. Prices may vary by region; the App Store shows what you will actually pay.',
   },
   {
     category: 'Pricing',
     question: 'What happens if my subscription lapses?',
     answer:
-      'If you have more than 3 active events, you’ll choose up to 3 to keep active; the rest are archived, not deleted, and come back automatically if you resubscribe.',
+      'If you have more than 3 active counters, you’ll choose up to 3 to keep active; the rest are archived, not deleted, and come back automatically if you resubscribe.',
   },
 ];
 

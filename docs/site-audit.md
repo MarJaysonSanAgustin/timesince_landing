@@ -12,7 +12,7 @@ Everything on the live site that is wrong, stale, or contradicts the app — fou
 | Says **"events"** | copy, `lib/faq.ts`, `llms.txt`, content schema, guide copy | **"counters"** — the app says counter 218 times to event's 30 |
 | `applicationCategory: 'HealthApplication'` | `app/layout.tsx` | **`LifestyleApplication`** — confirmed by the App Store category |
 | `offers: { price: '0' }` | `app/layout.tsx` | An `AggregateOffer`: $0 / $1.99 mo / $14.99 yr / $39.99 lifetime |
-| `[jurisdiction to be confirmed]` | `app/terms/page.tsx` | **Shipped to production.** Still blocked on a decision. |
+| ~~`[jurisdiction to be confirmed]`~~ | `app/terms/page.tsx` | **Fixed 2026-10-23** — the Philippines, via `SITE.jurisdiction`. |
 
 ## 2. Contradicts the app
 

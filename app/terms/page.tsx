@@ -116,8 +116,7 @@ export default function TermsAndConditions() {
         <div>
           <h2 className="text-ink font-display text-2xl font-bold mb-2">11. Governing law</h2>
           <p>
-            {/* TODO: fill in your jurisdiction, e.g. "the laws of [Country/State]". Left unset pending confirmation. */}
-            These Terms are governed by the laws of <strong>[jurisdiction to be confirmed]</strong>, without regard to its conflict-of-law provisions, except where superseded by Apple&apos;s mandatory platform terms as described in Section 1.
+            These Terms are governed by the laws of <strong>{SITE.jurisdiction}</strong>, without regard to its conflict-of-law provisions, except where superseded by Apple&apos;s mandatory platform terms as described in Section 1.
           </p>
         </div>
 

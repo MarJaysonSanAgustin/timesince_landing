@@ -20,7 +20,7 @@ Plan: [PLAN.md](PLAN.md) · Content backlog: `content/_backlog.md` · Last updat
 - [x] Decide the `@/*` alias — **adopted**, all 13 files converted off relative parent paths
 - [x] Untrack the committed `.DS_Store` files
 - [x] Delete orphaned `assets/logo.svg`
-- [ ] Fix `app/terms/page.tsx` jurisdiction placeholder — ⚠️ **live on prod**, BLOCKED on §10.1
+- [x] Fix `app/terms/page.tsx` jurisdiction placeholder — **the Philippines**, via `SITE.jurisdiction`
 - [x] Add `CLAUDE.md` (frontmatter contract, voice rules, verified product facts)
 - [x] Add `.github/workflows/ci.yml` running `npm run verify`
 - [x] **GATE:** build + dev pass under Turbopack; all 8 routes render; icons & motion verified
@@ -109,7 +109,7 @@ visuals contradict the app's own design system. See [docs/](docs/README.md).
 - [x] Raise ADHD out of a footnote — it is the App Store subtitle
 - [x] Match the app's voice (gentler, obligation-removing)
 - [x] Decide the canonical host — **www**, matching production; guarded by `check:seo`
-- [ ] Fix the terms jurisdiction ⚠️ **still blocked**
+- [x] Fix the terms jurisdiction — **the Philippines**
 
 **Verified 2026-10-23:** build green, schema renders `LifestyleApplication` + `AggregateOffer`
 (4 offers, no `aggregateRating`), zero "events" left in rendered copy, 13 "counter" mentions
@@ -140,6 +140,7 @@ Still open from this pass:
 - [x] `/whats-new` — 13 dated releases, transcribed directly from the App Store listing
 - [x] Pricing in the FAQ and schema — a dedicated pricing page is still open
 - [ ] Testimonials from the two App Store reviews
+
 
 ## Phase 2 — SEO plumbing
 
@@ -185,7 +186,7 @@ covers scenarios. Clusters still empty: `health`, `relationships` — no evidenc
 
 Blocked on user input — see PLAN.md §10.
 
-- [ ] `/about` (founder-led, first person)
+- [x] `/about` (founder-led, first person) — published, with Person schema
 - [x] `/whats-new` + changelog data + roadmap
 
 ## Phase 6 — Locales  ⬅ **recommendation inverted 2026-10-23**

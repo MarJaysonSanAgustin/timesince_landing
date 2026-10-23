@@ -16,6 +16,7 @@ export type CtaPlacement =
   | 'web_faq'
   | 'web_404'
   | 'web_whats_new'
+  | 'web_about'
   | 'web_guides_hub'
   | 'web_features_hub'
   | 'web_scenarios_hub'

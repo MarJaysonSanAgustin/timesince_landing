@@ -10,7 +10,7 @@ import { allContent } from '@/lib/content';
  * checkout time, which would mark every page as modified on every deploy.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ['/', '/guides', '/scenarios', '/features', '/whats-new', '/faq', '/privacy', '/terms'].map((p) => ({
+  const staticRoutes = ['/', '/guides', '/scenarios', '/features', '/whats-new', '/about', '/faq', '/privacy', '/terms'].map((p) => ({
     url: `${SITE.url}${p === '/' ? '/' : p}`,
   }));
 

@@ -43,6 +43,7 @@ export const FOOTER_GROUPS: NavGroup[] = [
   {
     title: strings.footer.company,
     links: [
+      { href: localizedPath('/about'), label: strings.nav.about },
       { href: SITE.supportUrl, label: strings.nav.support, external: true },
       { href: localizedPath('/privacy'), label: strings.nav.privacy },
       { href: localizedPath('/terms'), label: strings.nav.terms },

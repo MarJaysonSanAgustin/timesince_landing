@@ -82,7 +82,12 @@ Two entries need checking against App Store Connect before publishing: **1.0** a
 
 [timesince.userjot.com](https://timesince.userjot.com)
 
-**Set expectations honestly: the board is small.** Nine feature posts total, **zero bug reports**, vote counts between 11 and 33, all posts between Sep 8 and Oct 16. The developer replies to every one and moves statuses promptly — that responsiveness is the real story, not the volume.
+**Set expectations honestly: the board is small.** Nine feature posts total, **zero bug reports**, single-digit vote counts, all posts between Sep 8 and Oct 16.
+
+> ⚠️ **Correction, 2026-10-23.** The vote counts first recorded here (33, 22, 11) were wrong. The
+> listing renders the count twice — "3 3" — and that was read as "33". Verified on the post
+> pages: the household request has **3 votes**, not 33. Divide every figure below by ten, and
+> prefer citing the request and the reply over a number that changes anyway. The developer replies to every one and moves statuses promptly — that responsiveness is the real story, not the volume.
 
 This matters for the content plan: **there is not enough user-generated material here to source 40 scenario pages from.** Scenarios will need another evidence source, or the `evidence` field requirement will block them. See [site-audit.md](site-audit.md).
 
@@ -96,17 +101,17 @@ This matters for the content plan: **there is not enough user-generated material
 
 | Title (verbatim) | Votes | Status |
 |---|---|---|
-| "Collaborate/Share Categories or Entire Households" | 33 | Pending — **declined for now** |
-| "Ability to duplicate an existing counter" | 22 | In progress |
-| "Customisability to the lock-screen widget" | 22 | In progress |
-| "Streaks on habits dashboard" | 22 | Reviewing |
-| "Simplify and categorize icons" | 22 | Completed |
-| "Multiple tracker in one widget" | 22 | Done |
-| "'Start On' date and time" | 22 | Done |
+| "Collaborate/Share Categories or Entire Households" | — | Pending — **declined for now** |
+| "Ability to duplicate an existing counter" | — | In progress |
+| "Customisability to the lock-screen widget" | — | In progress |
+| "Streaks on habits dashboard" | — | Reviewing |
+| "Simplify and categorize icons" | — | Completed |
+| "Multiple tracker in one widget" | — | Done |
+| "'Start On' date and time" | — | Done |
 | "ability to change home screen icon color" | ~11 | Pending |
 | "improvements" | ~11 | Pending |
 
-Vote counts are inferred from a run-together string in the listing markup — treat as approximate.
+Vote counts removed: the run-together markup made them unreliable, and they were wrong by a factor of ten. Cite the post, not the count.
 
 ### Two replies worth quoting on the site
 

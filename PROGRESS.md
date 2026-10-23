@@ -165,9 +165,13 @@ canonical host decision, `/about` author URL destination (Phase 5), font subsett
 
 ## Phase 3 — Scenarios & Features
 
-- [ ] Scenario schema (incl. required `evidence`) + clustered hub + `[slug]` template
-- [ ] Remaining components: PracticalAnswer, ProblemFlow, SourceList, PullQuote
-- [ ] `/features` hub + 11 feature pages
+- [x] Scenario schema (incl. required `evidence`) + clustered hub + `[slug]` template
+- [x] Remaining components: PracticalAnswer, ProblemFlow, SourceList, PullQuote
+- [x] `/features` hub + 11 feature pages
+
+**Shipped 2026-10-23 (PR #7).** 7 guides and 6 scenarios live, every scenario tied to a
+specific feedback-board post. `check:seo` covers all three sections; `validate-content.ts`
+covers scenarios. Clusters still empty: `health`, `relationships` — no evidence yet.
 
 ## Phase 4 — Tools
 

@@ -29,6 +29,7 @@ solves:
   - "Lets you run several widgets, each showing a different counter"
   - "Keeps the number readable without unlocking the phone"
 doesNotSolve:
+  - "A lock screen widget shows one counter, not a list"
   - "Hidden and archived counters are not offered to widgets"
   - "It cannot log from a lock screen widget, only display"
   - "The control is in iOS, so the app cannot change it for you"
@@ -73,9 +74,11 @@ Long-press your Lock Screen until Customise appears, tap it, choose Lock Screen,
 
 This is how all Lock Screen widgets work, across every app: iOS owns that editor, and an app can supply the list but cannot open it for you or choose on your behalf. Which is precisely why people look in the app's settings, find nothing, and reasonably conclude the feature is missing.
 
-## One widget, one counter
+## One lock screen widget, one counter
 
-Each widget holds a single counter. If you want two visible, add two widgets. There is no rotation and nothing that picks for you, which is deliberate: a lock screen number is only useful if you know without thinking what it refers to.
+A lock screen widget holds a single counter. If you want two visible there, add two widgets. There is no rotation and nothing that picks for you, which is deliberate: a lock screen number is only useful if you know without thinking what it refers to.
+
+Home screen widgets are different — the medium size shows four counters and the large shows eight, so [one widget can cover a whole set](/scenarios/one-widget-not-eight). The single-counter rule is specific to the lock screen.
 
 ## If a counter is not in the list
 

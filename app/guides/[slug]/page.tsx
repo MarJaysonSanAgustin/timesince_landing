@@ -15,6 +15,7 @@ import { SourceList } from '@/components/content/source-list';
 import { ContentVisual } from '@/components/content/content-visual';
 import { CtaBlock } from '@/components/content/cta-block';
 import { StepList } from '@/components/content/step-list';
+import { ComparisonTable } from '@/components/content/comparison-table';
 import { GivesGrid } from '@/components/content/gives-grid';
 import { strings } from '@/lib/strings/en';
 import { article } from '@/lib/schema';
@@ -149,6 +150,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           howToName={data.title}
         />
       )}
+
+      {data.comparison && <ComparisonTable {...data.comparison} />}
 
       {data.gives && data.doesNotGive && (
         <GivesGrid gives={data.gives} doesNot={data.doesNotGive} />

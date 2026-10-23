@@ -1,0 +1,87 @@
+---
+title: "One widget, not eight, on my home screen"
+seoTitle: "Show Several Counters in One Widget | TimeSince"
+description: "A separate widget for every counter eats the home screen. The medium widget shows four counters and the large shows eight."
+deck: "Tracking more than a couple of things used to mean a widget each, and a home screen full of them. One widget can now carry a set."
+answer: "Use the medium or large widget. The medium shows four counters at once and the large shows eight, so a set of related counters fits in a single widget instead of one each. Add it the usual way, then long-press to edit it and choose which counters it carries. The small widget and the lock screen widget still show one counter each, which is the right trade at those sizes."
+date: "2026-10-23"
+cluster: "ios"
+accent: "calm"
+tags:
+  - "widgets"
+  - "home-screen"
+  - "ios"
+keywords:
+  primary: "multiple counters in one widget"
+  secondary:
+    - "widget showing several trackers"
+    - "medium widget four counters"
+    - "home screen widget space"
+    - "one widget many habits"
+    - "iphone widget multiple timers"
+audience: "Anyone tracking enough things to fill a home screen with widgets"
+scene: "You have five counters you check often, and five widgets taking up most of a home screen page to show them."
+problem: "A widget per counter does not scale. Past two or three, the widgets crowd out everything else on the home screen, and scanning between them is slower than opening the app would have been."
+consequence: "People either give up the widgets, which removes the fastest way to log, or give up a whole home screen page to them."
+help: "The medium widget holds four counters and the large holds eight. A related set sits in one place, readable in a glance, without spreading across the screen."
+solves:
+  - "Shows four or eight counters in the space of one widget"
+  - "Keeps a related set together and readable at a glance"
+  - "Leaves the rest of the home screen for everything else"
+doesNotSolve:
+  - "The small widget still shows a single counter"
+  - "Lock screen widgets are one counter each, by size"
+  - "It will not show every counter you have, only four or eight"
+checklist:
+  - title: "Decide which counters belong together"
+    body: "Four is a real constraint, and it is a useful one. The counters you genuinely check daily are usually fewer than the ones you keep."
+  - title: "Add the medium or large widget"
+    body: "Long-press an empty part of the home screen, tap the plus, find TimeSince, and swipe to the size you want before adding it."
+  - title: "Long-press it and choose Edit Widget"
+    body: "That is where you pick which counters it carries. The choice is per widget, so two widgets can cover two different sets."
+  - title: "Keep a small widget for the one that matters most"
+    body: "If a single counter deserves to be unmissable, a small widget beside the group reads faster than finding it inside a list of eight."
+pullQuote: "Four is a real constraint, and a useful one: you check fewer counters than you keep."
+faq:
+  - q: "How many counters fit in a widget?"
+    a: "Four in the medium size and eight in the large. The small widget shows one, as does a lock screen widget, because there is not room for more at those sizes without making the number unreadable."
+  - q: "Can I tap a counter in a group widget to log it?"
+    a: "The one-tap log is what widgets are for, so putting the counters you log most often into a widget keeps that within reach without opening the app."
+  - q: "Can I have more than one group widget?"
+    a: "Yes. Each widget holds its own selection, so you can keep one widget for household chores and another for health, and edit each independently."
+sources:
+  - title: "Multiple tracker in one widget, request and reply"
+    publisher: "TimeSince feedback board"
+    url: "https://timesince.userjot.com/board/p/multiple-tracker-in-one-widget"
+evidence: "A feature request on the public board from Kaye F on 8 September, pointing out that a separate widget per tracker takes up too much Home Screen space. Shipped in version 1.9 and marked Completed on 21 September."
+related:
+  - "the-wrong-counter-on-my-lock-screen"
+  - "log-a-habit-without-opening-the-app"
+feature: "home-screen-widget"
+kind: "scenario"
+disclaimer: "none"
+---
+
+The request put it plainly:
+
+> It would be nice if we could have a single widget that displays multiple trackers/categories at once [...] That way, we wouldn't have to add a separate widget for every tracker and take up so much space on the Home Screen.
+
+It shipped in version 1.9. The medium widget shows four counters, the large shows eight.
+
+## Why one-per-widget stopped working
+
+A widget per counter is fine at two. At five it is a home screen page, and the thing widgets were supposed to buy you — a number you can read without opening anything — gets slower than opening the app, because now you are scanning a grid of near-identical tiles for the one you wanted.
+
+Grouping fixes the scanning problem as much as the space one. Four counters in a known order are read as a block.
+
+## Choosing the four
+
+The constraint is the useful part. Almost everyone keeps more counters than they check, and being forced to name four tends to reveal which ones were actually load-bearing.
+
+A good test: which counters would you be annoyed to find out of date? Those go in the widget. The rest are fine living in the app, where you will see them when you open it.
+
+## What still shows one
+
+The small widget and the lock screen widget each carry a single counter. That is a size constraint rather than a limitation — a number small enough to fit eight into a lock screen widget would not be readable at a glance, which defeats the purpose.
+
+If a particular counter needs to be unmissable, [a lock screen widget showing just that one](/scenarios/the-wrong-counter-on-my-lock-screen) does the job better than burying it in a group of eight.

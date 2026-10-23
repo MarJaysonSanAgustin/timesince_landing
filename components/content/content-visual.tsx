@@ -39,7 +39,7 @@ export function ContentVisual({
 
   if (img) {
     return (
-      <div className={`${ACCENT_CLASS[accent]} accent-gradient flex items-center justify-center rounded-card-lg p-8`}>
+      <div className={`${ACCENT_CLASS[accent]} accent-block flex items-center justify-center rounded-card-lg p-8`}>
         <Image
           src={img}
           alt={alt}
@@ -52,10 +52,10 @@ export function ContentVisual({
 
   return (
     <div
-      className={`${ACCENT_CLASS[accent]} accent-gradient flex min-h-[220px] flex-col items-center justify-center gap-4 rounded-card-lg p-10 text-center`}
+      className={`${ACCENT_CLASS[accent]} accent-block flex min-h-[220px] flex-col items-center justify-center gap-4 rounded-card-lg p-10 text-center`}
     >
-      <Icon className="h-10 w-10 text-white/90" aria-hidden="true" />
-      <p className="max-w-sm text-lg font-semibold leading-snug text-white">{kicker}</p>
+      <Icon className="h-10 w-10 opacity-90" aria-hidden="true" />
+      <p className="meta max-w-sm text-base" style={{ color: 'inherit' }}>{kicker}</p>
     </div>
   );
 }

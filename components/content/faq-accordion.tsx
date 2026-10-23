@@ -45,15 +45,15 @@ export function FaqAccordion({
         {items.map((item) => (
           <details
             key={item.q}
-            className="group rounded-card-lg border border-gray-100 bg-surface px-6 py-5 shadow-sm transition-shadow open:shadow-md"
+            className="ticket group px-6 py-5"
           >
             <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink">
               <span>{item.q}</span>
-              <span className="shrink-0 text-xl leading-none text-purple-600 transition-transform group-open:rotate-45">
+              <span className="shrink-0 text-xl leading-none text-ube transition-transform group-open:rotate-45">
                 +
               </span>
             </summary>
-            <p className="mt-3 leading-relaxed text-ink-muted">{item.a}</p>
+            <p className="mt-3 leading-relaxed text-muted">{item.a}</p>
           </details>
         ))}
       </div>

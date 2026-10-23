@@ -10,27 +10,27 @@ import { strings } from '@/lib/strings/en';
 export function GivesGrid({ gives, doesNot }: { gives: string[]; doesNot: string[] }) {
   return (
     <section className="not-prose my-12 grid gap-4 sm:grid-cols-2">
-      <div className="rounded-card-lg border border-emerald-100 bg-emerald-50 p-6">
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-emerald-700">
+      <div className="accent-calm ticket p-6">
+        <h2 className="stub-label mb-3 uppercase accent-text">
           {strings.content.solved}
         </h2>
         <ul className="space-y-2">
           {gives.map((g) => (
-            <li key={g} className="flex gap-2 text-sm text-gray-800">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" />
+            <li key={g} className="flex gap-2 text-sm text-ink">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 accent-text" aria-hidden="true" />
               <span>{g}</span>
             </li>
           ))}
         </ul>
       </div>
-      <div className="rounded-card-lg border border-gray-200 bg-surface-alt p-6">
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-ink-subtle">
+      <div className="ticket p-6">
+        <h2 className="stub-label mb-3 uppercase">
           {strings.content.notSolved}
         </h2>
         <ul className="space-y-2">
           {doesNot.map((d) => (
-            <li key={d} className="flex gap-2 text-sm text-gray-800">
-              <X className="mt-0.5 h-4 w-4 shrink-0 text-ink-subtle" aria-hidden="true" />
+            <li key={d} className="flex gap-2 text-sm text-ink">
+              <X className="mt-0.5 h-4 w-4 shrink-0 text-faint" aria-hidden="true" />
               <span>{d}</span>
             </li>
           ))}

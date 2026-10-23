@@ -16,11 +16,11 @@ export function CtaBlock({
   sub?: string;
 }) {
   return (
-    <section className="not-prose my-12 rounded-card-lg border border-purple-100 bg-purple-50 p-8 text-center">
+    <section className="not-prose my-12 ticket p-8 text-center">
       {headline && (
         <h2 className="font-display text-2xl font-bold text-ink">{headline}</h2>
       )}
-      {sub && <p className="mx-auto mt-2 max-w-xl text-ink-muted">{sub}</p>}
+      {sub && <p className="mx-auto mt-2 max-w-xl text-muted">{sub}</p>}
       <a
         href={appStoreUrl(placement)}
         target="_blank"

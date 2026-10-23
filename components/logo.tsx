@@ -45,7 +45,7 @@ export const Logo: React.FC<FullLogoLayoutProps> = ({
       ? 'text-white'
       : variant === 'currentColor'
       ? 'text-current'
-      : 'text-gray-900';
+      : 'text-ink';
 
   return (
     <div className={`flex items-center gap-2.5 select-none ${className}`}>

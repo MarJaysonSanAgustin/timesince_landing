@@ -69,20 +69,20 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const updated = data.updated ?? data.date;
 
   return (
-    <article className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="paper-dots"><article className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <Breadcrumbs
         trail={[{ href: '/guides', label: 'Guides' }, { label: data.title }]}
       />
 
       <header className="mt-6">
-        <p className="text-sm font-semibold uppercase tracking-wider text-purple-600">
+        <p className="meta uppercase">
           {CLUSTER_LABELS[data.cluster]}
         </p>
         <h1 className="mt-2 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
           {data.title}
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-ink-muted">{data.deck}</p>
-        <p className="mt-4 text-sm text-ink-subtle">
+        <p className="mt-4 text-lg leading-relaxed text-muted">{data.deck}</p>
+        <p className="meta mt-4">
           {strings.content.updatedOn}{' '}
           <time dateTime={updated}>
             {new Date(`${updated}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -109,7 +109,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
       <AnswerBox text={data.answer} />
 
-      <div className="prose prose-purple prose-lg max-w-none">
+      <div className="prose prose-neutral prose-lg max-w-none">
         <MDXRemote source={body} components={mdxComponents} />
       </div>
 
@@ -137,6 +137,6 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       />
 
       <RelatedGrid items={related} title={strings.content.relatedHeading} />
-    </article>
+    </article></div>
   );
 }

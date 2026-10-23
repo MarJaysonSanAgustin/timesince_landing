@@ -24,47 +24,60 @@ export function FeatureRow({
   const Icon = feature.icon;
 
   return (
-    <section className="w-full bg-surface-alt py-4">
+    <section className="w-full paper-dots py-4">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        {/* The accent class sits here so the chip and the gradient text below
-            both read the same custom properties. */}
+        {/* A ticket on the paper. The accent class scopes --accent-fill and
+            --accent-ink to this card, so the block below reads its own colour. */}
         <div
-          className={`${ACCENT_CLASS[feature.accent]} bg-surface rounded-card-lg p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col items-center gap-12 lg:gap-20 ${
+          className={`${ACCENT_CLASS[feature.accent]} ticket flex flex-col items-center gap-12 p-8 md:p-12 lg:gap-20 lg:p-16 ${
             reverse ? 'md:flex-row-reverse' : 'md:flex-row'
           }`}
         >
           <div className="flex-1 space-y-6">
-            <div className="accent-chip w-16 h-16 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-              <Icon className="w-8 h-8" />
+            {/* Flat block, not a gradient chip. ADR-012 rule 8. */}
+            <div className="accent-block flex h-14 w-14 items-center justify-center rounded-card">
+              <Icon className="h-7 w-7" />
             </div>
 
-            <Heading className="text-3xl font-extrabold font-display text-ink">
+            <Heading className="font-display text-3xl font-extrabold text-ink">
               {feature.homeHeadline.lead}{' '}
               <span className="accent-text">{feature.homeHeadline.emphasis}</span>
             </Heading>
 
-            <p className="text-lg text-ink-muted leading-relaxed">{feature.deck}</p>
+            <p className="text-lg leading-relaxed text-muted">{feature.deck}</p>
 
-            {feature.requires && (
-              <p className="text-sm text-ink-subtle">Requires {feature.requires}.</p>
-            )}
+            {/* Stub rows: label left, value right (ADR-012 rule 5). */}
+            <div className="space-y-2 border-t border-line pt-4">
+              <div className="stub-row">
+                <span className="stub-label">INCLUDED IN</span>
+                <span className="stub-value text-sm">
+                  {feature.tier === 'pro' ? 'TimeSince Pro' : 'Free tier'}
+                </span>
+              </div>
+              {feature.requires && (
+                <div className="stub-row">
+                  <span className="stub-label">REQUIRES</span>
+                  <span className="stub-value text-sm">{feature.requires}</span>
+                </div>
+              )}
+            </div>
 
             {showLearnMore && (
               <Link
                 href={`/features/${feature.slug}`}
-                className="inline-flex items-center text-sm font-semibold text-purple-600 hover:underline"
+                className="inline-flex items-center text-sm font-semibold text-ube hover:underline"
               >
                 Learn more &rarr;
               </Link>
             )}
           </div>
 
-          <div className="flex-1 w-full flex items-center justify-center relative">
+          <div className="relative flex w-full flex-1 items-center justify-center">
             <Image
               src={feature.image}
               alt={feature.alt}
               priority={priority}
-              className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl"
+              className="h-auto w-full max-w-[320px] object-contain drop-shadow-2xl"
             />
           </div>
         </div>

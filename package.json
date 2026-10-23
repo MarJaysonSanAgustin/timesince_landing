@@ -10,8 +10,9 @@
     "assets:sync": "node --experimental-strip-types scripts/gen-image-manifest.ts",
     "content:new": "node --experimental-strip-types scripts/new-content.ts",
     "content:check": "node --experimental-strip-types scripts/validate-content.ts",
+    "check:contrast": "node --experimental-strip-types scripts/check-contrast.ts",
     "prebuild": "npm run assets:sync",
-    "verify": "npm run content:check && next typegen && tsc --noEmit && eslint . && next build",
+    "verify": "npm run content:check && npm run check:contrast && next typegen && tsc --noEmit && eslint . && next build",
     "clean": "next clean"
   },
   "dependencies": {

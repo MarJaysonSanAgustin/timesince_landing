@@ -46,18 +46,18 @@ export function StepList({
           const img = s.image ? CONTENT_IMAGES[s.image as keyof typeof CONTENT_IMAGES] : undefined;
           return (
             <li key={s.title} className="flex gap-4">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-100 text-sm font-bold text-purple-700">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-card text-sm font-bold text-ube">
                 {i + 1}
               </span>
               <div className="flex-1">
                 <h3 className="font-semibold text-ink">{s.title}</h3>
-                <p className="mt-1 leading-relaxed text-ink-muted">{s.body}</p>
-                {s.note && <p className="mt-2 text-sm text-ink-subtle">{s.note}</p>}
+                <p className="mt-1 leading-relaxed text-muted">{s.body}</p>
+                {s.note && <p className="mt-2 text-sm text-faint">{s.note}</p>}
                 {img && (
                   <Image
                     src={img}
                     alt={s.title}
-                    className="mt-4 h-auto w-full max-w-[260px] rounded-card border border-gray-100"
+                    className="mt-4 h-auto w-full max-w-[260px] rounded-card border border-line"
                   />
                 )}
               </div>

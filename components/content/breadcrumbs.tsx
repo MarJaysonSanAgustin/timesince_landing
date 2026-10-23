@@ -31,7 +31,7 @@ export function Breadcrumbs({ trail }: { trail: Crumb[] }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <nav aria-label="Breadcrumb" className="text-sm text-ink-subtle">
+      <nav aria-label="Breadcrumb" className="text-sm text-faint">
         <ol className="flex flex-wrap items-center gap-1.5">
           {full.map((c, i) => (
             <li key={c.label} className="flex items-center gap-1.5">
@@ -41,7 +41,7 @@ export function Breadcrumbs({ trail }: { trail: Crumb[] }) {
                   {c.label}
                 </Link>
               ) : (
-                <span className="text-ink-muted">{c.label}</span>
+                <span className="text-muted">{c.label}</span>
               )}
             </li>
           ))}

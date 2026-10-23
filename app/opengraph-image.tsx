@@ -5,6 +5,17 @@ export const alt = SITE.title;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
+/**
+ * The share card, as a ticket on paper.
+ *
+ * Flat fills only (ADR-012 rule 8) — the gradient wash this replaced was the
+ * most-shared image on the site and the least like the app. The dotted ground
+ * is painted as a repeating radial-gradient because that is the paper's rule,
+ * not a fill.
+ *
+ * Still set in a system sans rather than the app's face: ImageResponse cannot
+ * reach a next/font, and committing a subset TTF is Phase 2 work.
+ */
 export default function OgImage() {
   return new ImageResponse(
     (
@@ -13,45 +24,94 @@ export default function OgImage() {
           width: '100%',
           height: '100%',
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#ffffff',
-          backgroundImage: 'radial-gradient(circle at 50% 25%, #f3e8ff 0%, #ffffff 55%)',
-          fontFamily: 'sans-serif',
+          backgroundColor: '#F1EFEA',
+          backgroundImage:
+            'radial-gradient(circle at 1px 1px, #D2CEC6 1.6px, transparent 0)',
+          backgroundSize: '32px 32px',
         }}
       >
         <div
           style={{
             display: 'flex',
-            width: 88,
-            height: 88,
+            flexDirection: 'column',
+            width: 960,
             borderRadius: 24,
-            backgroundImage: 'linear-gradient(135deg, #9333ea, #3b82f6)',
-            marginBottom: 28,
-          }}
-        />
-        <div style={{ display: 'flex', fontSize: 60, fontWeight: 800, color: '#111827' }}>
-          {SITE.name}
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            fontSize: 38,
-            fontWeight: 700,
-            color: '#111827',
-            textAlign: 'center',
-            maxWidth: 880,
-            marginTop: 16,
+            overflow: 'hidden',
+            border: '1px solid #E2DED6',
+            backgroundColor: '#FFFFFF',
           }}
         >
-          Consistency without the anxiety.
-        </div>
-        <div style={{ display: 'flex', fontSize: 24, color: '#6b7280', marginTop: 20 }}>
-          No streaks &middot; No pressure &middot; No guilt
+          {/* The block. Ink, not colour — this is about the app, not a counter. */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 16,
+              padding: '56px 64px',
+              backgroundColor: '#1E1B22',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 22,
+                letterSpacing: 2,
+                color: '#9B989C',
+                fontFamily: 'monospace',
+              }}
+            >
+              TIMESINCE · NO. 001
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 68,
+                fontWeight: 800,
+                color: '#FFFFFF',
+                lineHeight: 1.1,
+              }}
+            >
+              How long since you last did it?
+            </div>
+          </div>
+
+          {/* Perforation. */}
+          <div
+            style={{
+              display: 'flex',
+              height: 1,
+              borderTop: '2px dashed #D8D3CA',
+            }}
+          />
+
+          {/* The stub: label left, value right. */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '36px 64px',
+            }}
+          >
+            <div style={{ display: 'flex', fontSize: 26, color: '#6C6870' }}>
+              Chores · Medication · Quitting · Anything
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                fontSize: 22,
+                fontFamily: 'monospace',
+                color: '#6C6870',
+              }}
+            >
+              NO STREAKS
+            </div>
+          </div>
         </div>
       </div>
     ),
-    { ...size }
+    size,
   );
 }

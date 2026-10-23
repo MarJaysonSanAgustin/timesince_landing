@@ -1,76 +1,166 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ── Paper, ink and type ───────────────────────────────────────────────────
+   Ported from the app's design system — ADR-012 ("the ticket is the visual
+   identity") and ADR-013 ("ink on paper"). The values below are not picked by
+   eye: the three inks are derived with lib/apca.ts as the palest step from the
+   paper toward full ink that still reads at APCA Lc 67 (muted) and Lc 45
+   (faint) on BOTH the paper and a card, which is how one ink stays right in
+   both places. Re-derive with `npm run tokens` if a paper colour changes.   */
+
 @theme {
   --font-display: var(--font-display-nunito);
+  /* The second voice. The app sets every count, date, interval and section
+     label in Menlo — the numbers are the product, and setting them as body
+     text is most of why the site did not read as the same thing. */
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
-  /* Semantic surface + text tokens, so new page types stop inventing their own greys. */
-  --color-ink: var(--color-gray-900);
-  --color-ink-muted: var(--color-gray-600);
-  --color-ink-subtle: var(--color-gray-500);
-  --color-surface: var(--color-white);
-  --color-surface-alt: var(--color-gray-100);
-  --color-line: var(--color-gray-200);
+  /* The ground. Warm paper, not white. */
+  --color-paper: #f1efea;
+  --color-card: #ffffff;
+  --color-paper-rule: #d2cec6;
 
-  --radius-card: 1rem;
-  --radius-card-lg: 1.5rem;
-}
+  /* The three inks. Never an alpha — alpha is for fills, borders and
+     hairlines, where it is meant to take on whatever it sits in. */
+  --color-ink: #1b1526;
+  --color-muted: #6c6870;
+  --color-faint: #9b989c;
 
-/* ── Accent system ─────────────────────────────────────────────────────────
-   Content files carry a zod-validated accent NAME, never a Tailwind class.
-   Tailwind's scanner cannot see class strings composed at runtime, so the six
-   names below are the only accents that exist. Each is a static class setting
-   custom properties that the helper classes read — which means a new accent is
-   a CSS edit here, not a string smuggled in from a content file.
-   See CLAUDE.md and PLAN.md §3.                                            */
+  --color-line: #ddd8ce;
+  --color-hair: #c4bdb0;
 
-.accent-brand {
-  --accent-from: var(--color-purple-600);
-  --accent-to: var(--color-blue-600);
-  --accent-soft: var(--color-purple-100);
-  --accent-ink: var(--color-purple-600);
-}
-.accent-warm {
-  --accent-from: var(--color-orange-500);
-  --accent-to: var(--color-red-500);
-  --accent-soft: var(--color-orange-100);
-  --accent-ink: var(--color-orange-600);
-}
-.accent-calm {
-  --accent-from: var(--color-emerald-500);
-  --accent-to: var(--color-teal-500);
-  --accent-soft: var(--color-emerald-100);
-  --accent-ink: var(--color-emerald-600);
-}
-.accent-cool {
-  --accent-from: var(--color-blue-500);
-  --accent-to: var(--color-cyan-500);
-  --accent-soft: var(--color-blue-100);
-  --accent-ink: var(--color-blue-600);
-}
-.accent-alert {
-  --accent-from: var(--color-rose-500);
-  --accent-to: var(--color-orange-500);
-  --accent-soft: var(--color-rose-100);
-  --accent-ink: var(--color-rose-600);
-}
-.accent-neutral {
-  --accent-from: var(--color-slate-500);
-  --accent-to: var(--color-slate-700);
-  --accent-soft: var(--color-slate-100);
-  --accent-ink: var(--color-slate-600);
+  /* Ube Halaya. An accent only — a button fill, a link, a selected tab.
+     Never a large block: ADR-013 §2 demoted it because an app-purple block and
+     a purple counter ticket were two purples nobody could tell apart. */
+  --color-ube: #5c247a;
+
+  --radius-card: 0.75rem;
+  --radius-card-lg: 1rem;
 }
 
-.accent-gradient {
-  background-image: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+/* ── The paper ground ──────────────────────────────────────────────────────
+   Dots on pages, plain paper in sheets: "a sheet is a visit, a page is a
+   place." 16px grid, matching the app.                                     */
+
+.paper {
+  background-color: var(--color-paper);
 }
-.accent-chip {
-  background-color: var(--accent-soft);
+
+.paper-dots {
+  background-color: var(--color-paper);
+  background-image: radial-gradient(
+    circle,
+    var(--color-paper-rule) 1.1px,
+    transparent 1.1px
+  );
+  background-size: 16px 16px;
+  background-position: -8px -8px;
+}
+
+/* ── Accents ───────────────────────────────────────────────────────────────
+   Six flat fills. ADR-012 rule 8: "flat fills — no gradients, no patterned
+   banners." Each carries the ink APCA chooses for it, which is not always the
+   one WCAG 2 would pick: the crossover put blue, teal, green and red in black,
+   at ratios just over white's, and APCA puts them in white as the eye does.
+
+   `neutral` is the ink block — per ADR-013 §2, anything that belongs to the
+   app rather than to a counter prints in ink, not colour.
+
+   Known limitation, inherited from the app: `warm` (#FB8C00) reads at Lc 56.3
+   against its best ink, under the 60 APCA asks of body text. No ink reaches 60
+   on it. It clears the 45 floor for large text, so use it behind headings and
+   icons — never a paragraph.                                               */
+
+.accent-brand   { --accent-fill: #5e35b1; --accent-ink: #ffffff; --accent-tone: #5e35b1; }
+.accent-warm    { --accent-fill: #fb8c00; --accent-ink: #1b1526; --accent-tone: #a85c00; }
+.accent-calm    { --accent-fill: #00897b; --accent-ink: #ffffff; --accent-tone: #00695f; }
+.accent-cool    { --accent-fill: #1e88e5; --accent-ink: #ffffff; --accent-tone: #1565c0; }
+.accent-alert   { --accent-fill: #e53935; --accent-ink: #ffffff; --accent-tone: #c62828; }
+.accent-neutral { --accent-fill: #1e1b22; --accent-ink: #ffffff; --accent-tone: #1e1b22; }
+
+/* A block: the coloured head of a ticket. */
+.accent-block {
+  background-color: var(--accent-fill);
   color: var(--accent-ink);
 }
+
+/* The accent as ink on paper — a kicker, an icon, a link. `--accent-tone` is a
+   darkened variant where the fill itself is too light to read as text. */
 .accent-text {
-  background-image: linear-gradient(90deg, var(--accent-from), var(--accent-to));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent-tone);
+}
+
+/* ── Ticket parts ──────────────────────────────────────────────────────────
+   block │ perforation │ stub. The perforation is the single most recognisable
+   piece of the identity and costs nothing: a dashed rule, 5 on 5, matching the
+   app's _PerforationPainter.                                               */
+
+.ticket {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card-lg);
+  overflow: hidden;
+}
+
+/* 5pt dash, 5pt gap — the app's _PerforationPainter. CSS `dashed` gives no
+   control over dash length, so the rule is painted as a repeating gradient. */
+.ticket-perforation {
+  position: relative;
+  height: 14px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--color-hair) 0 5px,
+    transparent 5px 10px
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* The notches. `overflow: hidden` on .ticket clips each circle in half, which
+   is exactly the bite a perforated edge takes out of the paper. */
+.ticket-perforation::before,
+.ticket-perforation::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background-color: var(--color-paper);
+}
+
+.ticket-perforation::before { left: -6px; }
+.ticket-perforation::after  { right: -6px; }
+
+/* A stub row: label left, value right, no rule, no icon tile (rule 5). */
+.stub-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.stub-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: var(--color-muted);
+}
+
+.stub-value {
+  font-family: var(--font-mono);
+  color: var(--color-ink);
+}
+
+/* What the machine prints: counts, dates, intervals, serials, section labels. */
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-muted);
 }

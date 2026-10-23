@@ -24,31 +24,32 @@ export default function GuidesHub() {
   const notes = guides.filter((g) => g.data.kind === 'note');
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
+    <div className="paper-dots"><div className="mx-auto w-full max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
       <header className="mb-16">
         <h1 className="mb-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
           Guides
         </h1>
-        <p className="max-w-2xl text-lg text-ink-muted">
+        <p className="max-w-2xl text-lg text-muted">
           Each guide answers its question first and gives the detail after. No streaks, and
           an honest note on what {SITE.name} does not solve.
         </p>
       </header>
 
       {guides.length === 0 ? (
-        <p className="text-ink-muted">No guides published yet.</p>
+        <p className="text-muted">No guides published yet.</p>
       ) : (
         <div className="space-y-16">
           {byCluster.map((group) => (
             <section key={group.cluster}>
               <h2 className="mb-6 font-display text-2xl font-bold text-ink">{group.label}</h2>
               <div className="grid gap-4 sm:grid-cols-2">
-                {group.items.map((g) => (
+                {group.items.map((g, i) => (
                   <GuideCard
                     key={g.slug}
                     href={`/guides/${g.slug}`}
                     title={g.data.title}
                     deck={g.data.deck}
+                    no={i + 1}
                   />
                 ))}
               </div>
@@ -59,12 +60,13 @@ export default function GuidesHub() {
             <section>
               <h2 className="mb-6 font-display text-2xl font-bold text-ink">Notes</h2>
               <div className="grid gap-4 sm:grid-cols-2">
-                {notes.map((g) => (
+                {notes.map((g, i) => (
                   <GuideCard
                     key={g.slug}
                     href={`/guides/${g.slug}`}
                     title={g.data.title}
                     deck={g.data.deck}
+                    no={i + 1}
                   />
                 ))}
               </div>
@@ -78,21 +80,40 @@ export default function GuidesHub() {
         headline="Track what matters, without the pressure"
         sub={`${SITE.name} is free for up to three counters, with no account and no ads.`}
       />
-    </div>
+    </div></div>
   );
 }
 
-function GuideCard({ href, title, deck }: { href: string; title: string; deck: string }) {
+function GuideCard({
+  href,
+  title,
+  deck,
+  no,
+}: {
+  href: string;
+  title: string;
+  deck: string;
+  no: number;
+}) {
   return (
-    <Link
-      href={href}
-      className="group rounded-card-lg border border-gray-100 bg-surface p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
-    >
-      <h3 className="font-semibold text-ink group-hover:text-purple-600">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-ink-muted">{deck}</p>
-      <span className="mt-4 inline-block text-sm font-semibold text-purple-600">
-        {strings.content.readGuide} &rarr;
-      </span>
+    <Link href={href} className="ticket group block transition-transform hover:-translate-y-0.5">
+      {/* The block. Ink, not colour — a guide belongs to the app. */}
+      <div className="accent-neutral accent-block px-6 py-5">
+        <p className="meta" style={{ color: 'inherit', opacity: 0.7 }}>
+          NO. {String(no).padStart(3, '0')}
+        </p>
+        <h3 className="mt-1 font-semibold leading-snug">{title}</h3>
+      </div>
+      <div className="ticket-perforation" />
+      <div className="px-6 py-5">
+        <p className="text-sm leading-relaxed text-muted">{deck}</p>
+        <div className="stub-row mt-4 border-t border-hair pt-3">
+          <span className="stub-label">READ</span>
+          <span className="stub-value text-xs group-hover:underline">
+            {strings.content.readGuide} &rarr;
+          </span>
+        </div>
+      </div>
     </Link>
   );
 }

@@ -57,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${nunitoSans.variable} ${nunitoDisplay.variable}`}>
       <body
-        className="font-sans bg-surface text-ink antialiased selection:bg-purple-200 selection:text-purple-900 flex flex-col min-h-screen"
+        className="font-sans paper text-ink antialiased selection:bg-[#D0B4DE] selection:text-ink flex flex-col min-h-screen"
         suppressHydrationWarning
       >
         <script

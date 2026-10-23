@@ -101,15 +101,20 @@ Knowledge gathering found the site is describing a product that has moved on, an
 visuals contradict the app's own design system. See [docs/](docs/README.md).
 
 **Copy & metadata truth pass**
-- [ ] Stop calling it a habit tracker — `SITE.title`, `fullName`, `description`, keywords, OG
-- [ ] Rename **events → counters** everywhere (copy, `lib/faq.ts`, llms.txt, content schema)
-- [ ] `applicationCategory` → `LifestyleApplication` (App Store confirms)
-- [ ] `AggregateOffer` with the real prices: $0 / $1.99 / $14.99 / $39.99
-- [ ] Widen the examples: plants watered, parents called, car oil changed, migraine logged
-- [ ] Raise ADHD out of a footnote — it is the App Store subtitle
-- [ ] Match the app's voice (gentler, obligation-removing)
+- [x] Stop calling it a habit tracker — `SITE.title`, `fullName`, `description`, keywords, OG
+- [x] Rename **events → counters** everywhere (copy, `lib/faq.ts`, llms.txt, content schema)
+- [x] `applicationCategory` → `LifestyleApplication` (App Store confirms)
+- [x] `AggregateOffer` with the real prices: $0 / $1.99 / $14.99 / $39.99
+- [x] Widen the examples: plants watered, parents called, car oil changed, migraine logged
+- [x] Raise ADHD out of a footnote — it is the App Store subtitle
+- [x] Match the app's voice (gentler, obligation-removing)
 - [ ] Decide the canonical host (apex vs www)
 - [ ] Fix the terms jurisdiction ⚠️ **still blocked**
+
+**Verified 2026-10-23:** build green, schema renders `LifestyleApplication` + `AggregateOffer`
+(4 offers, no `aggregateRating`), zero "events" left in rendered copy, 13 "counter" mentions
+on the homepage. Legal boilerplate preserved; the `an counter` article bug the rename
+introduced was caught and fixed.
 
 **Design translation** — must land before Phase 2 generates OG images
 - [ ] Replace gradient accents with **flat blocks** (ADR-012 rule 8 forbids gradients)
@@ -122,7 +127,7 @@ visuals contradict the app's own design system. See [docs/](docs/README.md).
 
 **Now unblocked by research**
 - [ ] `/whats-new` — 13 dated releases are in [docs/research.md](docs/research.md)
-- [ ] Pricing on the site (currently stated nowhere)
+- [x] Pricing in the FAQ and schema — a dedicated pricing page is still open
 - [ ] Testimonials from the two App Store reviews
 
 ## Phase 2 — SEO plumbing

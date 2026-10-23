@@ -1,38 +1,12 @@
 import Image from 'next/image';
-import {
-  Activity,
-  ShieldCheck,
-  CheckCircle2,
-  Clock,
-  ListX,
-  Palette,
-  Pencil,
-  Lock,
-  BarChart2,
-  Layers,
-  LayoutGrid,
-  Mic,
-  Nfc,
-  Ban,
-  BellRing,
-  CloudCheck,
-} from 'lucide-react';
+import { Activity, ShieldCheck, CheckCircle2, Clock, ListX } from 'lucide-react';
 import * as motion from 'motion/react-client';
 import handAppImg from '@/assets/features/hand-app.png';
-import customImg from '@/assets/features/custom.png';
-import customInputsImg from '@/assets/features/custom-inputs.png';
-import privateImg from '@/assets/features/private.png';
-import rythmImg from '@/assets/features/rhythm.png';
-import timelineImg from '@/assets/features/timeline.png';
-import widgetImg from '@/assets/features/widget.png';
-import siriImg from '@/assets/features/siri.png';
-import nfcImg from '@/assets/features/nfc.png';
-import quitImg from '@/assets/features/quit.png';
-import remindersImg from '@/assets/features/reminders.png';
-import icloudImg from '@/assets/features/icloud.png';
 import badgeIosImg from '@/assets/badge-ios-en.svg';
 import { SITE } from '@/lib/site';
 import { faqs } from '@/lib/faq';
+import { FEATURES } from '@/lib/features';
+import { FeatureRow } from '@/components/sections/feature-row';
 
 export default function LandingPage() {
   return (
@@ -181,225 +155,16 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Feature 1: Dynamic Event Customization */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <Palette className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Dynamic Event <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Customization</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Customize events using a rich spectrum of curated, premium color palettes, intuitive emoji icons, and custom image covers for full personalization.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={customImg} alt="Choosing a color and icon for a new event" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 2: Find your natural rhythm */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-orange-100 text-orange-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <BarChart2 className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Find your natural <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">rhythm.</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                No rigid schedules, just insights into how you actually spend your time. We analyze your logging history to calculate average intervals and render beautiful dynamic charts displaying interval trends.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={rythmImg} alt="Rhythm Analytics" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 3: Keep it personal */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <Lock className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Keep it <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">personal.</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Lock sensitive habits and routines behind FaceID. TimeSince features a dedicated hidden layer shielded by biometric security, fully masked from the main UI and encrypted locally.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={privateImg} alt="Privacy-First Hidden Events" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 4: Advanced Custom Logging */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <Pencil className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Advanced Custom <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500">Logging</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Go far beyond simple date-and-time stamps. Define custom inputs for each event: numbers for doses or costs (with a built-in calculator), text fields for detailed journaling, or photos for visual evidence.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={customInputsImg} alt="Advanced Custom Logging" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 5: A Beautiful Timeline */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <Layers className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">A Beautiful <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">Timeline</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Keep your habits, events, and routines perfectly organized in a stunning timeline. Easily visualize your history, track your intervals, and capture the natural rhythm of your life in one place.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={timelineImg} alt="A Beautiful Timeline" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 6: Home Screen Widget */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-fuchsia-100 text-fuchsia-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <LayoutGrid className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Logging you don&apos;t have to <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-purple-600">remember.</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                The best log is the one you never had to remember to make. Add the TimeSince widget to your home screen and tap once to log or reset an event, no need to unlock into the app.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={widgetImg} alt="TimeSince home screen widget" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 7: Siri Shortcuts */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-violet-100 text-violet-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <Mic className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Just say <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-600">&ldquo;log it.&rdquo;</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Ask Siri to log or reset any event, or ask how long it&apos;s been, right from Siri, Spotlight, the Shortcuts app, or the Action Button.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={siriImg} alt="Logging an event with Siri" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 8: NFC tags */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-teal-100 text-teal-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <Nfc className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Tap a tag, <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-cyan-600">done.</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Pair a cheap NFC sticker with any event, then stick it somewhere relevant: a pillbox, a water filter, a fridge. Tapping your phone against it logs that event instantly, no app required.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={nfcImg} alt="Logging an event by tapping an NFC tag" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 9: Quit mode */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-rose-100 text-rose-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <Ban className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Quitting something? <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-500">Climb, don&apos;t break.</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Turn on Quitting mode and your counter climbs for as long as you stay away from it. If you slip, logging a reset just starts the count again, with no penalty, no lost history, no shame.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={quitImg} alt="A counter tracking days since quitting a habit" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 10: Reminders & alarms */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <BellRing className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Reminders that <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500">actually reach you.</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Set up to 5 reminders per event, one-time or repeating, at a custom time or relative to your last log. On supported devices, alarms can ring through silent mode and Focus so the important ones never get missed.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={remindersImg} alt="Reminders scheduled for an event" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature 11: iCloud backup */}
-      <section className="w-full bg-gray-100 py-4">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-16 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-            <div className="flex-1 space-y-6">
-              <div className="w-16 h-16 bg-sky-100 text-sky-600 rounded-3xl flex items-center justify-center mb-6 shadow-sm">
-                <CloudCheck className="w-8 h-8" />
-              </div>
-              <h3 className="text-3xl font-extrabold font-display text-gray-900">Your data, backed up to <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-600">your iCloud.</span></h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Your database is encrypted on your device from the start. Turn on sync and a copy goes straight to your own private iCloud account, never to a server we run. It&apos;s free for everyone, and it stays off until you switch it on.
-              </p>
-            </div>
-            <div className="flex-1 w-full flex items-center justify-center relative">
-              <Image src={icloudImg} alt="iCloud backup enabled in Settings" className="w-full max-w-[320px] h-auto object-contain drop-shadow-2xl" />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* The 11 feature rows, from lib/features.ts. Alternation is index
+          parity, which is how the hand-written blocks did it too. */}
+      {FEATURES.map((feature, i) => (
+        <FeatureRow
+          key={feature.slug}
+          feature={feature}
+          reverse={i % 2 === 1}
+          showLearnMore
+        />
+      ))}
 
       {/* FAQ preview */}
       <section className="w-full bg-gray-100 py-32" id="faq">

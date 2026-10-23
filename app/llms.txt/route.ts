@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
-import { SITE } from '../../lib/site';
-import { getAllPosts } from '../../lib/blog';
+import { SITE } from '@/lib/site';
+import { getGuides } from '@/lib/content';
+import { CLUSTER_LABELS, CLUSTERS } from '@/lib/content/schema';
+
+export const dynamic = 'force-static';
 
 export function GET() {
-  const posts = getAllPosts();
+  const guides = getGuides();
 
   const lines = [
     `# ${SITE.name}`,
@@ -19,15 +22,26 @@ export function GET() {
     '## FAQ',
     `- [Frequently asked questions](${SITE.url}/faq)`,
     '',
-    '## Blog',
-    ...posts.map((post) => `- [${post.title}](${SITE.url}/blog/${post.slug}): ${post.description}`),
+    '## Guides',
+    `- [All guides](${SITE.url}/guides)`,
+    ...CLUSTERS.flatMap((cluster) => {
+      const inCluster = guides.filter((g) => g.data.cluster === cluster);
+      if (inCluster.length === 0) return [];
+      return [
+        '',
+        `### ${CLUSTER_LABELS[cluster]}`,
+        ...inCluster.map(
+          (g) => `- [${g.data.title}](${SITE.url}/guides/${g.slug}): ${g.data.description}`,
+        ),
+      ];
+    }),
     '',
     '## Legal',
     `- [Privacy Policy](${SITE.url}/privacy)`,
     `- [Terms of Use](${SITE.url}/terms)`,
     '',
     '## Full content',
-    `- [llms-full.txt](${SITE.url}/llms-full.txt): expanded FAQ answers and full post content in one file`,
+    `- [llms-full.txt](${SITE.url}/llms-full.txt): expanded FAQ answers and full guide content in one file`,
     '',
   ];
 

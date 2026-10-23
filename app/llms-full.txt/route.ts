@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
-import { SITE } from '../../lib/site';
-import { faqs, faqCategories } from '../../lib/faq';
-import { getAllPosts, getPostBySlug } from '../../lib/blog';
+import { SITE } from '@/lib/site';
+import { faqs, faqCategories } from '@/lib/faq';
+import { getGuides } from '@/lib/content';
+
+export const dynamic = 'force-static';
 
 export function GET() {
   const lines: string[] = [`# ${SITE.name}: full reference`, '', `> ${SITE.description}`, ''];
@@ -14,11 +16,28 @@ export function GET() {
     }
   }
 
-  lines.push('## Blog posts', '');
-  for (const meta of getAllPosts()) {
-    const post = getPostBySlug(meta.slug);
-    if (!post) continue;
-    lines.push(`### ${post.title}`, post.date, '', post.content.trim(), '');
+  // Capped on purpose. Every guide in full would run to megabytes; the answer
+  // boxes are the part worth quoting, and llms.txt indexes the rest.
+  const FULL_TEXT_LIMIT = 20;
+  const guides = getGuides();
+
+  lines.push('## Guides', '');
+  for (const guide of guides.slice(0, FULL_TEXT_LIMIT)) {
+    lines.push(
+      `### ${guide.data.title}`,
+      `${SITE.url}/guides/${guide.slug}`,
+      guide.data.updated ?? guide.data.date,
+      '',
+      guide.body.trim(),
+      '',
+    );
+  }
+
+  if (guides.length > FULL_TEXT_LIMIT) {
+    lines.push('## Further guides (summaries)', '');
+    for (const guide of guides.slice(FULL_TEXT_LIMIT)) {
+      lines.push(`### ${guide.data.title}`, `${SITE.url}/guides/${guide.slug}`, '', guide.data.answer, '');
+    }
   }
 
   lines.push('## Legal', '', `Privacy Policy: ${SITE.url}/privacy`, `Terms of Use: ${SITE.url}/terms`, '');

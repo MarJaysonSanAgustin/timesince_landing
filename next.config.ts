@@ -2,34 +2,23 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: false,
   },
-  // Allow access to remote image placeholder.
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-        port: '',
-        pathname: '/**', // This allows any path under the hostname
-      },
-    ],
-  },
   output: 'standalone',
-  transpilePackages: ['motion'],
-  webpack: (config, {dev}) => {
-    // HMR is disabled in AI Studio via DISABLE_HMR env var.
-    // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
-    if (dev && process.env.DISABLE_HMR === 'true') {
-      config.watchOptions = {
-        ignored: /.*/,
-      };
-    }
-    return config;
+  // `output: 'standalone'` does not trace runtime fs reads at non-import paths.
+  // The content loader reads content/, and ImageResponse reads the OG fonts, so both
+  // must be traced in explicitly or they 500 in production only.
+  outputFileTracingIncludes: {
+    '/**': ['./assets/fonts/**', './content/**'],
+  },
+  async redirects() {
+    // /blog folded into /guides. Permanent, because the three posts were
+    // already indexed and all of them were guide-shaped to begin with.
+    return [
+      { source: '/blog', destination: '/guides', permanent: true },
+      { source: '/blog/:slug', destination: '/guides/:slug', permanent: true },
+    ];
   },
 };
 

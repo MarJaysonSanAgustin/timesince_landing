@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { SITE } from '../../lib/site';
-import { faqs, faqCategories } from '../../lib/faq';
+import { SITE } from '@/lib/site';
+import { faqs, faqCategories } from '@/lib/faq';
 
 export const metadata: Metadata = {
   title: 'FAQ',

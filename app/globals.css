@@ -3,4 +3,74 @@
 
 @theme {
   --font-display: var(--font-display-nunito);
+
+  /* Semantic surface + text tokens, so new page types stop inventing their own greys. */
+  --color-ink: var(--color-gray-900);
+  --color-ink-muted: var(--color-gray-600);
+  --color-ink-subtle: var(--color-gray-500);
+  --color-surface: var(--color-white);
+  --color-surface-alt: var(--color-gray-100);
+  --color-line: var(--color-gray-200);
+
+  --radius-card: 1rem;
+  --radius-card-lg: 1.5rem;
+}
+
+/* ── Accent system ─────────────────────────────────────────────────────────
+   Content files carry a zod-validated accent NAME, never a Tailwind class.
+   Tailwind's scanner cannot see class strings composed at runtime, so the six
+   names below are the only accents that exist. Each is a static class setting
+   custom properties that the helper classes read — which means a new accent is
+   a CSS edit here, not a string smuggled in from a content file.
+   See CLAUDE.md and PLAN.md §3.                                            */
+
+.accent-brand {
+  --accent-from: var(--color-purple-600);
+  --accent-to: var(--color-blue-600);
+  --accent-soft: var(--color-purple-100);
+  --accent-ink: var(--color-purple-600);
+}
+.accent-warm {
+  --accent-from: var(--color-orange-500);
+  --accent-to: var(--color-red-500);
+  --accent-soft: var(--color-orange-100);
+  --accent-ink: var(--color-orange-600);
+}
+.accent-calm {
+  --accent-from: var(--color-emerald-500);
+  --accent-to: var(--color-teal-500);
+  --accent-soft: var(--color-emerald-100);
+  --accent-ink: var(--color-emerald-600);
+}
+.accent-cool {
+  --accent-from: var(--color-blue-500);
+  --accent-to: var(--color-cyan-500);
+  --accent-soft: var(--color-blue-100);
+  --accent-ink: var(--color-blue-600);
+}
+.accent-alert {
+  --accent-from: var(--color-rose-500);
+  --accent-to: var(--color-orange-500);
+  --accent-soft: var(--color-rose-100);
+  --accent-ink: var(--color-rose-600);
+}
+.accent-neutral {
+  --accent-from: var(--color-slate-500);
+  --accent-to: var(--color-slate-700);
+  --accent-soft: var(--color-slate-100);
+  --accent-ink: var(--color-slate-600);
+}
+
+.accent-gradient {
+  background-image: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+}
+.accent-chip {
+  background-color: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.accent-text {
+  background-image: linear-gradient(90deg, var(--accent-from), var(--accent-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

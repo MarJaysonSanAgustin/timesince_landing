@@ -1,7 +1,12 @@
 # TimeSince homepage — working notes
 
-Marketing site for **TimeSince**, an iOS habit/chore/routine tracker. See [PLAN.md](PLAN.md)
-for the content/SEO makeover plan and [PROGRESS.md](PROGRESS.md) for what's actually done.
+Marketing site for **TimeSince**, an iOS **interval tracker** — it measures the time since
+you last did something. See [PLAN.md](PLAN.md) for the makeover plan, [PROGRESS.md](PROGRESS.md)
+for what's done, and **[docs/](docs/README.md) for positioning, design and research** — read
+those before writing any copy.
+
+⚠️ **The live site still describes this as a "habit tracker" and calls counters "events".**
+Both are wrong; see [docs/site-audit.md](docs/site-audit.md). Do not propagate either.
 
 ## Stack
 
@@ -23,19 +28,32 @@ frontmatter validation · Vercel.
 - **No Tailwind color literals in content files.** Content carries a zod-validated accent
   enum (`brand`/`warm`/`cool`/`calm`/`alert`/`neutral`); the CSS custom properties behind
   those six static classes do the rest. Tailwind's scanner cannot see composed class strings.
+- ⚠️ **The accent system currently emits gradients, which the app's design system forbids**
+  (ADR-012 rule 8: "flat fills — no gradients"). Rework to flat blocks before Phase 2 bakes
+  them into per-page OG images. See [docs/design-system.md](docs/design-system.md).
 - Run `npm run verify` (`tsc --noEmit && eslint . && next build`) before committing.
 
 ## The product — verified facts, use these
 
 Source of truth is `lib/faq.ts` and `app/llms.txt/route.ts`. Do not invent capabilities.
 
-- **The core idea:** it measures *elapsed time since* you last did something, not daily
-  streaks. Logging an event resets its counter; missing a day breaks nothing. Anti-streak,
-  anti-guilt, privacy-first, local-first. Strong ADHD-friendly angle.
+- **The core idea:** *"TimeSince tracks the interval — time since last done."* (App Store's
+  own line.) Logging a counter resets it; missing a day breaks nothing. Anti-streak,
+  privacy-first, local-first.
+- **They are "counters", not "events".** The app says counter 218 times to event's 30, and so
+  do users. The site currently has this backwards.
+- **App Store name:** "Time Since Tracker — TimeSince". **Subtitle:** "Days since counter &
+  ADHD help" — the ADHD framing is the developer's own, not an inference.
+- **Category: Lifestyle**, not Health.
+- **It is not a habit tracker.** Habits are one use case. The listing's own examples:
+  *plants watered, parents called, car oil changed, migraine logged.*
 - **iOS only.** No Android, no web app. Requires **iOS 17.6+**; alarms that ring through
   silent mode and Focus need **iOS 26+**.
-- **Free tier:** 3 active events — with logging, reminders, categories, the widget, and
+- **Free tier:** 3 active counters — with logging, reminders, categories, the widget, and
   iCloud sync.
+- **Pricing:** Lifetime $39.99 · Yearly $14.99 · Monthly $1.99.
+- **Current version 1.13.** The app ships in **English, German, Spanish and Chinese
+  (Simplified + Traditional)** — the site is English-only, which is a gap, not a choice.
 - **Pro** (subscription *or* one-time lifetime): unlimited events, hidden events, archiving,
   custom fields, NFC pairing, Siri Shortcuts, JSON export. A lapsed subscription *archives*
   events beyond 3 — it never deletes them.
@@ -43,6 +61,7 @@ Source of truth is `lib/faq.ts` and `app/llms.txt/route.ts`. Do not invent capab
   goes to the user's **own** private iCloud. There is no developer-operated server.
   **iCloud sync is free for everyone** and off until switched on.
 - Purchases via **RevenueCat**. Support/feedback via **UserJot**. NFC tags are **NTAG215**.
+- **Rating: 5.0 from 6 ratings.** Far too few to publish as `aggregateRating`.
 - 11 features: event customization · rhythm analytics (average intervals, trend charts) ·
   hidden events behind FaceID · custom logging fields (number/text/photo + calculator) ·
   timeline · home-screen widget (one-tap log) · Siri/Shortcuts/Action Button · NFC tap-to-log ·
@@ -89,7 +108,19 @@ Every guide and scenario must:
 
 Never draft the `answer` box or the `sources` list without checking them.
 
+## Voice
+
+The app is gentle and permission-giving; it removes obligation rather than adding motivation.
+Match it. From the app's own strings:
+
+> "When it's been a while, TimeSince says so gently: ready when you are. No red, no catching up."
+> "Nothing is lost — bring one back whenever you want it again."
+> "A reminder here asks nothing of you."
+
+No urgency, no exclamation-mark enthusiasm, no shame. See [docs/positioning.md](docs/positioning.md).
+
 ## Known open items
 
 `app/terms/page.tsx` ships a `[jurisdiction to be confirmed]` placeholder — needs the real
-jurisdiction from the owner. See PLAN.md §10 for the rest.
+jurisdiction from the owner. Full list in [docs/site-audit.md](docs/site-audit.md) and
+PLAN.md §10.

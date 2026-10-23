@@ -95,6 +95,36 @@ and rendering the suffix twice.
       a redirect. Fix is either one line (`SITE.url` → www) or a Vercel domain change
       (www → apex). Needs a decision on which host is canonical.
 
+## Phase 1.5 — Truth & identity pass  ⬅ **inserted 2026-10-23, blocks Phase 2**
+
+Knowledge gathering found the site is describing a product that has moved on, and that its
+visuals contradict the app's own design system. See [docs/](docs/README.md).
+
+**Copy & metadata truth pass**
+- [ ] Stop calling it a habit tracker — `SITE.title`, `fullName`, `description`, keywords, OG
+- [ ] Rename **events → counters** everywhere (copy, `lib/faq.ts`, llms.txt, content schema)
+- [ ] `applicationCategory` → `LifestyleApplication` (App Store confirms)
+- [ ] `AggregateOffer` with the real prices: $0 / $1.99 / $14.99 / $39.99
+- [ ] Widen the examples: plants watered, parents called, car oil changed, migraine logged
+- [ ] Raise ADHD out of a footnote — it is the App Store subtitle
+- [ ] Match the app's voice (gentler, obligation-removing)
+- [ ] Decide the canonical host (apex vs www)
+- [ ] Fix the terms jurisdiction ⚠️ **still blocked**
+
+**Design translation** — must land before Phase 2 generates OG images
+- [ ] Replace gradient accents with **flat blocks** (ADR-012 rule 8 forbids gradients)
+- [ ] Paper ground: warm `#F1EFEA` + 16pt dots, replacing plain white
+- [ ] Add the **mono voice** for counts, dates, intervals, serials
+- [ ] Adopt the three inks (ink / muted Lc67 / faint Lc45), drop ad-hoc greys
+- [ ] Demote purple to an accent; no large purple fills
+- [ ] Ticket components: block │ perforation │ stub
+- [ ] Drop `prose-purple` and the gradient OG image
+
+**Now unblocked by research**
+- [ ] `/whats-new` — 13 dated releases are in [docs/research.md](docs/research.md)
+- [ ] Pricing on the site (currently stated nowhere)
+- [ ] Testimonials from the two App Store reviews
+
 ## Phase 2 — SEO plumbing
 
 *Ends with: every page published from here on is fully instrumented.*
@@ -128,11 +158,14 @@ Blocked on user input — see PLAN.md §10.
 - [ ] `/about` (founder-led, first person)
 - [ ] `/whats-new` + changelog data + roadmap
 
-## Phase 6 — Locales
+## Phase 6 — Locales  ⬅ **recommendation inverted 2026-10-23**
 
-Only after English content has had time to prove itself.
+The plan said "English first, prove it ranks." That assumed an English-only app. **It is not** —
+v1.10 shipped German, Spanish and Chinese (Simplified + Traditional), so those users exist now
+and land on an English-only site. This is a product/marketing gap, not a speculative SEO bet.
+Consider moving this much earlier.
 
-- [ ] Pick target locales from App Store install data
+- [x] ~~Pick target locales~~ — already decided by the app: **en, de, es, zh-Hans, zh-Hant**
 - [ ] `next-intl` with `localePrefix: 'as-needed'` (English URLs must not change)
 - [ ] Localize hubs, features, tools, top ~20 guides
 

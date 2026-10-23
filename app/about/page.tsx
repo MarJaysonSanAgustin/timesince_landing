@@ -93,6 +93,26 @@ export default function About() {
           ))}
         </div>
 
+        <div className="ticket mt-8 px-5 py-4">
+          <div className="stub-row">
+            <span className="stub-label">FEEDBACK BOARD</span>
+            <a
+              href={SITE.supportUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-ube hover:underline"
+            >
+              {SITE.supportUrl.replace('https://', '')}
+            </a>
+          </div>
+          <div className="stub-row mt-2">
+            <span className="stub-label">EMAIL</span>
+            <a href={`mailto:${SITE.email}`} className="text-sm text-ube hover:underline">
+              {SITE.email}
+            </a>
+          </div>
+        </div>
+
         <CtaBlock
           placement="web_about"
           headline={`See what ${SITE.name} does`}

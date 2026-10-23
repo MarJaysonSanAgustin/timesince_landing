@@ -12,6 +12,7 @@ export const strings = {
     scenarios: 'Scenarios',
     faq: 'FAQ',
     whatsNew: "What's new",
+    about: 'About',
     privacy: 'Privacy',
     terms: 'Terms',
     support: 'Feedback & Support',

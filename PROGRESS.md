@@ -140,6 +140,7 @@ Still open from this pass:
 - [x] `/whats-new` — 13 dated releases, transcribed directly from the App Store listing
 - [x] Pricing in the FAQ and schema — a dedicated pricing page is still open
 - [ ] Testimonials from the two App Store reviews
+- [ ] ⚠️ Terms jurisdiction — **still the only blocker left**, still live on prod
 
 ## Phase 2 — SEO plumbing
 
@@ -185,7 +186,7 @@ covers scenarios. Clusters still empty: `health`, `relationships` — no evidenc
 
 Blocked on user input — see PLAN.md §10.
 
-- [ ] `/about` (founder-led, first person)
+- [x] `/about` (founder-led, first person) — published, with Person schema
 - [x] `/whats-new` + changelog data + roadmap
 
 ## Phase 6 — Locales  ⬅ **recommendation inverted 2026-10-23**

@@ -2,6 +2,8 @@
 
 Plan: [PLAN.md](PLAN.md) · Content backlog: `content/_backlog.md` · Last updated: 2026-10-23
 
+**Phases 0 and 1 are merged** (PR #3) and live. Phase 2 is next.
+
 **Rules:** a box is checked only when the thing is **verified**, not when it's written.
 `GATE` lines are hard stops — the next phase does not start until they pass.
 
@@ -57,7 +59,9 @@ and all sit under packages already at their latest version. Not fixable without 
 - [x] Dynamic sitemap with real `lastModified`
 - [x] Image manifest generator (`scripts/gen-image-manifest.ts`) + 3-tier visual fallback
 - [x] Near-duplicate lint (shingle/Jaccard over bodies)
-- [~] `outputFileTracingIncludes` + `dynamicParams = false` — in code; ⚠️ **still unverified on a real deploy**
+- [x] `outputFileTracingIncludes` + `dynamicParams = false` — **verified on the real deploy**: the
+      guide renders in full (answer box, HowTo + 5 steps, gives grid), so the runtime `fs` read
+      resolves inside the standalone bundle, and an unknown slug 404s rather than attempting one
 - [x] `content:new` scaffold + `content/_templates/`
 - [x] **GATE:** publish one real guide end-to-end with zero manual edits outside its own file
 
@@ -81,6 +85,15 @@ picked the new guide up with **zero manual edits** · all page modules render in
 
 **Fixed during verification:** `seoTitle` was hitting the layout's `%s | TimeSince` template
 and rendering the suffix twice.
+
+### Found in production after merge
+
+- [ ] **Canonical host mismatch.** `SITE.url` is `https://timesinceapp.com`, but the apex
+      308-redirects to `https://www.timesinceapp.com`. So every canonical tag, `og:url`,
+      JSON-LD URL, sitemap entry and the robots sitemap pointer names a host that redirects.
+      Not fatal — Google follows it — but it wastes crawl budget and every canonical points at
+      a redirect. Fix is either one line (`SITE.url` → www) or a Vercel domain change
+      (www → apex). Needs a decision on which host is canonical.
 
 ## Phase 2 — SEO plumbing
 

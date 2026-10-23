@@ -104,6 +104,26 @@ for (const item of featureList.itemListElement) {
   expectedImages += 1;
 }
 
+// ── Tools: interactive pages, so no Article — but they must still carry
+//    breadcrumbs, a distinct share card and a canonical. ───────────────────
+const toolList = await checkHub('/tools', 'Tools | TimeSince');
+await checkImage('/tools/opengraph-image');
+expectedImages += 1;
+for (const item of toolList.itemListElement) {
+  const path = new URL(item.url).pathname;
+  const page = await html(path);
+  const data = schemas(page);
+  assert.ok(data.some((s) => s['@type'] === 'BreadcrumbList'), `${path} breadcrumbs`);
+  assert.ok(
+    !data.some((s) => s['@type'] === 'Article'),
+    `${path} is a tool, not an Article`,
+  );
+  // The privacy claim is the reason these exist; it must be on every one.
+  assert.match(page, /entirely in your browser/i, `${path} states where it runs`);
+  await checkImage(`${path}/opengraph-image`);
+  expectedImages += 1;
+}
+
 // ── Scenarios: same contract as guides. Empty until content lands. ─────────
 const scenarioList = await checkHub('/scenarios', 'Scenarios | TimeSince', { allowEmpty: true });
 await checkImage('/scenarios/opengraph-image');
@@ -136,6 +156,7 @@ for (const path of [
   '/does-not-exist',
   '/guides/does-not-exist',
   '/features/does-not-exist',
+  '/tools/does-not-exist',
   '/scenarios/does-not-exist',
 ]) {
   const response = await get(path);
@@ -195,6 +216,7 @@ for (const campaign of ['web_home_hero', 'web_home_footer', 'web_header']) {
 }
 console.log(
   `SEO checks passed: ${list.numberOfItems} guides, ${featureList.numberOfItems} features, ` +
-    `${scenarioList.numberOfItems} scenarios, ${imageHashes.size} PNGs, schemas, RSS, 404s, ` +
+    `${scenarioList.numberOfItems} scenarios, ${toolList.numberOfItems} tools, ` +
+    `${imageHashes.size} PNGs, schemas, RSS, 404s, ` +
     'campaign redirects and robots.',
 );

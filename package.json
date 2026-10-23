@@ -11,10 +11,11 @@
     "content:new": "node --experimental-strip-types scripts/new-content.ts",
     "content:check": "node --experimental-strip-types scripts/validate-content.ts",
     "check:contrast": "node --experimental-strip-types scripts/check-contrast.ts",
+    "check:interval": "node --experimental-strip-types scripts/check-interval.ts",
+    "check:seo": "node scripts/check-seo.mjs",
     "prebuild": "npm run assets:sync",
-    "verify": "npm run content:check && npm run check:contrast && next typegen && tsc --noEmit && eslint . && next build",
-    "clean": "next clean",
-    "check:seo": "node scripts/check-seo.mjs"
+    "verify": "npm run content:check && npm run check:contrast && npm run check:interval && next typegen && tsc --noEmit && eslint . && next build",
+    "clean": "next clean"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

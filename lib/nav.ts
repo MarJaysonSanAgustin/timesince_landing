@@ -24,6 +24,7 @@ export interface NavGroup {
 export const PRIMARY_NAV: NavLink[] = [
   { href: localizedPath('/features'), label: strings.nav.features },
   { href: localizedPath('/guides'), label: strings.nav.guides },
+  { href: localizedPath('/tools'), label: strings.nav.tools },
   { href: localizedPath('/faq'), label: strings.nav.faq },
 ];
 

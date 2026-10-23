@@ -18,6 +18,11 @@ jobs:
 
       - run: npm ci
 
+      # next-env.d.ts is gitignored and supplies the image-module declarations,
+      # so on a cold checkout tsc fails until Next has generated it.
+      - name: Generate route types
+        run: npx next typegen
+
       - name: Typecheck
         run: npx tsc --noEmit
 

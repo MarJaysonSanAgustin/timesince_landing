@@ -11,7 +11,7 @@
     "content:new": "node --experimental-strip-types scripts/new-content.ts",
     "content:check": "node --experimental-strip-types scripts/validate-content.ts",
     "prebuild": "npm run assets:sync",
-    "verify": "npm run content:check && tsc --noEmit && eslint . && next build",
+    "verify": "npm run content:check && next typegen && tsc --noEmit && eslint . && next build",
     "clean": "next clean"
   },
   "dependencies": {

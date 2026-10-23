@@ -2,8 +2,8 @@ import { serializeJsonLd } from '@/lib/json-ld';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getGuide, getGuides } from '@/lib/content';
-import { relatedFor } from '@/lib/content/related';
+import { getGuide, getGuides, allContent } from '@/lib/content';
+import { relatedContent } from '@/lib/content/related';
 import { CLUSTER_LABELS } from '@/lib/content/schema';
 import { CLUSTER_ICONS } from '@/lib/content/clusters';
 import { mdxComponents } from '@/components/mdx';
@@ -76,7 +76,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   if (!guide) notFound();
 
   const { data, body } = guide;
-  const related = relatedFor(guide, getGuides(), '/guides', 'Guide');
+  const related = relatedContent(guide, '/guides', allContent());
   const Icon = CLUSTER_ICONS[data.cluster];
   const updated = data.updated ?? data.date;
 

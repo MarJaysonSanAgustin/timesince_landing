@@ -174,3 +174,27 @@ export const guideSchema = base
   });
 
 export type GuideFrontmatter = z.infer<typeof guideSchema>;
+
+/** Situational pages must have a traceable reason to exist, not just a keyword. */
+export const scenarioSchema = base.extend({
+  kind: z.literal('scenario').default('scenario'),
+  evidence: z.string().trim().min(30),
+  audience: z.string().min(10).max(140),
+  scene: z.string().min(20).max(220),
+  problem: z.string().min(20),
+  consequence: z.string().min(20),
+  help: z.string().min(20),
+  solves: z.array(z.string().min(10)).min(2).max(6),
+  doesNotSolve: z.array(z.string().min(10)).min(2).max(6),
+  checklist: z.array(step).min(3).max(8),
+  pullQuote: z.string().min(15).max(180),
+  sources: z.array(source.extend({ url: z.string().url() })).min(1),
+}).superRefine((v, ctx) => {
+  if (v.updated && v.updated < v.date) {
+    ctx.addIssue({ code: 'custom', path: ['updated'], message: '`updated` is before `date`' });
+  }
+  if (['health', 'adhd'].includes(v.cluster) && v.disclaimer !== 'health') {
+    ctx.addIssue({ code: 'custom', path: ['disclaimer'], message: 'health and ADHD scenarios require a health disclaimer' });
+  }
+});
+export type ScenarioFrontmatter = z.infer<typeof scenarioSchema>;

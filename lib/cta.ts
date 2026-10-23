@@ -16,6 +16,10 @@ export type CtaPlacement =
   | 'web_faq'
   | 'web_404'
   | 'web_guides_hub'
+  | 'web_features_hub'
+  | 'web_scenarios_hub'
+  | `web_feature_${string}`
+  | `web_scenario_${string}`
   | `web_guide_${string}`;
 
 /**

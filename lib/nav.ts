@@ -22,7 +22,7 @@ export interface NavGroup {
  * footer in Phases 3 and 5. Add them here, not in the components.
  */
 export const PRIMARY_NAV: NavLink[] = [
-  { href: localizedPath('/#features'), label: strings.nav.features },
+  { href: localizedPath('/features'), label: strings.nav.features },
   { href: localizedPath('/guides'), label: strings.nav.guides },
   { href: localizedPath('/faq'), label: strings.nav.faq },
 ];
@@ -31,13 +31,13 @@ export const FOOTER_GROUPS: NavGroup[] = [
   {
     title: strings.footer.product,
     links: [
-      { href: localizedPath('/#features'), label: strings.nav.features },
+      { href: localizedPath('/features'), label: strings.nav.features },
       { href: localizedPath('/faq'), label: strings.nav.faq },
     ],
   },
   {
     title: strings.footer.learn,
-    links: [{ href: localizedPath('/guides'), label: strings.nav.guides }],
+    links: [{ href: localizedPath('/guides'), label: strings.nav.guides }, { href: localizedPath('/scenarios'), label: strings.nav.scenarios }],
   },
   {
     title: strings.footer.company,

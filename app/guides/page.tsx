@@ -1,5 +1,4 @@
 import { serializeJsonLd } from '@/lib/json-ld';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getGuides } from '@/lib/content';
 import { CLUSTER_LABELS, CLUSTERS } from '@/lib/content/schema';
@@ -7,26 +6,13 @@ import { SITE } from '@/lib/site';
 import { strings } from '@/lib/strings/en';
 import { CtaBlock } from '@/components/content/cta-block';
 import { itemList } from '@/lib/schema';
+import { pageMetadata } from '@/lib/page-metadata';
 
-export const metadata: Metadata = {
-  title: 'Guides',
-  description:
-    'Practical guides to tracking habits, chores and routines by elapsed time instead of streaks — on iPhone, without the guilt trip.',
-  alternates: { canonical: '/guides', types: { 'application/rss+xml': `${SITE.url}/feed.xml` } },
-  openGraph: {
-    title: 'Guides | TimeSince',
-    description: 'Practical guides to tracking what recurs on no fixed schedule.',
-    url: `${SITE.url}/guides`,
-    type: 'website',
-    siteName: SITE.name,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Guides | TimeSince',
-    description: 'Practical guides to tracking what recurs on no fixed schedule.',
-    images: [{ url: `${SITE.url}/guides/opengraph-image`, alt: 'TimeSince guides' }],
-  },
-};
+export const metadata = pageMetadata(
+  'Guides',
+  'Practical guides to tracking chores, medication and anything else that recurs on no fixed schedule — on iPhone, without streaks.',
+  '/guides',
+);
 
 export default function GuidesHub() {
   const guides = getGuides();

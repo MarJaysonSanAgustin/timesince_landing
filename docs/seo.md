@@ -25,11 +25,20 @@ npm run check:seo -- http://127.0.0.1:3102
 
 For a styled standalone browser preview, first copy `.next/static` to `.next/standalone/.next/static`. CI runs both verification commands, starting and stopping its own server.
 
-The HTTP checks cover all current guide schemas and social metadata, unique PNG content and dimensions, RSS membership, missing-route status/noindex, redirect campaigns and robots rules. Inspect the longest title's share image visually when changing typography. Validate deployed routes again after merge; local checks do not establish indexing or search ranking.
+**Free the port before re-running.** A previous server keeps 3102 and the new one exits with `EADDRINUSE`, leaving you checking stale output that looks like a real failure:
+
+```sh
+lsof -ti:3102 | xargs -r kill -9
+```
+
+The HTTP checks cover every section — guides, features and scenarios — via a shared `checkHub` that asserts each hub's `ItemList` matches the order its cards actually render in. A list that disagrees with the page is worse than no list. Also: social metadata, unique PNG content and dimensions, RSS membership, missing-route status/noindex on all four section 404s, redirect campaigns and robots rules.
+
+Feature pages are asserted to carry `BreadcrumbList` and *not* `Article` — they are product pages, not editorial. Scenarios use the guide contract and are allowed an empty `ItemList` until their content lands; an empty list is honest, a missing one is a bug. Inspect the longest title's share image visually when changing typography. Validate deployed routes again after merge; local checks do not establish indexing or search ranking.
 
 ## Follow-ups
 
 - Choose apex versus www canonical host; all URL builders use `SITE.url` consistently, but the existing production redirect mismatch remains.
 - Publish `/about` in Phase 5; schema author URLs already reference that planned page.
 - OG fonts are full local Nunito and JetBrains Mono TTFs (237,620 bytes total), not subsets. Licenses and sources are in `assets/fonts/`. Revisit subsetting alongside localization.
-- Static pages beyond home and guides inherit the home share image. Add section-specific images when those sections are implemented.
+- Scenarios have routes, schema and a share image but no content yet, so `/scenarios` renders an empty hub.
+- Static pages beyond home, guides, features and scenarios inherit the home share image.

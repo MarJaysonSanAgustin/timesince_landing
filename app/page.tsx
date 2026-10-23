@@ -1,3 +1,4 @@
+import { appStoreUrl } from '@/lib/cta';
 import Image from 'next/image';
 import { Activity, ShieldCheck, CheckCircle2, Clock, ListX } from 'lucide-react';
 import * as motion from 'motion/react-client';
@@ -40,7 +41,7 @@ export default function LandingPage() {
             </p>
             <div className="flex items-center gap-4">
               <motion.a
-                href={SITE.appStoreUrl}
+                href={appStoreUrl('web_home_hero')}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -210,7 +211,7 @@ export default function LandingPage() {
               When it has been a while, TimeSince just says so. No red, no catching up, no streak to rebuild. Free for your first three counters, with no account and no ads.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a href={SITE.appStoreUrl} target="_blank" rel="noopener noreferrer" className="inline-block hover:scale-105 active:scale-95 transition-transform">
+              <a href={appStoreUrl('web_home_footer')} target="_blank" rel="noopener noreferrer" className="inline-block hover:scale-105 active:scale-95 transition-transform">
                 <Image src={badgeIosImg} alt="Download on the App Store" className="h-[50px] w-auto" />
               </a>
             </div>

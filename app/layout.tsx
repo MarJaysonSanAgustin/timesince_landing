@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld';
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import './globals.css';
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: '/',
+    types: { 'application/rss+xml': `${SITE.url}/feed.xml` },
   },
   openGraph: {
     type: 'website',
@@ -44,11 +46,7 @@ export const metadata: Metadata = {
     title: SITE.title,
     description: SITE.description,
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: SITE.title,
-    description: SITE.description,
-  },
+  twitter: { card: 'summary_large_image' },
 };
 
 const jsonLd = siteGraph();
@@ -62,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
         <Analytics />
         <SiteHeader />

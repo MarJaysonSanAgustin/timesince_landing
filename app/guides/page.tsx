@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getGuides } from '@/lib/content';
@@ -5,12 +6,26 @@ import { CLUSTER_LABELS, CLUSTERS } from '@/lib/content/schema';
 import { SITE } from '@/lib/site';
 import { strings } from '@/lib/strings/en';
 import { CtaBlock } from '@/components/content/cta-block';
+import { itemList } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Guides',
   description:
     'Practical guides to tracking habits, chores and routines by elapsed time instead of streaks — on iPhone, without the guilt trip.',
-  alternates: { canonical: '/guides' },
+  alternates: { canonical: '/guides', types: { 'application/rss+xml': `${SITE.url}/feed.xml` } },
+  openGraph: {
+    title: 'Guides | TimeSince',
+    description: 'Practical guides to tracking what recurs on no fixed schedule.',
+    url: `${SITE.url}/guides`,
+    type: 'website',
+    siteName: SITE.name,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Guides | TimeSince',
+    description: 'Practical guides to tracking what recurs on no fixed schedule.',
+    images: [{ url: `${SITE.url}/guides/opengraph-image`, alt: 'TimeSince guides' }],
+  },
 };
 
 export default function GuidesHub() {
@@ -23,8 +38,17 @@ export default function GuidesHub() {
 
   const notes = guides.filter((g) => g.data.kind === 'note');
 
+  const listJsonLd = itemList(
+    [...byCluster.flatMap((group) => group.items), ...notes].map((g) => ({ href: `/guides/${g.slug}`, name: g.data.title })),
+    'TimeSince guides',
+  );
+
   return (
     <div className="paper-dots"><div className="mx-auto w-full max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(listJsonLd) }}
+      />
       <header className="mb-16">
         <h1 className="mb-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
           Guides

@@ -18,16 +18,19 @@ jobs:
 
       - run: npm ci
 
-      # next-env.d.ts is gitignored and supplies the image-module declarations,
-      # so on a cold checkout tsc fails until Next has generated it.
-      - name: Generate route types
-        run: npx next typegen
+      - name: Verify content, contrast, types, lint and build
+        run: npm run verify
 
-      - name: Typecheck
-        run: npx tsc --noEmit
-
-      - name: Lint
-        run: npx eslint .
-
-      - name: Build
-        run: npm run build
+      - name: Check built SEO routes
+        shell: bash
+        run: |
+          PORT=3102 HOSTNAME=127.0.0.1 node .next/standalone/server.js > /tmp/timesince-seo-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:3102/guides > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          npm run check:seo -- http://127.0.0.1:3102

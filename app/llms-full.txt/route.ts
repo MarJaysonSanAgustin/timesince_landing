@@ -28,6 +28,8 @@ export function GET() {
       `${SITE.url}/guides/${guide.slug}`,
       guide.data.updated ?? guide.data.date,
       '',
+      guide.data.answer,
+      '',
       guide.body.trim(),
       '',
     );

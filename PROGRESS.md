@@ -2,7 +2,7 @@
 
 Plan: [PLAN.md](PLAN.md) · Content backlog: `content/_backlog.md` · Last updated: 2026-10-23
 
-**Phases 0 and 1 are merged** (PR #3) and live. Phase 2 is next.
+**Phases 0 and 1 are merged** (PR #3) and live. Phase 2 is implemented and locally verified on `feat/seo-plumbing`; deployment is not yet verified.
 
 **Rules:** a box is checked only when the thing is **verified**, not when it's written.
 `GATE` lines are hard stops — the next phase does not start until they pass.
@@ -145,13 +145,23 @@ Still open from this pass:
 
 *Ends with: every page published from here on is fully instrumented.*
 
-- [ ] Per-page OG images + subset Nunito TTFs in `assets/fonts/`
-- [ ] JSON-LD: `BreadcrumbList`, `Article` (author = **Person** → `/about`), `HowTo`, `ItemList`
-- [ ] Fix `SoftwareApplication`: `LifestyleApplication`, `AggregateOffer`, `SITE.pricing`
-- [ ] `feed.xml`, `not-found.tsx`, expanded `robots.ts` with named crawlers
-- [ ] Rewrite `llms.txt`; **cap** `llms-full.txt`
-- [ ] `CtaPlacement` union + direct App Store links with `?ct=`
-- [ ] `/go/app-store` off-site short link (307, not 301)
+- [x] Per-page OG images for home, guides hub and each published guide
+- [x] Local Nunito and JetBrains Mono TTFs with OFL licenses (full fonts, 237,620 bytes combined; subsetting deferred)
+- [x] JSON-LD: `BreadcrumbList`, `Article`, `HowTo`, `ItemList`; script-safe serialization
+- [x] `SoftwareApplication`: `LifestyleApplication`, `AggregateOffer`, `SITE.pricing` (completed in truth pass)
+- [x] `feed.xml`, `not-found.tsx`, expanded `robots.ts` with named crawlers
+- [x] `llms.txt` index and capped `llms-full.txt`; full entries now include the answer box
+- [x] `CtaPlacement` union + direct App Store links with `?ct=` including homepage/header
+- [x] `/go/app-store` off-site short link (307, per-request allowlisted campaigns, no-store)
+- [x] Built-server SEO smoke checks added to CI
+
+**Verified locally 2026-10-23:** `npm run verify` and `npm run check:seo` pass.
+Four guides and six distinct 1200×630 PNGs; Article/ItemList ordering, RSS, real 404s,
+robots rules and campaign redirects checked over HTTP. Guide OG and custom 404 visually inspected.
+RSS also parsed as XML. Existing warm-accent contrast warning remains.
+
+See [docs/seo.md](docs/seo.md) for route behavior and verification. Remaining follow-ups:
+canonical host decision, `/about` author URL destination (Phase 5), font subsetting, and deployment checks.
 
 ## Phase 3 — Scenarios & Features
 

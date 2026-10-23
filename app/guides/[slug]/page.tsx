@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -16,6 +17,7 @@ import { CtaBlock } from '@/components/content/cta-block';
 import { StepList } from '@/components/content/step-list';
 import { GivesGrid } from '@/components/content/gives-grid';
 import { strings } from '@/lib/strings/en';
+import { article } from '@/lib/schema';
 import { SITE } from '@/lib/site';
 
 /**
@@ -46,8 +48,18 @@ export async function generateMetadata({
   return {
     title,
     description: guide.data.description,
-    alternates: { canonical: `/guides/${slug}` },
+    alternates: {
+      canonical: `/guides/${slug}`,
+      types: { 'application/rss+xml': `${SITE.url}/feed.xml` },
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: guide.data.seoTitle ?? guide.data.title,
+      description: guide.data.description,
+      images: [{ url: `${SITE.url}/guides/${slug}/opengraph-image`, alt: guide.data.title }],
+    },
     openGraph: {
+      siteName: SITE.name,
       type: 'article',
       title: guide.data.seoTitle ?? guide.data.title,
       description: guide.data.description,
@@ -68,8 +80,23 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const Icon = CLUSTER_ICONS[data.cluster];
   const updated = data.updated ?? data.date;
 
+  const articleJsonLd = article({
+    slug,
+    basePath: '/guides',
+    title: data.title,
+    description: data.description,
+    date: data.date,
+    updated: data.updated,
+    keywords: [data.keywords.primary, ...data.keywords.secondary],
+    section: CLUSTER_LABELS[data.cluster],
+  });
+
   return (
     <div className="paper-dots"><article className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
+      />
       <Breadcrumbs
         trail={[{ href: '/guides', label: 'Guides' }, { label: data.title }]}
       />
@@ -82,6 +109,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           {data.title}
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted">{data.deck}</p>
+        <p className="mt-4 text-sm text-muted">By {SITE.developerName}</p>
         <p className="meta mt-4">
           {strings.content.updatedOn}{' '}
           <time dateTime={updated}>

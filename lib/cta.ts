@@ -5,6 +5,10 @@ import { SITE } from '@/lib/site';
  * instead of silently splitting a campaign in App Store Connect.
  */
 export type CtaPlacement =
+  | 'offsite_shortlink'
+  | 'offsite_qr'
+  | 'offsite_discord'
+  | 'offsite_directory'
   | 'web_home_hero'
   | 'web_home_footer'
   | 'web_header'

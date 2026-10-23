@@ -2,8 +2,8 @@ import { serializeJsonLd } from '@/lib/json-ld';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getGuide, getGuides } from '@/lib/content';
-import { relatedFor } from '@/lib/content/related';
+import { getGuide, getGuides, allContent } from '@/lib/content';
+import { relatedContent } from '@/lib/content/related';
 import { CLUSTER_LABELS } from '@/lib/content/schema';
 import { CLUSTER_ICONS } from '@/lib/content/clusters';
 import { mdxComponents } from '@/components/mdx';
@@ -15,6 +15,7 @@ import { SourceList } from '@/components/content/source-list';
 import { ContentVisual } from '@/components/content/content-visual';
 import { CtaBlock } from '@/components/content/cta-block';
 import { StepList } from '@/components/content/step-list';
+import { ComparisonTable } from '@/components/content/comparison-table';
 import { GivesGrid } from '@/components/content/gives-grid';
 import { strings } from '@/lib/strings/en';
 import { article } from '@/lib/schema';
@@ -76,7 +77,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   if (!guide) notFound();
 
   const { data, body } = guide;
-  const related = relatedFor(guide, getGuides(), '/guides', 'Guide');
+  const related = relatedContent(guide, '/guides', allContent());
   const Icon = CLUSTER_ICONS[data.cluster];
   const updated = data.updated ?? data.date;
 
@@ -149,6 +150,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
           howToName={data.title}
         />
       )}
+
+      {data.comparison && <ComparisonTable {...data.comparison} />}
 
       {data.gives && data.doesNotGive && (
         <GivesGrid gives={data.gives} doesNot={data.doesNotGive} />

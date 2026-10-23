@@ -21,14 +21,36 @@ function meta(page, name) {
   return tag?.match(/content="([^"]*)"/)?.[1];
 }
 
+/**
+ * Reads a hub's ItemList and checks it against the order the cards are
+ * actually rendered in — a list that disagrees with the page is worse than no
+ * list at all.
+ *
+ * `allowEmpty` is for a section whose content has not landed yet: an empty
+ * ItemList is honest, a missing one is a bug.
+ */
+async function checkHub(basePath, twitterTitle, { allowEmpty = false } = {}) {
+  const page = await html(basePath);
+  const list = schemas(page).find((data) => data['@type'] === 'ItemList');
+  assert.ok(list, `${basePath} ItemList`);
+  assert.equal(list.numberOfItems, list.itemListElement.length, `${basePath} count`);
+  if (!allowEmpty) assert.ok(list.numberOfItems > 0, `${basePath} ItemList is empty`);
+
+  const escaped = basePath.replace(/\//g, '\\/');
+  const linkPattern = new RegExp(`<a[^>]*href="(${escaped}\\/[^"?#]+)"`, 'g');
+  const visibleOrder = [...new Set([...page.matchAll(linkPattern)].map((m) => m[1]))];
+  assert.deepEqual(
+    list.itemListElement.map((item) => new URL(item.url).pathname),
+    visibleOrder,
+    `${basePath} ItemList order matches the rendered cards`,
+  );
+  assert.equal(meta(page, 'twitter:title'), twitterTitle, `${basePath} twitter:title`);
+  return list;
+}
+
 const hub = await html('/guides');
-const list = schemas(hub).find((data) => data['@type'] === 'ItemList');
-assert.ok(list?.numberOfItems > 0, 'hub ItemList');
-assert.equal(list.numberOfItems, list.itemListElement.length);
-const visibleOrder = [...hub.matchAll(/<a[^>]*href="(\/guides\/[^"?#]+)"/g)].map((m) => m[1]);
-assert.deepEqual(list.itemListElement.map((item) => new URL(item.url).pathname), visibleOrder);
+const list = await checkHub('/guides', 'Guides | TimeSince');
 assert.match(hub, /type="application\/rss\+xml"/);
-assert.equal(meta(hub, 'twitter:title'), 'Guides | TimeSince');
 
 const imageHashes = new Set();
 const articles = [];
@@ -62,7 +84,45 @@ for (const item of list.itemListElement) {
   assert.match(page, /type="application\/rss\+xml"/);
   await checkImage(`${path}/opengraph-image`);
 }
-assert.equal(imageHashes.size, list.numberOfItems + 2, 'each share card has distinct content');
+let expectedImages = list.numberOfItems + 2; // guides + their hub + home
+
+// ── Features: product pages, so BreadcrumbList but deliberately no Article ──
+const featureList = await checkHub('/features', 'Features | TimeSince');
+await checkImage('/features/opengraph-image');
+expectedImages += 1;
+for (const item of featureList.itemListElement) {
+  const path = new URL(item.url).pathname;
+  const page = await html(path);
+  const data = schemas(page);
+  assert.ok(data.some((s) => s['@type'] === 'BreadcrumbList'), `${path} breadcrumbs`);
+  assert.ok(
+    !data.some((s) => s['@type'] === 'Article'),
+    `${path} is a product page, not an Article`,
+  );
+  assert.ok(meta(page, 'og:image').includes(`${path}/opengraph-image`), `${path} og:image`);
+  await checkImage(`${path}/opengraph-image`);
+  expectedImages += 1;
+}
+
+// ── Scenarios: same contract as guides. Empty until content lands. ─────────
+const scenarioList = await checkHub('/scenarios', 'Scenarios | TimeSince', { allowEmpty: true });
+await checkImage('/scenarios/opengraph-image');
+expectedImages += 1;
+for (const item of scenarioList.itemListElement) {
+  const path = new URL(item.url).pathname;
+  const page = await html(path);
+  const data = schemas(page);
+  const scenarioArticle = data.find((s) => s['@type'] === 'Article');
+  assert.equal(scenarioArticle?.headline, item.name, `${path} Article headline`);
+  assert.equal(scenarioArticle.author['@type'], 'Person', `${path} author`);
+  assert.equal(scenarioArticle.image, `${item.url}/opengraph-image`, `${path} Article image`);
+  articles.push({ url: item.url, date: scenarioArticle.datePublished });
+  assert.ok(data.some((s) => s['@type'] === 'BreadcrumbList'), `${path} breadcrumbs`);
+  await checkImage(`${path}/opengraph-image`);
+  expectedImages += 1;
+}
+
+assert.equal(imageHashes.size, expectedImages, 'each share card has distinct content');
 
 const feedResponse = await get('/feed.xml');
 assert.equal(feedResponse.status, 200);
@@ -72,7 +132,12 @@ const expectedFeed = articles.sort((a, b) => b.date.localeCompare(a.date) || a.u
 assert.equal([...feed.matchAll(/<item>/g)].length, expectedFeed.length);
 for (const item of expectedFeed) assert.ok(feed.includes(`<link>${item.url}</link>`));
 
-for (const path of ['/does-not-exist', '/guides/does-not-exist']) {
+for (const path of [
+  '/does-not-exist',
+  '/guides/does-not-exist',
+  '/features/does-not-exist',
+  '/scenarios/does-not-exist',
+]) {
   const response = await get(path);
   assert.equal(response.status, 404, path);
   const page = await response.text();
@@ -103,4 +168,8 @@ const home = await html('/');
 for (const campaign of ['web_home_hero', 'web_home_footer', 'web_header']) {
   assert.ok(home.includes(`ct=${campaign}`));
 }
-console.log(`SEO checks passed: ${list.numberOfItems} guides, ${imageHashes.size} PNGs, schemas, RSS, 404s, campaign redirects and robots.`);
+console.log(
+  `SEO checks passed: ${list.numberOfItems} guides, ${featureList.numberOfItems} features, ` +
+    `${scenarioList.numberOfItems} scenarios, ${imageHashes.size} PNGs, schemas, RSS, 404s, ` +
+    'campaign redirects and robots.',
+);

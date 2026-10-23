@@ -12,10 +12,10 @@ import path from 'node:path';
 const [kind, ...titleParts] = process.argv.slice(2);
 const title = titleParts.join(' ').trim();
 
-const COLLECTIONS: Record<string, string> = { guide: 'guides' };
+const COLLECTIONS: Record<string, string> = { guide: 'guides', scenario: 'scenarios' };
 
 if (!kind || !title) {
-  console.error('usage: npm run content:new -- <guide> "<Title>"');
+  console.error('usage: npm run content:new -- <guide|scenario> "<Title>"');
   process.exit(1);
 }
 const collection = COLLECTIONS[kind];

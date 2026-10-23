@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld';
 import Image from 'next/image';
 import type { z } from 'zod';
 import type { step } from '@/lib/content/schema';
@@ -37,7 +38,7 @@ export function StepList({
       {emitHowTo && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       )}
       {heading && <h2 className="mb-6 font-display text-2xl font-bold text-ink">{heading}</h2>}

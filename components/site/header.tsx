@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
 import { PRIMARY_NAV, FOOTER_GROUPS } from '@/lib/nav';
-import { SITE } from '@/lib/site';
+import { appStoreUrl } from '@/lib/cta';
 import { strings } from '@/lib/strings/en';
 import { MobileMenu } from '@/components/site/mobile-menu';
 
@@ -23,7 +23,7 @@ export function SiteHeader() {
         </nav>
 
         <a
-          href={SITE.appStoreUrl}
+          href={appStoreUrl('web_header')}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden sm:inline-flex items-center justify-center rounded-card bg-ube px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"

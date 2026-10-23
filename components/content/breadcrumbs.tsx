@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld';
 import Link from 'next/link';
 import { SITE } from '@/lib/site';
 import { strings } from '@/lib/strings/en';
@@ -29,7 +30,7 @@ export function Breadcrumbs({ trail }: { trail: Crumb[] }) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <nav aria-label="Breadcrumb" className="text-sm text-faint">
         <ol className="flex flex-wrap items-center gap-1.5">

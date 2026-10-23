@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
 import type { NavGroup, NavLink } from '@/lib/nav';
-import { SITE } from '@/lib/site';
+import { appStoreUrl } from '@/lib/cta';
 import { strings } from '@/lib/strings/en';
 
 interface MobileMenuProps {
@@ -54,7 +54,7 @@ export function MobileMenu({ primary, groups }: MobileMenuProps) {
         </nav>
 
         <a
-          href={SITE.appStoreUrl}
+          href={appStoreUrl('web_header')}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 block rounded-xl bg-ink px-4 py-3 text-center text-base font-medium text-white hover:opacity-90"

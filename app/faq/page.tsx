@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld';
 import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
 import { faqs, faqCategories } from '@/lib/faq';
@@ -26,7 +27,7 @@ export default function FaqPage() {
     <div className="w-full max-w-3xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
 
       <div className="mb-16">

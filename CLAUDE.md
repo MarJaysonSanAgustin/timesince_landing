@@ -5,8 +5,8 @@ you last did something. See [PLAN.md](PLAN.md) for the makeover plan, [PROGRESS.
 for what's done, and **[docs/](docs/README.md) for positioning, design and research** — read
 those before writing any copy.
 
-⚠️ **The live site still describes this as a "habit tracker" and calls counters "events".**
-Both are wrong; see [docs/site-audit.md](docs/site-audit.md). Do not propagate either.
+**Positioning:** interval tracker; use “counters,” not “events.” The truth pass corrected
+these in site copy. See [docs/positioning.md](docs/positioning.md).
 
 ## Stack
 
@@ -28,10 +28,9 @@ frontmatter validation · Vercel.
 - **No Tailwind color literals in content files.** Content carries a zod-validated accent
   enum (`brand`/`warm`/`cool`/`calm`/`alert`/`neutral`); the CSS custom properties behind
   those six static classes do the rest. Tailwind's scanner cannot see composed class strings.
-- ⚠️ **The accent system currently emits gradients, which the app's design system forbids**
-  (ADR-012 rule 8: "flat fills — no gradients"). Rework to flat blocks before Phase 2 bakes
-  them into per-page OG images. See [docs/design-system.md](docs/design-system.md).
-- Run `npm run verify` (`tsc --noEmit && eslint . && next build`) before committing.
+- Use flat accent blocks, warm paper, mono metadata and three inks. See [docs/design-system.md](docs/design-system.md).
+- Run `npm run verify` (content, contrast, types, lint, build) before committing.
+  Run `npm run check:seo` against a built server for SEO changes; see [docs/seo.md](docs/seo.md).
 
 ## The product — verified facts, use these
 
@@ -41,7 +40,7 @@ Source of truth is `lib/faq.ts` and `app/llms.txt/route.ts`. Do not invent capab
   own line.) Logging a counter resets it; missing a day breaks nothing. Anti-streak,
   privacy-first, local-first.
 - **They are "counters", not "events".** The app says counter 218 times to event's 30, and so
-  do users. The site currently has this backwards.
+  do users. Keep this vocabulary in new copy.
 - **App Store name:** "Time Since Tracker — TimeSince". **Subtitle:** "Days since counter &
   ADHD help" — the ADHD framing is the developer's own, not an inference.
 - **Category: Lifestyle**, not Health.
@@ -54,19 +53,19 @@ Source of truth is `lib/faq.ts` and `app/llms.txt/route.ts`. Do not invent capab
 - **Pricing:** Lifetime $39.99 · Yearly $14.99 · Monthly $1.99.
 - **Current version 1.13.** The app ships in **English, German, Spanish and Chinese
   (Simplified + Traditional)** — the site is English-only, which is a gap, not a choice.
-- **Pro** (subscription *or* one-time lifetime): unlimited events, hidden events, archiving,
+- **Pro** (subscription *or* one-time lifetime): unlimited counters, hidden counters, archiving,
   custom fields, NFC pairing, Siri Shortcuts, JSON export. A lapsed subscription *archives*
-  events beyond 3 — it never deletes them.
+  counters beyond 3 — it never deletes them.
 - **Privacy:** local DB encrypted with **SQLCipher**, key in the iOS Keychain. Optional sync
   goes to the user's **own** private iCloud. There is no developer-operated server.
   **iCloud sync is free for everyone** and off until switched on.
 - Purchases via **RevenueCat**. Support/feedback via **UserJot**. NFC tags are **NTAG215**.
 - **Rating: 5.0 from 6 ratings.** Far too few to publish as `aggregateRating`.
-- 11 features: event customization · rhythm analytics (average intervals, trend charts) ·
-  hidden events behind FaceID · custom logging fields (number/text/photo + calculator) ·
+- 11 features: counter customization · rhythm analytics (average intervals, trend charts) ·
+  hidden counters behind FaceID · custom logging fields (number/text/photo + calculator) ·
   timeline · home-screen widget (one-tap log) · Siri/Shortcuts/Action Button · NFC tap-to-log ·
   Quitting mode (counter climbs while abstaining; a reset carries no penalty) · up to 5
-  reminders per event · encrypted iCloud backup.
+  reminders per counter · encrypted iCloud backup.
 
 ## Publishing a page
 

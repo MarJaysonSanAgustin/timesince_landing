@@ -9,6 +9,8 @@ Knowledge gathered for the site makeover, 2026-10-23. Read in this order.
 | [design-system.md](design-system.md) | The app's ticket identity, its tokens, and how to translate it to the web. |
 | [site-audit.md](site-audit.md) | What is wrong on the live site, and what it changes in PLAN.md. |
 
+| [seo.md](seo.md) | Generated SEO routes, metadata, verification and remaining follow-ups. |
+
 Working documents, not deliverables — update them when the facts change.
 
 - **Plan:** [../PLAN.md](../PLAN.md)

@@ -60,6 +60,57 @@ export function softwareApplication() {
   };
 }
 
+export interface ArticleInput {
+  slug: string;
+  basePath: string;
+  title: string;
+  description: string;
+  date: string;
+  updated?: string;
+  keywords: string[];
+  section: string;
+}
+
+/** Visible guide metadata, with its author, dates and share image. */
+export function article(a: ArticleInput) {
+  const url = `${SITE.url}${a.basePath}/${a.slug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: a.title,
+    description: a.description,
+    datePublished: a.date,
+    dateModified: a.updated ?? a.date,
+    inLanguage: 'en',
+    articleSection: a.section,
+    keywords: a.keywords.join(', '),
+    image: `${url}/opengraph-image`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    author: { '@type': 'Person', name: SITE.developerName, url: `${SITE.url}/about` },
+    publisher: organization(),
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url },
+  };
+}
+
+/** Hub index pages. Tells a crawler what the collection contains and in what order. */
+export function itemList(
+  items: { href: string; name: string }[],
+  name: string,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    numberOfItems: items.length,
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      url: `${SITE.url}${item.href}`,
+    })),
+  };
+}
+
 export function siteGraph() {
   return {
     '@context': 'https://schema.org',

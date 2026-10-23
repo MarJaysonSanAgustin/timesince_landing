@@ -2,6 +2,8 @@
 
 Plan: [PLAN.md](PLAN.md) · Content backlog: `content/_backlog.md` · Last updated: 2026-10-23
 
+**Phases 0 and 1 are merged** (PR #3) and live. Phase 2 is next.
+
 **Rules:** a box is checked only when the thing is **verified**, not when it's written.
 `GATE` lines are hard stops — the next phase does not start until they pass.
 
@@ -57,7 +59,9 @@ and all sit under packages already at their latest version. Not fixable without 
 - [x] Dynamic sitemap with real `lastModified`
 - [x] Image manifest generator (`scripts/gen-image-manifest.ts`) + 3-tier visual fallback
 - [x] Near-duplicate lint (shingle/Jaccard over bodies)
-- [~] `outputFileTracingIncludes` + `dynamicParams = false` — in code; ⚠️ **still unverified on a real deploy**
+- [x] `outputFileTracingIncludes` + `dynamicParams = false` — **verified on the real deploy**: the
+      guide renders in full (answer box, HowTo + 5 steps, gives grid), so the runtime `fs` read
+      resolves inside the standalone bundle, and an unknown slug 404s rather than attempting one
 - [x] `content:new` scaffold + `content/_templates/`
 - [x] **GATE:** publish one real guide end-to-end with zero manual edits outside its own file
 
@@ -81,6 +85,50 @@ picked the new guide up with **zero manual edits** · all page modules render in
 
 **Fixed during verification:** `seoTitle` was hitting the layout's `%s | TimeSince` template
 and rendering the suffix twice.
+
+### Found in production after merge
+
+- [ ] **Canonical host mismatch.** `SITE.url` is `https://timesinceapp.com`, but the apex
+      308-redirects to `https://www.timesinceapp.com`. So every canonical tag, `og:url`,
+      JSON-LD URL, sitemap entry and the robots sitemap pointer names a host that redirects.
+      Not fatal — Google follows it — but it wastes crawl budget and every canonical points at
+      a redirect. Fix is either one line (`SITE.url` → www) or a Vercel domain change
+      (www → apex). Needs a decision on which host is canonical.
+
+## Phase 1.5 — Truth & identity pass  ⬅ **inserted 2026-10-23, blocks Phase 2**
+
+Knowledge gathering found the site is describing a product that has moved on, and that its
+visuals contradict the app's own design system. See [docs/](docs/README.md).
+
+**Copy & metadata truth pass**
+- [x] Stop calling it a habit tracker — `SITE.title`, `fullName`, `description`, keywords, OG
+- [x] Rename **events → counters** everywhere (copy, `lib/faq.ts`, llms.txt, content schema)
+- [x] `applicationCategory` → `LifestyleApplication` (App Store confirms)
+- [x] `AggregateOffer` with the real prices: $0 / $1.99 / $14.99 / $39.99
+- [x] Widen the examples: plants watered, parents called, car oil changed, migraine logged
+- [x] Raise ADHD out of a footnote — it is the App Store subtitle
+- [x] Match the app's voice (gentler, obligation-removing)
+- [ ] Decide the canonical host (apex vs www)
+- [ ] Fix the terms jurisdiction ⚠️ **still blocked**
+
+**Verified 2026-10-23:** build green, schema renders `LifestyleApplication` + `AggregateOffer`
+(4 offers, no `aggregateRating`), zero "events" left in rendered copy, 13 "counter" mentions
+on the homepage. Legal boilerplate preserved; the `an counter` article bug the rename
+introduced was caught and fixed.
+
+**Design translation** — must land before Phase 2 generates OG images
+- [ ] Replace gradient accents with **flat blocks** (ADR-012 rule 8 forbids gradients)
+- [ ] Paper ground: warm `#F1EFEA` + 16pt dots, replacing plain white
+- [ ] Add the **mono voice** for counts, dates, intervals, serials
+- [ ] Adopt the three inks (ink / muted Lc67 / faint Lc45), drop ad-hoc greys
+- [ ] Demote purple to an accent; no large purple fills
+- [ ] Ticket components: block │ perforation │ stub
+- [ ] Drop `prose-purple` and the gradient OG image
+
+**Now unblocked by research**
+- [ ] `/whats-new` — 13 dated releases are in [docs/research.md](docs/research.md)
+- [x] Pricing in the FAQ and schema — a dedicated pricing page is still open
+- [ ] Testimonials from the two App Store reviews
 
 ## Phase 2 — SEO plumbing
 
@@ -115,11 +163,14 @@ Blocked on user input — see PLAN.md §10.
 - [ ] `/about` (founder-led, first person)
 - [ ] `/whats-new` + changelog data + roadmap
 
-## Phase 6 — Locales
+## Phase 6 — Locales  ⬅ **recommendation inverted 2026-10-23**
 
-Only after English content has had time to prove itself.
+The plan said "English first, prove it ranks." That assumed an English-only app. **It is not** —
+v1.10 shipped German, Spanish and Chinese (Simplified + Traditional), so those users exist now
+and land on an English-only site. This is a product/marketing gap, not a speculative SEO bet.
+Consider moving this much earlier.
 
-- [ ] Pick target locales from App Store install data
+- [x] ~~Pick target locales~~ — already decided by the app: **en, de, es, zh-Hans, zh-Hant**
 - [ ] `next-intl` with `localePrefix: 'as-needed'` (English URLs must not change)
 - [ ] Localize hubs, features, tools, top ~20 guides
 

@@ -50,6 +50,9 @@ export const SITE = {
     lifetime: '39.99',
   },
 
+  /** Governing law named in the Terms. */
+  jurisdiction: 'the Philippines',
+
   legalLastUpdated: 'August 10, 2026',
   legalLastUpdatedIso: '2026-08-10',
 } as const;

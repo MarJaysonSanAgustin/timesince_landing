@@ -32,6 +32,7 @@ export const FOOTER_GROUPS: NavGroup[] = [
     title: strings.footer.product,
     links: [
       { href: localizedPath('/features'), label: strings.nav.features },
+      { href: localizedPath('/whats-new'), label: strings.nav.whatsNew },
       { href: localizedPath('/faq'), label: strings.nav.faq },
     ],
   },

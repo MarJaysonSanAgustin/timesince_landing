@@ -137,7 +137,7 @@ Still open from this pass:
 - [ ] Whether to offer the paper picker on the web, or ship warm + dots only
 
 **Now unblocked by research**
-- [ ] `/whats-new` — 13 dated releases are in [docs/research.md](docs/research.md)
+- [x] `/whats-new` — 13 dated releases, transcribed directly from the App Store listing
 - [x] Pricing in the FAQ and schema — a dedicated pricing page is still open
 - [ ] Testimonials from the two App Store reviews
 
@@ -186,7 +186,7 @@ covers scenarios. Clusters still empty: `health`, `relationships` — no evidenc
 Blocked on user input — see PLAN.md §10.
 
 - [ ] `/about` (founder-led, first person)
-- [ ] `/whats-new` + changelog data + roadmap
+- [x] `/whats-new` + changelog data + roadmap
 
 ## Phase 6 — Locales  ⬅ **recommendation inverted 2026-10-23**
 

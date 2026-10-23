@@ -92,20 +92,87 @@
 }
 
 /* ── Ticket parts ──────────────────────────────────────────────────────────
-   block │ perforation │ stub. The perforation is the single most recognisable
-   piece of the identity and costs nothing: a dashed rule, 5 on 5, matching the
-   app's _PerforationPainter.                                               */
+   Two shapes, and they are not interchangeable:
 
-.ticket {
+   TicketPaper — block over perforation over stub, VERTICAL. A hero: the log
+   moment, a receipt. ADR-012 rule 4 says "lead with ONE ticket", so this is
+   for a single prominent element, not for every row in a list.
+
+   TicketStub — block │ perforation │ body, HORIZONTAL. ADR-012 rule 6: "links
+   to elsewhere are stubs". Every card that navigates somewhere is this one.
+
+   Dimensions from lib/components/ticket/ticket_paper.dart: blockWidth 84,
+   notch 8, corner 18, perforation inset notch + 6.                         */
+
+.ticket,
+.stub {
+  position: relative;
   background-color: var(--color-card);
   border: 1px solid var(--color-line);
-  border-radius: var(--radius-card-lg);
+  border-radius: 18px;
   overflow: hidden;
 }
 
-/* The tear line. Fine dashes, inset past the notches so the rule starts where
-   the paper does — a long chunky dash reads as a dotted border, not a
-   perforation. */
+/* ── TicketStub: a link ──────────────────────────────────────────────────── */
+
+.stub {
+  display: flex;
+  align-items: stretch;
+}
+
+.stub-block {
+  flex: none;
+  width: 84px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.875rem 0.75rem;
+  background-color: var(--accent-fill, var(--color-ink));
+  color: var(--accent-ink, #ffffff);
+}
+
+/* The seam: a vertical tear line, kept clear of the notches at either end. */
+.stub-seam {
+  position: relative;
+  flex: none;
+  width: 1px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--color-hair) 0 3px,
+    transparent 3px 7px
+  );
+  background-repeat: no-repeat;
+  background-position: center 14px;
+  background-size: 1px calc(100% - 28px);
+}
+
+/* The notches, bitten out of the seam at top and bottom. The ring is the
+   ticket's own edge colour — without it a paper fill on a white card is a 3%
+   luminance difference and the bite does not read. */
+.stub-seam::before,
+.stub-seam::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  border-radius: 9999px;
+  background-color: var(--color-paper);
+  box-shadow: 0 0 0 1px var(--color-line);
+}
+
+.stub-seam::before { top: -8px; }
+.stub-seam::after  { bottom: -8px; }
+
+.stub-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.875rem 1rem;
+}
+
+/* ── TicketPaper: a hero ─────────────────────────────────────────────────── */
+
 .ticket-perforation {
   position: relative;
   height: 17px;
@@ -125,34 +192,25 @@
   );
 }
 
-/* The notch, clipped in half by the ticket's own overflow — the bite a
-   perforated edge takes out of the paper.
-   The fill alone will not read: paper on a white card is a 3% luminance
-   difference. The app draws its hairline "round the outside, notches
-   included", so each circle carries a ring of the ticket's own edge colour,
-   which is what makes the bite visible. */
 .ticket-perforation::after {
   content: "";
   position: absolute;
   top: 0;
-  /* Flush with the ticket's edges, NOT offset outward: the circle centres must
-     sit ON the edge so the ticket's overflow clips each one in half. Offset
-     them and both circles fall entirely outside the clip and vanish. */
   left: 0;
   right: 0;
   height: 17px;
   background-image:
     radial-gradient(
-      circle 9px at 0 50%,
-      var(--color-paper) 88%,
-      var(--color-line) 89%,
+      circle 8px at 0 50%,
+      var(--color-paper) 86%,
+      var(--color-line) 88%,
       var(--color-line) 100%,
       transparent 100%
     ),
     radial-gradient(
-      circle 9px at 100% 50%,
-      var(--color-paper) 88%,
-      var(--color-line) 89%,
+      circle 8px at 100% 50%,
+      var(--color-paper) 86%,
+      var(--color-line) 88%,
       var(--color-line) 100%,
       transparent 100%
     );
@@ -169,10 +227,10 @@
 
 .stub-label {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   line-height: 1.2;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   color: var(--color-muted);
 }
 

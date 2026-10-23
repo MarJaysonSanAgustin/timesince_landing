@@ -18,6 +18,19 @@ This is not a small mismatch. Someone arriving from the App Store sees a differe
 
 A ticket is: **colour block → perforation → stub**. The block carries the mark, name and figure; the stub carries label-left / value-right rows; a hairline runs round the outside; the bottom edge can be torn.
 
+### Two shapes, and they are not interchangeable
+
+This is the distinction that is easy to miss and expensive to get wrong:
+
+| | Shape | Axis | For |
+|---|---|---|---|
+| **TicketPaper** | block ▸ perforation ▸ stub | **vertical** | A hero. The log moment, a receipt. Rule 4 says *"lead with one ticket"* — **one**, prominent. |
+| **TicketStub** | block │ perforation │ body | **horizontal** | A link. Rule 6: *"links to elsewhere are stubs."* Every card that navigates somewhere. |
+
+Making every list card a TicketPaper produces a page of dark headers stacked down the screen — which is not what a ticket looks like, and is what rule 4 exists to prevent. A list of links is a list of **stubs**.
+
+Dimensions from `lib/components/ticket/ticket_paper.dart`: `blockWidth 84`, `notch 8`, `corner 18`, perforation `inset: notch + 6`.
+
 ### The eight rules (ADR-012, as amended by ADR-013)
 
 1. **Ground** — dotted paper on every tab root and every pushed page. *Sheets keep the paper colour but lose the dots* — "a sheet is a visit, a page is a place."
@@ -110,7 +123,7 @@ A proposal, not a decision — this needs the owner's eye before it is built.
 
 1. **Replace the gradient accent system with flat colour blocks.** The six accents become six flat fills, with APCA-chosen black-or-white text. This changes `globals.css`, `lib/accent.ts` and `FeatureRow`.
 2. **Put the page on paper.** Warm `#F1EFEA` with a 16pt dot grid as the site ground, replacing plain white.
-3. **Cards become tickets.** Guide cards, feature rows and related-page cards get block │ perforation │ stub. A CSS-only perforation is a repeating-linear-gradient; notches are a mask.
+3. **Cards become stubs, not tickets** — see the table above. A CSS perforation is a `repeating-linear-gradient`; the notches are circles whose centres sit **on** the card's edge so `overflow: hidden` bites each one in half, each carrying a ring of the edge colour (a paper fill on a white card is only a 3% luminance difference and will not read on its own).
 4. **Add the mono voice.** A monospace stack for dates, intervals, counts, serials and section labels. This alone would make the site read as the same product.
 5. **Adopt the three inks.** Replace the ad-hoc `text-gray-500/600/900` with ink / muted / faint at their APCA floors.
 6. **Demote purple to an accent.** Buttons and links only — never a large block, per rule 3.

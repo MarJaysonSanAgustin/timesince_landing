@@ -86,6 +86,14 @@ export default function GuidesHub() {
   );
 }
 
+/**
+ * A link to elsewhere, so it is a TicketStub, not a TicketPaper:
+ * block │ perforation │ body, horizontally (ADR-012 rule 6).
+ *
+ * The earlier version made every card a full vertical ticket, which rule 4
+ * reserves for ONE leading element — a page full of them reads as a stack of
+ * dark headers, not as tickets.
+ */
 function GuideCard({
   href,
   title,
@@ -100,25 +108,31 @@ function GuideCard({
   kind: 'guide' | 'note';
 }) {
   return (
-    <Link href={href} className="ticket group flex flex-col transition-transform hover:-translate-y-0.5">
-      {/* The block. Ink, not colour — a guide belongs to the app, not a counter. */}
-      <div className="accent-neutral accent-block px-5 pb-4 pt-3.5">
-        <p className="meta" style={{ color: 'inherit', opacity: 0.55 }}>
-          NO. {String(no).padStart(3, '0')}
-        </p>
-        <h3 className="mt-0.5 text-base font-semibold leading-snug group-hover:underline">
-          {title}
-        </h3>
+    <Link
+      href={href}
+      className="accent-neutral stub group transition-transform hover:-translate-y-0.5"
+    >
+      <div className="stub-block">
+        <span className="meta" style={{ color: 'inherit', opacity: 0.55 }}>
+          NO.
+        </span>
+        <span className="meta text-base" style={{ color: 'inherit' }}>
+          {String(no).padStart(3, '0')}
+        </span>
       </div>
 
-      <div className="ticket-perforation" />
+      <div className="stub-seam" />
 
-      {/* The stub: the deck, then one label-left / value-right row. */}
-      <div className="flex flex-1 flex-col px-5 pb-4">
-        <p className="flex-1 text-sm leading-relaxed text-muted">{deck}</p>
-        <div className="stub-row mt-4 border-t border-line pt-3">
+      <div className="stub-body">
+        <h3 className="text-base font-semibold leading-snug text-ink group-hover:underline">
+          {title}
+        </h3>
+        <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-muted">{deck}</p>
+        <div className="stub-row mt-3">
           <span className="stub-label">{kind === 'note' ? 'NOTE' : 'GUIDE'}</span>
-          <span className="text-sm font-medium text-ube">{strings.content.readGuide} &rarr;</span>
+          <span aria-hidden="true" className="text-sm text-ube">
+            &rarr;
+          </span>
         </div>
       </div>
     </Link>

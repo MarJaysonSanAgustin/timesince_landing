@@ -88,7 +88,7 @@ and rendering the suffix twice.
 
 ### Found in production after merge
 
-- [ ] **Canonical host mismatch.** `SITE.url` is `https://timesinceapp.com`, but the apex
+- [x] **Canonical host mismatch — fixed 2026-10-23.** Was: `SITE.url` was the apex, but the apex
       308-redirects to `https://www.timesinceapp.com`. So every canonical tag, `og:url`,
       JSON-LD URL, sitemap entry and the robots sitemap pointer names a host that redirects.
       Not fatal — Google follows it — but it wastes crawl budget and every canonical points at
@@ -108,7 +108,7 @@ visuals contradict the app's own design system. See [docs/](docs/README.md).
 - [x] Widen the examples: plants watered, parents called, car oil changed, migraine logged
 - [x] Raise ADHD out of a footnote — it is the App Store subtitle
 - [x] Match the app's voice (gentler, obligation-removing)
-- [ ] Decide the canonical host (apex vs www)
+- [x] Decide the canonical host — **www**, matching production; guarded by `check:seo`
 - [ ] Fix the terms jurisdiction ⚠️ **still blocked**
 
 **Verified 2026-10-23:** build green, schema renders `LifestyleApplication` + `AggregateOffer`

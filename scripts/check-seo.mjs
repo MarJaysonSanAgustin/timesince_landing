@@ -164,6 +164,31 @@ for (const agent of ['*', 'Googlebot', 'Applebot', 'GPTBot', 'ClaudeBot', 'Perpl
 for (const block of robots.split('\n\n').filter((b) => b.startsWith('User-Agent:'))) {
   assert.ok(block.includes('Disallow: /go/'));
 }
+// ── every absolute URL the site emits must name ONE host ──────────────────
+// Host-agnostic on purpose: this runs against 127.0.0.1, so it checks that the
+// site agrees with ITSELF rather than hard-coding a domain. It would have
+// caught the canonical naming the apex while production served www — 68 pages
+// each declaring a canonical that immediately redirected.
+{
+  const sample = await html('/guides/where-your-data-lives');
+  const hosts = new Set();
+  const collect = (text) => {
+    for (const [, url] of text.matchAll(/https:\/\/((?:www\.)?timesinceapp\.com)/g)) hosts.add(url);
+  };
+  collect(sample);
+  collect(await html('/sitemap.xml'));
+  collect(await html('/robots.txt'));
+  collect(await html('/feed.xml'));
+  collect(await html('/llms.txt'));
+  assert.equal(
+    hosts.size,
+    1,
+    `the site names more than one host for itself: ${[...hosts].join(', ')} — ` +
+      'canonicals, sitemap, feed and robots must all agree, or every canonical ' +
+      'points at a redirect',
+  );
+}
+
 const home = await html('/');
 for (const campaign of ['web_home_hero', 'web_home_footer', 'web_header']) {
   assert.ok(home.includes(`ct=${campaign}`));

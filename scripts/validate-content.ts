@@ -16,9 +16,9 @@ import matter from 'gray-matter';
 
 const ROOT = process.cwd();
 const LOCALE = 'en';
-const COLLECTIONS = ['guides'] as const;
+const COLLECTIONS = ['guides', 'scenarios'] as const;
 
-const WORDS = { guide: [700, 6000], note: [400, 2500] } as const;
+const WORDS = { guide: [700, 6000], note: [400, 2500], scenario: [600, 4000] } as const;
 const MIN_INTERNAL_LINKS = 1;
 const NEAR_DUPLICATE_THRESHOLD = 0.6;
 
@@ -30,8 +30,14 @@ function countRenderedWords(e: Entry): number {
   for (const st of (d.steps as { title: string; body: string; note?: string }[]) ?? []) {
     parts.push(st.title, st.body, st.note ?? '');
   }
-  for (const key of ['gives', 'doesNotGive'] as const) {
+  for (const key of ['gives', 'doesNotGive', 'solves', 'doesNotSolve'] as const) {
     for (const line of (d[key] as string[]) ?? []) parts.push(line);
+  }
+  for (const key of ['audience', 'scene', 'problem', 'consequence', 'help', 'pullQuote'] as const) {
+    parts.push(String(d[key] ?? ''));
+  }
+  for (const st of (d.checklist as { title: string; body: string }[]) ?? []) {
+    parts.push(st.title, st.body);
   }
   return parts.join(' ').trim().split(/\s+/).filter(Boolean).length;
 }
@@ -108,13 +114,28 @@ for (const e of entries) {
   // ── internal links in the body resolve ─────────────────────────────────
   const links = [...e.body.matchAll(/\]\((\/[^)\s]+)\)/g)].map((m) => m[1]);
   for (const href of links) {
-    const m = href.match(/^\/(guides)\/([a-z0-9-]+)\/?$/);
+    const m = href.match(/^\/(guides|scenarios)\/([a-z0-9-]+)\/?$/);
     if (m && !slugs.has(`${m[1]}/${m[2]}`)) {
       fail(e.file, `body links to ${href}, which does not exist`);
     }
   }
   if (links.length < MIN_INTERNAL_LINKS) {
     warnings.push(`${e.file}: no internal links in the body — pages this isolated do not get crawled well`);
+  }
+
+  // ── evidence must actually cite something ──────────────────────────────
+  // Only for files about to publish. A fresh scaffold is empty by design, and
+  // the build skips drafts anyway — failing the check on one would make the
+  // scaffold command and the check contradict each other.
+  if (kind === 'scenario' && e.data.draft !== true) {
+    const evidence = String(e.data.evidence ?? '');
+    const sources = (e.data.sources as { url?: string }[]) ?? [];
+    if (!sources.some((src) => src.url)) {
+      fail(e.file, 'a scenario needs at least one source with a URL');
+    }
+    if (/^(tbd|todo|n\/a|none)\b/i.test(evidence.trim())) {
+      fail(e.file, `evidence is a placeholder: "${evidence.trim().slice(0, 40)}"`);
+    }
   }
 
   // ── dates ──────────────────────────────────────────────────────────────

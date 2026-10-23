@@ -1,0 +1,88 @@
+---
+title: "The wrong counter is on my lock screen"
+seoTitle: "Choose Your Lock Screen Counter | TimeSince"
+description: "The lock screen widget shows a counter you did not pick. You can change it, and the setting is in iOS rather than in the app."
+deck: "A lock screen widget is only useful if it shows the one counter you actually want to see. Picking it is a two-minute job, and it is not where most people look first."
+answer: "You can already choose which counter appears. The setting lives in iOS, not in TimeSince: long-press your Lock Screen, tap Customise, then Lock Screen, tap the TimeSince widget, and pick the counter you want. Hidden and archived counters are not offered. This catches people out often enough that it has been raised as a feature request, when it is really a question of where the control lives."
+date: "2026-10-23"
+cluster: "ios"
+accent: "calm"
+tags:
+  - "widgets"
+  - "lock-screen"
+  - "ios"
+keywords:
+  primary: "change lock screen widget counter"
+  secondary:
+    - "lock screen widget wrong counter"
+    - "pick counter lock screen widget"
+    - "customise lock screen widget iphone"
+    - "timesince lock screen widget"
+    - "lock screen widget not updating"
+audience: "Anyone whose lock screen widget shows the wrong thing"
+scene: "You added the widget, and it is showing a counter you barely use instead of the one you check every day."
+problem: "The widget picks something to show when you add it, and the control for changing it is in the iOS Lock Screen editor rather than anywhere inside the app, which is not where people look."
+consequence: "The widget becomes dead space. You stop glancing at it, and the counter that actually needed to be visible goes back to being something you have to remember to open the app for."
+help: "iOS lets you pick the counter per widget. Once it shows the right one, the counter you care about is readable without unlocking, which is the entire reason to have it there."
+solves:
+  - "Puts the counter you actually check on the lock screen"
+  - "Lets you run several widgets, each showing a different counter"
+  - "Keeps the number readable without unlocking the phone"
+doesNotSolve:
+  - "Hidden and archived counters are not offered to widgets"
+  - "It cannot log from a lock screen widget, only display"
+  - "The control is in iOS, so the app cannot change it for you"
+checklist:
+  - title: "Long-press the lock screen"
+    body: "Press and hold on your wallpaper until the Customise button appears, then tap it and choose Lock Screen."
+  - title: "Tap the TimeSince widget"
+    body: "Tapping the widget itself, rather than the area around it, opens its own options."
+  - title: "Pick the counter"
+    body: "Choose the one you want visible. If a counter is missing from the list, check whether it is hidden or archived, because neither is offered."
+  - title: "Add a second widget if you need two"
+    body: "Each widget holds its own counter, so two counters means two widgets rather than one that rotates."
+pullQuote: "It is not a missing feature. It is a setting in the wrong place for where people look."
+faq:
+  - q: "Why is the setting in iOS and not in the app?"
+    a: "Lock Screen widgets are configured by iOS itself, through the Lock Screen editor. An app can offer the list of counters but cannot open that editor or choose on your behalf."
+  - q: "My counter is not in the list. Why?"
+    a: "Hidden and archived counters are deliberately not offered to widgets. A hidden counter appearing on a lock screen would defeat the point of hiding it behind Face ID."
+  - q: "The widget showed an out-of-date time after I logged. Is that fixed?"
+    a: "That was a real bug reported on the feedback board, and the developer said the fix was going out in the following update. If you still see it, make sure you are on the current version."
+sources:
+  - title: "Customisability to the lock-screen widget, request and reply"
+    publisher: "TimeSince feedback board"
+    url: "https://timesince.userjot.com/board/p/customisability-to-the-lock-screen-widget"
+evidence: "A feature request on the public board asking to choose which counter the lock-screen widget shows, answered by the developer with the steps because the capability already exists. A discoverability problem rather than a missing feature."
+related:
+  - "log-a-habit-without-opening-the-app"
+feature: "home-screen-widget"
+kind: "scenario"
+disclaimer: "none"
+---
+
+Someone asked for this on the feedback board: can you pick what shows up on the lock-screen widget?
+
+The answer was yes, with instructions, because you already can. That is worth a page of its own, because a feature nobody can find is not meaningfully different from one that does not exist.
+
+## Where the control actually is
+
+Not in TimeSince. In iOS.
+
+Long-press your Lock Screen until Customise appears, tap it, choose Lock Screen, then tap the TimeSince widget. You get a list of counters and you pick one.
+
+This is how all Lock Screen widgets work, across every app: iOS owns that editor, and an app can supply the list but cannot open it for you or choose on your behalf. Which is precisely why people look in the app's settings, find nothing, and reasonably conclude the feature is missing.
+
+## One widget, one counter
+
+Each widget holds a single counter. If you want two visible, add two widgets. There is no rotation and nothing that picks for you, which is deliberate: a lock screen number is only useful if you know without thinking what it refers to.
+
+## If a counter is not in the list
+
+Hidden and archived counters are not offered. For hidden counters that is the whole point, since something behind Face ID appearing on your lock screen would defeat the exercise. For archived ones, bring the counter back to active and it will appear.
+
+## A bug worth knowing about
+
+The same thread turned up a real one: the lock-screen widget could show an out-of-date time after you logged. The developer confirmed the fix shipped in the next update. If you are seeing a stale number, check your version before changing anything else.
+
+For the broader question of logging without opening the app at all, [the widget, Siri and NFC tags](/guides/log-a-habit-without-opening-the-app) covers the three ways in.

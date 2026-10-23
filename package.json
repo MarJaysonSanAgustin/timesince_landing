@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "verify": "tsc --noEmit && eslint . && next build",
+    "assets:sync": "node --experimental-strip-types scripts/gen-image-manifest.ts",
+    "content:new": "node --experimental-strip-types scripts/new-content.ts",
+    "content:check": "node --experimental-strip-types scripts/validate-content.ts",
+    "prebuild": "npm run assets:sync",
+    "verify": "npm run content:check && tsc --noEmit && eslint . && next build",
     "clean": "next clean"
   },
   "dependencies": {

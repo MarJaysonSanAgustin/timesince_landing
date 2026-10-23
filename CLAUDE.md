@@ -49,6 +49,33 @@ Source of truth is `lib/faq.ts` and `app/llms.txt/route.ts`. Do not invent capab
   Quitting mode (counter climbs while abstaining; a reset carries no penalty) · up to 5
   reminders per event · encrypted iCloud backup.
 
+## Publishing a page
+
+```bash
+npm run content:new -- guide "How to track an irregular chore"   # scaffold (draft: true)
+npm run dev                                                       # drafts render in dev
+npm run content:check                                             # cross-file checks
+npm run verify                                                    # check + tsc + lint + build
+```
+
+Then flip `draft: false` and commit. The route, the hub card, `sitemap.xml`, `llms.txt`,
+`llms-full.txt`, related-page cards, breadcrumbs and the JSON-LD all pick it up with **no
+other file edited**. If publishing ever needs an edit somewhere else, that is a bug in the
+pipeline, not a step in the workflow.
+
+Two layers of validation, split for a reason:
+- **zod runs during `next build`.** The loader is on the build's critical path, so it cannot
+  be skipped. It can't run in a plain node script — the schema reaches `lib/features.ts`,
+  which imports PNGs and only resolves inside a bundler.
+- **`content:check` does what one page render cannot:** duplicate slugs, titles, descriptions
+  and primary keywords; `related` and body links that don't resolve; future or inverted
+  dates; rendered word count; a stale image manifest; and near-duplicate bodies (Jaccard
+  over 5-word shingles, failing above 60%).
+
+Images: drop files under `assets/content/`, run `npm run assets:sync`, and reference the
+**key** in frontmatter. A typo fails the build. A page with no image still looks finished —
+it falls back to the linked feature's screenshot, then to an accent panel.
+
 ## Writing content
 
 Every guide and scenario must:

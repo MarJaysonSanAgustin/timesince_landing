@@ -45,21 +45,42 @@ and all sit under packages already at their latest version. Not fixable without 
 
 *Ends with: daily publishing is possible.*
 
-- [ ] `lib/content/{schema,load,labels,related,index}.ts` + zod schemas
-- [ ] Loader: module-scope memoization, `_`-prefix exclusion, aggregated errors
-- [ ] Locale-scoped paths (`content/en/…`), string dictionary, `localizedPath()`
-- [ ] Design tokens + the six-accent CSS custom-property system
-- [ ] Extract header / footer / mobile-menu; fix the menu-stays-open bug; switch to `next/link`
-- [ ] `lib/features.ts` + `FeatureRow` (`app/page.tsx` 463 → ~150 lines)
-- [ ] Shared content components (Breadcrumbs, AnswerBox, StepList, FaqAccordion, …)
-- [ ] `/guides` hub + `[slug]` template
-- [ ] Migrate the 3 blog posts; delete `app/blog`; add `/blog/*` redirects
-- [ ] Dynamic sitemap with real `lastModified`
-- [ ] Image manifest generator (`scripts/gen-image-manifest.ts`) + 3-tier visual fallback
-- [ ] Near-duplicate lint (shingle/Jaccard over bodies)
-- [ ] `outputFileTracingIncludes` + `dynamicParams = false` — ⚠️ verify on a **real deploy**
-- [ ] `content:new` scaffold + `content/_templates/`
-- [ ] **GATE:** publish one real guide end-to-end with zero manual edits outside its own file
+- [x] `lib/content/{schema,load,labels,related,index}.ts` + zod schemas
+- [x] Loader: module-scope memoization, `_`-prefix exclusion, aggregated errors
+- [x] Locale-scoped paths (`content/en/…`), string dictionary, `localizedPath()`
+- [x] Design tokens + the six-accent CSS custom-property system
+- [x] Extract header / footer / mobile-menu; fix the menu-stays-open bug; switch to `next/link`
+- [x] `lib/features.ts` + `FeatureRow` (`app/page.tsx` 463 → 254 lines; homepage gains 11 internal links)
+- [x] Shared content components (Breadcrumbs, AnswerBox, StepList, FaqAccordion, …)
+- [x] `/guides` hub + `[slug]` template
+- [x] Migrate the 3 blog posts; delete `app/blog`; add `/blog/*` redirects
+- [x] Dynamic sitemap with real `lastModified`
+- [x] Image manifest generator (`scripts/gen-image-manifest.ts`) + 3-tier visual fallback
+- [x] Near-duplicate lint (shingle/Jaccard over bodies)
+- [~] `outputFileTracingIncludes` + `dynamicParams = false` — in code; ⚠️ **still unverified on a real deploy**
+- [x] `content:new` scaffold + `content/_templates/`
+- [x] **GATE:** publish one real guide end-to-end with zero manual edits outside its own file
+
+### Also done in Phase 1
+
+- [x] `content:check` for the cross-file checks zod structurally cannot do: duplicate
+      slugs/titles/descriptions/primary keywords, unresolved `related` and body links,
+      future or inverted dates, rendered word count, stale image manifest, near-duplicates
+- [x] `draft` / `publishAt` — drafts render in `dev` (with their validation errors) and are
+      skipped entirely at build, so a half-written file never breaks a build
+- [x] `lib/cta.ts` — `CtaPlacement` union; a mistyped campaign tag fails `tsc`. Direct App
+      Store links with `?ct=`, no redirect hop on the one click that matters
+- [x] `llms.txt` rewritten to index guides by cluster; `llms-full.txt` capped at 20 full
+      bodies with summaries after; both `force-static`
+- [x] Breadcrumbs, FAQ and StepList emit their own JSON-LD, so the schema and the visible
+      content cannot drift apart
+
+**Verified:** `npm run verify` passes · 4 guides prerender as SSG · `/blog` and `/blog/:slug`
+308-redirect · the new guide emits BreadcrumbList + FAQPage + HowTo · sitemap and llms.txt
+picked the new guide up with **zero manual edits** · all page modules render in the browser.
+
+**Fixed during verification:** `seoTitle` was hitting the layout's `%s | TimeSince` template
+and rendering the suffix twice.
 
 ## Phase 2 — SEO plumbing
 

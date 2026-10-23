@@ -88,7 +88,7 @@ and rendering the suffix twice.
 
 ### Found in production after merge
 
-- [ ] **Canonical host mismatch.** `SITE.url` is `https://timesinceapp.com`, but the apex
+- [x] **Canonical host mismatch — fixed 2026-10-23.** Was: `SITE.url` was the apex, but the apex
       308-redirects to `https://www.timesinceapp.com`. So every canonical tag, `og:url`,
       JSON-LD URL, sitemap entry and the robots sitemap pointer names a host that redirects.
       Not fatal — Google follows it — but it wastes crawl budget and every canonical points at
@@ -108,7 +108,7 @@ visuals contradict the app's own design system. See [docs/](docs/README.md).
 - [x] Widen the examples: plants watered, parents called, car oil changed, migraine logged
 - [x] Raise ADHD out of a footnote — it is the App Store subtitle
 - [x] Match the app's voice (gentler, obligation-removing)
-- [ ] Decide the canonical host (apex vs www)
+- [x] Decide the canonical host — **www**, matching production; guarded by `check:seo`
 - [ ] Fix the terms jurisdiction ⚠️ **still blocked**
 
 **Verified 2026-10-23:** build green, schema renders `LifestyleApplication` + `AggregateOffer`
@@ -165,9 +165,13 @@ canonical host decision, `/about` author URL destination (Phase 5), font subsett
 
 ## Phase 3 — Scenarios & Features
 
-- [ ] Scenario schema (incl. required `evidence`) + clustered hub + `[slug]` template
-- [ ] Remaining components: PracticalAnswer, ProblemFlow, SourceList, PullQuote
-- [ ] `/features` hub + 11 feature pages
+- [x] Scenario schema (incl. required `evidence`) + clustered hub + `[slug]` template
+- [x] Remaining components: PracticalAnswer, ProblemFlow, SourceList, PullQuote
+- [x] `/features` hub + 11 feature pages
+
+**Shipped 2026-10-23 (PR #7).** 7 guides and 6 scenarios live, every scenario tied to a
+specific feedback-board post. `check:seo` covers all three sections; `validate-content.ts`
+covers scenarios. Clusters still empty: `health`, `relationships` — no evidence yet.
 
 ## Phase 4 — Tools
 

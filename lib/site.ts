@@ -6,7 +6,15 @@
  * 2026-10-23. See docs/research.md for where each figure comes from.
  */
 export const SITE = {
-  url: 'https://timesinceapp.com',
+  /**
+   * The canonical host, and it must match what production actually serves.
+   *
+   * The apex 308-redirects to www at the DNS level, so every canonical tag,
+   * og:url, JSON-LD URL and sitemap entry built from the apex was naming a URL
+   * that immediately redirects. Harmless per page, wasteful across 68 of them.
+   * Everything else derives from this one value.
+   */
+  url: 'https://www.timesinceapp.com',
   name: 'TimeSince',
 
   /**

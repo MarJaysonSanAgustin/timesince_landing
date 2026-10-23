@@ -37,7 +37,7 @@ Feature pages are asserted to carry `BreadcrumbList` and *not* `Article` — the
 
 ## Follow-ups
 
-- Choose apex versus www canonical host; all URL builders use `SITE.url` consistently, but the existing production redirect mismatch remains.
+- ~~Choose apex versus www canonical host.~~ Resolved 2026-10-23: `SITE.url` is `https://www.timesinceapp.com`, matching what production serves. `check:seo` now asserts the site names exactly one host across canonicals, sitemap, feed, robots and llms.txt — host-agnostic, so it checks self-consistency rather than hard-coding a domain.
 - Publish `/about` in Phase 5; schema author URLs already reference that planned page.
 - OG fonts are full local Nunito and JetBrains Mono TTFs (237,620 bytes total), not subsets. Licenses and sources are in `assets/fonts/`. Revisit subsetting alongside localization.
 - Scenarios have routes, schema and a share image but no content yet, so `/scenarios` renders an empty hub.

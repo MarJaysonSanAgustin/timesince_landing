@@ -33,6 +33,10 @@ frontmatter validation · Vercel.
   enum (`brand`/`warm`/`cool`/`calm`/`alert`/`neutral`); the CSS custom properties behind
   those six static classes do the rest. Tailwind's scanner cannot see composed class strings.
 - Use flat accent blocks, warm paper, mono metadata and three inks. See [docs/design-system.md](docs/design-system.md).
+- **Dark mode follows the system**, with no toggle. Token overrides live at the END of
+  `globals.css` — same specificity as the base rules, so source order is what makes them
+  win. Never hardcode a colour that has to flip: `text-white` on a `bg-ube` button was
+  readable in light and invisible in dark. Use `text-on-ube`.
 - Run `npm run verify` (content, contrast, types, lint, build) before committing.
   Run `npm run check:seo` against a built server for SEO changes; see [docs/seo.md](docs/seo.md).
 

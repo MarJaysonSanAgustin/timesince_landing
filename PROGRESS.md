@@ -132,7 +132,7 @@ app's own ADR cites. `npm run check:contrast` passes all 15 rendered pairs, surf
 inherited limitation: `warm` (#FB8C00) reads at Lc 56.3, so it is for headings and icons only.
 
 Still open from this pass:
-- [ ] Dark mode — the ink derivation already handles it; the site is light-only
+- [x] Dark mode — follows the system, inks derived the same way, 24 contrast pairs gated
 - [ ] A web face closer to the app's iOS system sans (Nunito is friendly, not the app's voice)
 - [ ] Whether to offer the paper picker on the web, or ship warm + dots only
 
@@ -189,6 +189,18 @@ Blocked on user input — see PLAN.md §10.
 - [x] `/about` (founder-led, first person) — published, with Person schema
 - [x] `/whats-new` + changelog data + roadmap
 
+## Phase 8 — Images  ⬅ **blocked on capture; see [docs/screenshot-brief.md](docs/screenshot-brief.md)**
+
+The 11 screenshots were committed 2026-08-10. The ticket redesign shipped in v1.11 on
+2026-10-13, and the Stats tab in v1.7 on 2026-08-24 — which is missing from them, dating
+them precisely. They show the gradient FAB, square cards and cool-grey ground the app no
+longer has. **The site's own design now matches the app more closely than its screenshots do.**
+
+- [ ] Recapture the 11 feature screenshots (owner — needs the app with believable data)
+- [ ] Add a ticket receipt capture — the most distinctive thing the app does, shown nowhere
+- [ ] Add milestone badges from v1.13 — newest visible feature, shown nowhere
+- [ ] Decide what fills the pages that still have no image at all
+
 ## Phase 6 — Locales  ⬅ **recommendation inverted 2026-10-23**
 
 The plan said "English first, prove it ranks." That assumed an English-only app. **It is not** —
@@ -200,8 +212,10 @@ Consider moving this much earlier.
 - [ ] `next-intl` with `localePrefix: 'as-needed'` (English URLs must not change)
 - [ ] Localize hubs, features, tools, top ~20 guides
 
-## Phase 7 — Deferred: Compare hub
+---
 
-Out of scope by decision. Revisit after Phase 4.
+## Dropped
 
-- [ ] `/compare` hub + 6–8 "vs" / "switch from" pages with visible `verifiedOn` dates
+- **Compare hub** (`/compare`, "vs" and "switch from" pages). Deferred at planning, and
+  removed outright on 2026-10-24. Not a capacity decision — the site now has its own
+  argument to make and does not need to borrow competitors' names to make it.

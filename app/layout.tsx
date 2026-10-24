@@ -46,6 +46,7 @@ export const metadata: Metadata = {
     title: SITE.title,
     description: SITE.description,
   },
+  other: { 'color-scheme': 'light dark' },
   twitter: { card: 'summary_large_image' },
 };
 
@@ -55,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${nunitoSans.variable} ${nunitoDisplay.variable}`}>
       <body
-        className="font-sans paper text-ink antialiased selection:bg-[#D0B4DE] selection:text-ink flex flex-col min-h-screen"
+        className="font-sans paper text-ink antialiased selection:bg-[#D0B4DE] selection:text-[#1B1526] flex flex-col min-h-screen"
         suppressHydrationWarning
       >
         <script

@@ -129,7 +129,12 @@ A proposal, not a decision — this needs the owner's eye before it is built.
 6. **Demote purple to an accent.** Buttons and links only — never a large block, per rule 3.
 7. **Drop `prose-purple`** and the gradient OG image.
 
+**Shipped 2026-10-24:** dark mode, following the system with no toggle. The inks are derived
+the same way as the light ones; `check:contrast` now gates 24 pairs across both themes.
+Ube changes in dark — `#5C247A` reads at Lc 8.4 on the dark paper, so dark borrows the app's
+own second tone, Ube Pastel `#D0B4DE`, which clears 60 on both grounds.
+
 **Open questions for the owner:**
-- Should the site offer the paper picker too, or ship warm + dots only?
+- Should the site offer the paper picker too, or ship warm + dots only? (Dark mode is in; the six paper colours are not.)
 - Which sans? The app uses the iOS system face, which has no direct web equivalent. Nunito is friendly but not the app's voice.
 - How literal should the ticket be — tickets everywhere, or the ground, inks and mono voice with tickets reserved for real content cards?

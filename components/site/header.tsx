@@ -26,7 +26,7 @@ export function SiteHeader() {
           href={appStoreUrl('web_header')}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center justify-center rounded-card bg-ube px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          className="hidden sm:inline-flex items-center justify-center rounded-card bg-ube px-5 py-2 text-sm font-medium text-on-ube transition-opacity hover:opacity-90"
         >
           {strings.nav.getApp}
         </a>

@@ -34,6 +34,8 @@
      Never a large block: ADR-013 §2 demoted it because an app-purple block and
      a purple counter ticket were two purples nobody could tell apart. */
   --color-ube: #5c247a;
+  /* Text on a ube fill. Flips in dark, where ube is the pastel. */
+  --color-on-ube: #ffffff;
 
   --radius-card: 0.75rem;
   --radius-card-lg: 1rem;
@@ -54,6 +56,8 @@
     var(--color-paper-rule) 1.1px,
     transparent 1.1px
   );
+  /* --color-paper-rule is a solid warm grey in light and an alpha white in
+     dark; both work as a gradient stop. */
   background-size: 16px 16px;
   background-position: -8px -8px;
 }
@@ -246,4 +250,51 @@
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--color-muted);
+}
+
+/* ── Dark mode ─────────────────────────────────────────────────────────────
+   Follows the system, with no toggle: the app follows the system too, and a
+   toggle would mean a client component and a stored preference for something
+   nobody asked for.
+
+   The inks are derived exactly as the light ones are — the palest step from
+   the dark paper toward full ink that clears Lc 67 (muted) and Lc 45 (faint)
+   on BOTH the paper and the card. Re-derive with lib/apca.ts if a value moves.
+
+   Ube changes. #5C247A reads at Lc 8.4 on the dark paper and 0.0 on the dark
+   card: invisible. The app's own second tone, Ube Pastel #D0B4DE, clears 60 on
+   both, so dark mode borrows it rather than inventing a colour.               */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #0f0d13;
+    --color-card: #2a2631;
+    --color-paper-rule: rgb(255 255 255 / 7%);
+
+    --color-ink: #f2eeff;
+    --color-muted: #c7c3d2;
+    --color-faint: #9e9ba8;
+
+    --color-line: #3b3644;
+    --color-hair: #4a4552;
+
+    --color-ube: #d0b4de;
+    --color-on-ube: #1b1526;
+  }
+
+  /* An app-level block is "lifted off the dark stock rather than sunk into
+     it", so it still reads as a block (ADR-013 §2). */
+  .accent-neutral {
+    --accent-fill: #3b3644;
+    --accent-ink: #f2eeff;
+    --accent-tone: #c7c3d2;
+  }
+
+  /* The accent tones are darkened variants chosen for light paper; on dark
+     they need to go lighter instead, or a kicker disappears. */
+  .accent-brand { --accent-tone: #b39ddb; }
+  .accent-warm { --accent-tone: #ffb74d; }
+  .accent-calm { --accent-tone: #4db6ac; }
+  .accent-cool { --accent-tone: #64b5f6; }
+  .accent-alert { --accent-tone: #ef9a9a; }
 }

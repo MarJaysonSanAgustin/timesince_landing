@@ -34,6 +34,8 @@
      Never a large block: ADR-013 §2 demoted it because an app-purple block and
      a purple counter ticket were two purples nobody could tell apart. */
   --color-ube: #5c247a;
+  /* Text on a ube fill. Flips in dark, where ube is the pastel. */
+  --color-on-ube: #ffffff;
 
   --radius-card: 0.75rem;
   --radius-card-lg: 1rem;
@@ -54,6 +56,8 @@
     var(--color-paper-rule) 1.1px,
     transparent 1.1px
   );
+  /* --color-paper-rule is a solid warm grey in light and an alpha white in
+     dark; both work as a gradient stop. */
   background-size: 16px 16px;
   background-position: -8px -8px;
 }
@@ -217,6 +221,53 @@
   background-repeat: no-repeat;
 }
 
+
+/* ── Prose follows the ink tokens ──────────────────────────────────────────
+   @tailwindcss/typography ships its own palette and sets it on .prose,
+   overriding anything inherited. Left alone, --tw-prose-body is a near-black
+   grey: passable on light paper by accident, and unreadable on a dark sheet.
+
+   Binding every one of its variables to our three inks means prose follows
+   the theme for free, and there is one place where body-copy colour is
+   decided.                                                                 */
+
+.prose {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-lead: var(--color-muted);
+  --tw-prose-links: var(--color-ube);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-bullets: var(--color-hair);
+  --tw-prose-hr: var(--color-line);
+  --tw-prose-quotes: var(--color-ink);
+  --tw-prose-quote-borders: var(--color-line);
+  --tw-prose-captions: var(--color-muted);
+  --tw-prose-code: var(--color-ink);
+  --tw-prose-pre-code: var(--color-ink);
+  --tw-prose-pre-bg: var(--color-paper);
+  --tw-prose-th-borders: var(--color-line);
+  --tw-prose-td-borders: var(--color-line);
+}
+
+/* ── Sheet: the opaque surface a page's prose sits on ─────────────────────
+   ADR-013 §3: "A sentence never prints over the dots. Cards are opaque [...]
+   an explainer that is not on a card is a gap in the design."
+
+   That gap was real here. Measured with lib/apca.ts, text crossing a dot
+   (#D2CEC6 on the warm paper) drops to Lc 49 for muted and Lc 26 for faint —
+   under their floors, and under APCA's 60 for body text. The contrast gate
+   missed it because it measured the flat paper colour, not the pattern
+   printed on it.
+
+   So the dotted paper is the ground BETWEEN things, and prose sits on this. */
+
+.sheet {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 18px;
+}
+
 /* A stub row: label left, value right, no rule, no icon tile (rule 5). */
 .stub-row {
   display: flex;
@@ -247,3 +298,86 @@
   letter-spacing: 0.02em;
   color: var(--color-muted);
 }
+
+/* ── Dark mode ─────────────────────────────────────────────────────────────
+   Follows the system, with no toggle: the app follows the system too, and a
+   toggle would mean a client component and a stored preference for something
+   nobody asked for.
+
+   The inks are derived exactly as the light ones are — the palest step from
+   the dark paper toward full ink that clears Lc 67 (muted) and Lc 45 (faint)
+   on BOTH the paper and the card. Re-derive with lib/apca.ts if a value moves.
+
+   Ube changes. #5C247A reads at Lc 8.4 on the dark paper and 0.0 on the dark
+   card: invisible. The app's own second tone, Ube Pastel #D0B4DE, clears 60 on
+   both, so dark mode borrows it rather than inventing a colour.               */
+
+/* Dark applies when the system asks for it, unless the reader has chosen
+   light — and always when they have chosen dark. The duplication is the price
+   of supporting both a system default and an explicit override in plain CSS. */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-paper: #0f0d13;
+    --color-card: #2a2631;
+    --color-paper-rule: rgb(255 255 255 / 7%);
+
+    --color-ink: #f2eeff;
+    --color-muted: #c7c3d2;
+    --color-faint: #9e9ba8;
+
+    --color-line: #3b3644;
+    --color-hair: #4a4552;
+
+    --color-ube: #d0b4de;
+    --color-on-ube: #1b1526;
+  }
+
+  /* An app-level block is "lifted off the dark stock rather than sunk into
+     it", so it still reads as a block (ADR-013 §2). */
+  :root:not([data-theme="light"]) .accent-neutral {
+    --accent-fill: #3b3644;
+    --accent-ink: #f2eeff;
+    --accent-tone: #c7c3d2;
+  }
+
+  /* The accent tones are darkened variants chosen for light paper; on dark
+     they need to go lighter instead, or a kicker disappears. */
+  :root:not([data-theme="light"]) .accent-brand { --accent-tone: #b39ddb; }
+  :root:not([data-theme="light"]) .accent-warm { --accent-tone: #ffb74d; }
+  :root:not([data-theme="light"]) .accent-calm { --accent-tone: #4db6ac; }
+  :root:not([data-theme="light"]) .accent-cool { --accent-tone: #64b5f6; }
+  :root:not([data-theme="light"]) .accent-alert { --accent-tone: #ef9a9a; }
+}
+
+:root[data-theme="dark"] {
+  --color-paper: #0f0d13;
+  --color-card: #2a2631;
+  --color-paper-rule: rgb(255 255 255 / 7%);
+
+  --color-ink: #f2eeff;
+  --color-muted: #c7c3d2;
+  --color-faint: #9e9ba8;
+
+  --color-line: #3b3644;
+  --color-hair: #4a4552;
+
+  --color-ube: #d0b4de;
+  --color-on-ube: #1b1526;
+}
+
+/* An app-level block is "lifted off the dark stock rather than sunk into
+   it", so it still reads as a block (ADR-013 §2). */
+:root[data-theme="dark"] .accent-neutral {
+  --accent-fill: #3b3644;
+  --accent-ink: #f2eeff;
+  --accent-tone: #c7c3d2;
+}
+
+/* The accent tones are darkened variants chosen for light paper; on dark
+   they need to go lighter instead, or a kicker disappears. */
+:root[data-theme="dark"] .accent-brand { --accent-tone: #b39ddb; }
+:root[data-theme="dark"] .accent-warm { --accent-tone: #ffb74d; }
+:root[data-theme="dark"] .accent-calm { --accent-tone: #4db6ac; }
+:root[data-theme="dark"] .accent-cool { --accent-tone: #64b5f6; }
+:root[data-theme="dark"] .accent-alert { --accent-tone: #ef9a9a; }

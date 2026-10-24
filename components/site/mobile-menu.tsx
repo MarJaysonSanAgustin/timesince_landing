@@ -57,7 +57,7 @@ export function MobileMenu({ primary, groups }: MobileMenuProps) {
           href={appStoreUrl('web_header')}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 block rounded-xl bg-ink px-4 py-3 text-center text-base font-medium text-white hover:opacity-90"
+          className="mt-4 block rounded-xl bg-ube px-4 py-3 text-center text-base font-medium text-on-ube hover:opacity-90"
         >
           {strings.nav.getApp}
         </a>

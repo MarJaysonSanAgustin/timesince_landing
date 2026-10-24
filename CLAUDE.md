@@ -33,6 +33,18 @@ frontmatter validation · Vercel.
   enum (`brand`/`warm`/`cool`/`calm`/`alert`/`neutral`); the CSS custom properties behind
   those six static classes do the rest. Tailwind's scanner cannot see composed class strings.
 - Use flat accent blocks, warm paper, mono metadata and three inks. See [docs/design-system.md](docs/design-system.md).
+- **Prose never sits on the dotted ground.** Text crossing a dot drops to Lc 49 (muted) and
+  Lc 26 (faint) — under their floors. Pages of prose go in `<PageSheet>`; a hub's header goes
+  in `<HubHeader>` and its cards sit on the paper, because cards are already opaque. The dots
+  are the ground *between* things.
+- **Body copy is `text-ink`, not `text-muted`.** Muted is for secondary lines; using it for
+  paragraphs is most of what makes a page feel hard to read.
+- **Dark mode has a toggle** (`components/site/theme-toggle.tsx`) cycling system → light →
+  dark, stored in `localStorage` and applied pre-paint by an inline script so there is no
+  flash. `data-theme` on `<html>` is what the CSS keys off; absent means follow the system. Token overrides live at the END of
+  `globals.css` — same specificity as the base rules, so source order is what makes them
+  win. Never hardcode a colour that has to flip: `text-white` on a `bg-ube` button was
+  readable in light and invisible in dark. Use `text-on-ube`.
 - Run `npm run verify` (content, contrast, types, lint, build) before committing.
   Run `npm run check:seo` against a built server for SEO changes; see [docs/seo.md](docs/seo.md).
 

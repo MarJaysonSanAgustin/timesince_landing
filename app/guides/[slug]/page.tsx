@@ -7,6 +7,7 @@ import { relatedContent } from '@/lib/content/related';
 import { CLUSTER_LABELS } from '@/lib/content/schema';
 import { CLUSTER_ICONS } from '@/lib/content/clusters';
 import { mdxComponents } from '@/components/mdx';
+import { PageSheet } from '@/components/site/page-sheet';
 import { Breadcrumbs } from '@/components/content/breadcrumbs';
 import { AnswerBox } from '@/components/content/answer-box';
 import { FaqAccordion } from '@/components/content/faq-accordion';
@@ -93,7 +94,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   });
 
   return (
-    <div className="paper-dots"><article className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <PageSheet width="prose"><article>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
@@ -168,6 +169,6 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
       />
 
       <RelatedGrid items={related} title={strings.content.relatedHeading} />
-    </article></div>
+    </article></PageSheet>
   );
 }

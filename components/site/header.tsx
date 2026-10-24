@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
 import { PRIMARY_NAV, FOOTER_GROUPS } from '@/lib/nav';
-import { appStoreUrl } from '@/lib/cta';
+import { SITE } from '@/lib/site';
 import { strings } from '@/lib/strings/en';
 import { MobileMenu } from '@/components/site/mobile-menu';
+import { ThemeToggle } from '@/components/site/theme-toggle';
 
 /** Takes no props: the single source of truth is `lib/nav.ts`. */
 export function SiteHeader() {
@@ -22,16 +23,20 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <a
-          href={appStoreUrl('web_header')}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center justify-center rounded-card bg-ube px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
-        >
-          {strings.nav.getApp}
-        </a>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <ThemeToggle />
 
-        <MobileMenu primary={PRIMARY_NAV} groups={FOOTER_GROUPS} />
+          <a
+            href={SITE.appStoreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center justify-center rounded-card bg-ube px-5 py-2 text-sm font-medium text-on-ube transition-opacity hover:opacity-90"
+          >
+            {strings.nav.getApp}
+          </a>
+
+          <MobileMenu primary={PRIMARY_NAV} groups={FOOTER_GROUPS} />
+        </div>
       </div>
     </header>
   );

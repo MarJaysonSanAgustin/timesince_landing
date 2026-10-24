@@ -18,6 +18,11 @@ interface Theme {
   ube: string;
   /** Text on a ube fill. */
   onUbe: string;
+  /**
+   * The dot printed on the paper. Text crossing one sits on THIS, not on the
+   * paper colour — which is why prose belongs on a sheet, never on the dots.
+   */
+  dot: string;
 }
 
 /** Both themes, checked identically. Dark drifting silently is the risk. */
@@ -26,11 +31,13 @@ const THEMES: Theme[] = [
     name: 'light',
     paper: '#F1EFEA', card: '#FFFFFF', ink: '#1B1526',
     muted: '#6C6870', faint: '#9B989C', ube: '#5C247A', onUbe: '#FFFFFF', // --color-on-ube
+    dot: '#D2CEC6',
   },
   {
     name: 'dark',
     paper: '#0F0D13', card: '#2A2631', ink: '#F2EEFF',
     muted: '#C7C3D2', faint: '#9E9BA8', ube: '#D0B4DE', onUbe: '#1B1526', // --color-on-ube
+    dot: '#1E1C22',
   },
 ];
 
@@ -55,6 +62,9 @@ function checksFor(t: Theme): Check[] {
     { what: 'ube link on paper', fg: t.ube, bg: t.paper, floor: BODY_FLOOR },
     { what: 'ube link on card', fg: t.ube, bg: t.card, floor: BODY_FLOOR },
     { what: 'text on ube fill', fg: t.onUbe, bg: t.ube, floor: BODY_FLOOR },
+    // Headings are large text, so they may cross a dot. Body and secondary
+    // text must not — that is what .sheet is for, and these two record why.
+    { what: 'ink on a dot (large only)', fg: t.ink, bg: t.dot, floor: LARGE_FLOOR },
   ];
 }
 
@@ -97,6 +107,19 @@ for (const [name, fill] of Object.entries(fills)) {
     failures++;
   }
 }
+
+// Record the measurement that drove the sheet, rather than leaving it in a
+// commit message nobody re-reads.
+console.log('Why prose is never set on the dotted ground\n');
+for (const theme of THEMES) {
+  const mutedOnDot = Math.abs(apcaLc(theme.muted, theme.dot));
+  const faintOnDot = Math.abs(apcaLc(theme.faint, theme.dot));
+  console.log(
+    `  ${theme.name.padEnd(5)} muted on a dot Lc ${mutedOnDot.toFixed(1)}, ` +
+      `faint Lc ${faintOnDot.toFixed(1)} — floors are ${MUTED_LC} and ${FAINT_LC}`,
+  );
+}
+console.log('  Prose sits on .sheet, so neither figure is what a reader gets.\n');
 
 if (warnings.length) {
   console.log('\nKnown limitations, inherited from the app:');

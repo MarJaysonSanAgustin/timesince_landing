@@ -132,7 +132,8 @@ app's own ADR cites. `npm run check:contrast` passes all 15 rendered pairs, surf
 inherited limitation: `warm` (#FB8C00) reads at Lc 56.3, so it is for headings and icons only.
 
 Still open from this pass:
-- [x] Dark mode — follows the system, inks derived the same way, 24 contrast pairs gated
+- [x] Dark mode — follows the system, inks derived the same way, 26 contrast pairs gated
+- [x] Readability — prose moved off the dotted ground onto `.sheet`; body copy is ink, not muted
 - [ ] A web face closer to the app's iOS system sans (Nunito is friendly, not the app's voice)
 - [ ] Whether to offer the paper picker on the web, or ship warm + dots only
 

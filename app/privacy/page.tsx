@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
         <p className="text-lg text-muted">Last updated: {SITE.legalLastUpdated}</p>
       </div>
 
-      <div className="prose prose-neutral prose-lg text-muted max-w-none space-y-8">
+      <div className="prose prose-neutral prose-lg text-ink max-w-none space-y-8">
         <p>
           This policy describes how <strong>{SITE.name}</strong> (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) handles information for the mobile application <strong>{SITE.fullName}</strong>. {SITE.name} is built to work entirely on your device, with no user accounts and no developer-operated servers.
         </p>

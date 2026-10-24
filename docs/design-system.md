@@ -134,6 +134,13 @@ the same way as the light ones; `check:contrast` now gates 24 pairs across both 
 Ube changes in dark — `#5C247A` reads at Lc 8.4 on the dark paper, so dark borrows the app's
 own second tone, Ube Pastel `#D0B4DE`, which clears 60 on both grounds.
 
+**Readability fix, 2026-10-24.** Prose was being set directly on the dotted ground. ADR-013 §3
+says a sentence never prints over the dots and calls an un-carded explainer "a gap in the
+design" — that gap was real here, and measurable: muted ink crossing a dot reads at **Lc 49**
+against its floor of 67, faint at **Lc 26** against 45. The contrast gate missed it because it
+measured the flat paper colour rather than the pattern printed on it. Prose now sits on
+`.sheet`, and the gate records the dot measurement so the reason is not lost.
+
 **Open questions for the owner:**
 - Should the site offer the paper picker too, or ship warm + dots only? (Dark mode is in; the six paper colours are not.)
 - Which sans? The app uses the iOS system face, which has no direct web equivalent. Nunito is friendly but not the app's voice.

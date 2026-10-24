@@ -221,6 +221,24 @@
   background-repeat: no-repeat;
 }
 
+/* ── Sheet: the opaque surface a page's prose sits on ─────────────────────
+   ADR-013 §3: "A sentence never prints over the dots. Cards are opaque [...]
+   an explainer that is not on a card is a gap in the design."
+
+   That gap was real here. Measured with lib/apca.ts, text crossing a dot
+   (#D2CEC6 on the warm paper) drops to Lc 49 for muted and Lc 26 for faint —
+   under their floors, and under APCA's 60 for body text. The contrast gate
+   missed it because it measured the flat paper colour, not the pattern
+   printed on it.
+
+   So the dotted paper is the ground BETWEEN things, and prose sits on this. */
+
+.sheet {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 18px;
+}
+
 /* A stub row: label left, value right, no rule, no icon tile (rule 5). */
 .stub-row {
   display: flex;

@@ -39,7 +39,9 @@ frontmatter validation · Vercel.
   are the ground *between* things.
 - **Body copy is `text-ink`, not `text-muted`.** Muted is for secondary lines; using it for
   paragraphs is most of what makes a page feel hard to read.
-- **Dark mode follows the system**, with no toggle. Token overrides live at the END of
+- **Dark mode has a toggle** (`components/site/theme-toggle.tsx`) cycling system → light →
+  dark, stored in `localStorage` and applied pre-paint by an inline script so there is no
+  flash. `data-theme` on `<html>` is what the CSS keys off; absent means follow the system. Token overrides live at the END of
   `globals.css` — same specificity as the base rules, so source order is what makes them
   win. Never hardcode a colour that has to flip: `text-white` on a `bg-ube` button was
   readable in light and invisible in dark. Use `text-on-ube`.

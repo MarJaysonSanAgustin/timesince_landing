@@ -15,7 +15,7 @@ export default function TermsAndConditions() {
         <p className="text-lg text-muted">Last updated: {SITE.legalLastUpdated}</p>
       </div>
 
-      <div className="prose prose-neutral prose-lg text-muted max-w-none space-y-8">
+      <div className="prose prose-neutral prose-lg text-ink max-w-none space-y-8">
         <p>
           Welcome to {SITE.name}. These Terms of Use apply to the mobile application <strong>{SITE.fullName}</strong> provided by <strong>{SITE.name}</strong> (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;). By downloading, installing, or using the app, you agree to be bound by these terms.
         </p>

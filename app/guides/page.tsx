@@ -4,6 +4,7 @@ import { getGuides } from '@/lib/content';
 import { CLUSTER_LABELS, CLUSTERS } from '@/lib/content/schema';
 import { SITE } from '@/lib/site';
 import { strings } from '@/lib/strings/en';
+import { HubHeader } from '@/components/site/page-sheet';
 import { CtaBlock } from '@/components/content/cta-block';
 import { itemList } from '@/lib/schema';
 import { pageMetadata } from '@/lib/page-metadata';
@@ -35,7 +36,7 @@ export default function GuidesHub() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(listJsonLd) }}
       />
-      <header className="mb-16">
+      <HubHeader><header className="mb-16">
         <h1 className="mb-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
           Guides
         </h1>
@@ -43,7 +44,7 @@ export default function GuidesHub() {
           Each guide answers its question first and gives the detail after. No streaks, and
           an honest note on what {SITE.name} does not solve.
         </p>
-      </header>
+      </header></HubHeader>
 
       {guides.length === 0 ? (
         <p className="text-muted">No guides published yet.</p>

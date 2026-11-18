@@ -6,6 +6,7 @@ import { Analytics } from '@vercel/analytics/next';
 import { SITE } from '@/lib/site';
 import { siteGraph } from '@/lib/schema';
 import { SiteHeader } from '@/components/site/header';
+import { themeScript } from '@/components/site/theme-toggle';
 import { SiteFooter } from '@/components/site/footer';
 
 const nunitoSans = Nunito({
@@ -46,6 +47,7 @@ export const metadata: Metadata = {
     title: SITE.title,
     description: SITE.description,
   },
+  other: { 'color-scheme': 'light dark' },
   twitter: { card: 'summary_large_image' },
 };
 
@@ -53,9 +55,13 @@ const jsonLd = siteGraph();
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${nunitoSans.variable} ${nunitoDisplay.variable}`}>
+    <html lang="en" className={`${nunitoSans.variable} ${nunitoDisplay.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Applies a stored theme before paint, so there is no flash. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
-        className="font-sans paper text-ink antialiased selection:bg-[#D0B4DE] selection:text-ink flex flex-col min-h-screen"
+        className="font-sans paper text-ink antialiased selection:bg-[#D0B4DE] selection:text-[#1B1526] flex flex-col min-h-screen"
         suppressHydrationWarning
       >
         <script

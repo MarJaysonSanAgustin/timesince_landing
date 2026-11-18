@@ -5,6 +5,7 @@ import { pageMetadata } from '@/lib/page-metadata';
 import { itemList } from '@/lib/schema';
 import { serializeJsonLd } from '@/lib/json-ld';
 import { ACCENT_CLASS } from '@/lib/accent';
+import { HubHeader } from '@/components/site/page-sheet';
 import { Breadcrumbs } from '@/components/content/breadcrumbs';
 import { CtaBlock } from '@/components/content/cta-block';
 
@@ -30,7 +31,7 @@ export default function ToolsHub() {
 
         <Breadcrumbs trail={[{ label: 'Tools' }]} />
 
-        <header className="mt-6 mb-14">
+        <HubHeader><header className="mt-6 mb-14">
           <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
             Tools
           </h1>
@@ -38,7 +39,7 @@ export default function ToolsHub() {
             The arithmetic {SITE.name} runs continuously, available once and for free. Every one
             works entirely in your browser — no account, no upload, nothing kept.
           </p>
-        </header>
+        </header></HubHeader>
 
         <ul className="grid gap-4 sm:grid-cols-2">
           {TOOLS.map((tool, i) => {

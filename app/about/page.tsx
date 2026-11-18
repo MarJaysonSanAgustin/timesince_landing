@@ -5,6 +5,7 @@ import { SITE } from '@/lib/site';
 import { pageMetadata } from '@/lib/page-metadata';
 import { serializeJsonLd } from '@/lib/json-ld';
 import { organization } from '@/lib/schema';
+import { PageSheet } from '@/components/site/page-sheet';
 import { Breadcrumbs } from '@/components/content/breadcrumbs';
 import { CtaBlock } from '@/components/content/cta-block';
 
@@ -44,8 +45,7 @@ export default function About() {
   if (ABOUT.draft && !SHOW_DRAFT) notFound();
 
   return (
-    <div className="paper-dots">
-      <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <PageSheet width="prose">
         {!ABOUT.draft && (
           <script
             type="application/ld+json"
@@ -118,7 +118,6 @@ export default function About() {
           headline={`See what ${SITE.name} does`}
           sub="Free for your first three counters, with no account."
         />
-      </div>
-    </div>
+    </PageSheet>
   );
 }

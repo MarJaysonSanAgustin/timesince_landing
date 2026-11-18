@@ -10,6 +10,7 @@ import { SITE } from '@/lib/site';
 import { getFeature } from '@/lib/features';
 import { CLUSTER_LABELS } from '@/lib/content/schema';
 import { mdxComponents } from '@/components/mdx';
+import { PageSheet } from '@/components/site/page-sheet';
 import { Breadcrumbs } from '@/components/content/breadcrumbs';
 import { PracticalAnswer } from '@/components/content/practical-answer';
 import { ProblemFlow } from '@/components/content/problem-flow';
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ScenarioPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const doc = getScenario(slug); if (!doc) notFound();
   const { data, body } = doc; const feature = data.feature ? getFeature(data.feature) : undefined;
-  return <div className="paper-dots"><article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+  return <PageSheet width="prose"><article>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(article({ ...data, slug, basePath: '/scenarios', keywords: [data.keywords.primary, ...data.keywords.secondary], section: CLUSTER_LABELS[data.cluster] })) }} />
     <Breadcrumbs trail={[{ href: '/scenarios', label: 'Scenarios' }, { label: data.title }]} />
     <header className="mt-8"><p className="meta uppercase">{strings.content.audience} {data.audience}</p><h1 className="mt-3 text-4xl font-bold text-ink sm:text-5xl">{data.title}</h1><p className="mt-4 text-lg text-muted">{data.deck}</p><p className="meta mt-4">By {SITE.developerName} · <time dateTime={data.updated ?? data.date}>{data.updated ?? data.date}</time></p></header>
@@ -44,5 +45,5 @@ export default async function ScenarioPage({ params }: { params: Promise<{ slug:
     <SourceList sources={data.sources} disclaimer={data.disclaimer} />
     <CtaBlock placement={`web_scenario_${slug}`} headline="Remember the last time" sub="Three counters are free. Come back whenever you need them." />
     <RelatedGrid items={relatedContent(doc, '/scenarios', allContent())} title={strings.content.relatedHeading} />
-  </article></div>;
+  </article></PageSheet>;
 }

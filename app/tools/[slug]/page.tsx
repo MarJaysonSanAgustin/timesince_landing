@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { TOOLS, getTool } from '@/lib/tools';
 import { SITE } from '@/lib/site';
 import { pageMetadata } from '@/lib/page-metadata';
+import { PageSheet } from '@/components/site/page-sheet';
 import { Breadcrumbs } from '@/components/content/breadcrumbs';
 import { CtaBlock } from '@/components/content/cta-block';
 import { DaysSince } from '@/components/tools/days-since';
@@ -46,8 +47,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
   const others = TOOLS.filter((t) => t.slug !== slug);
 
   return (
-    <div className="paper-dots">
-      <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <PageSheet width="prose">
         <Breadcrumbs trail={[{ href: '/tools', label: 'Tools' }, { label: tool.nav }]} />
 
         <header className="mt-6">
@@ -99,7 +99,6 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             ))}
           </ul>
         </section>
-      </div>
-    </div>
+    </PageSheet>
   );
 }

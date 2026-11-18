@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
 import { CtaBlock } from '@/components/content/cta-block';
+import { PageSheet } from '@/components/site/page-sheet';
 
 export const metadata: Metadata = {
   title: 'Not found',
@@ -16,8 +17,7 @@ const ELSEWHERE = [
 
 export default function NotFound() {
   return (
-    <div className="paper-dots">
-      <div className="mx-auto w-full max-w-3xl px-4 py-24 sm:px-6 lg:px-8">
+    <PageSheet width="prose">
         <div className="accent-neutral stub mb-12">
           <div className="stub-block">
             <span className="meta" style={{ color: 'inherit', opacity: 0.55 }}>
@@ -61,7 +61,6 @@ export default function NotFound() {
           headline="Or just get the app"
           sub={`${SITE.name} is free for your first three counters, with no account.`}
         />
-      </div>
-    </div>
+    </PageSheet>
   );
 }

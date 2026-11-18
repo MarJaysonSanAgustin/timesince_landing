@@ -1,6 +1,7 @@
 import { pageMetadata } from '@/lib/page-metadata';
 import { RELEASES, ROADMAP, latestVersion } from '@/lib/changelog';
 import { SITE } from '@/lib/site';
+import { PageSheet } from '@/components/site/page-sheet';
 import { Breadcrumbs } from '@/components/content/breadcrumbs';
 import { CtaBlock } from '@/components/content/cta-block';
 
@@ -21,8 +22,7 @@ function formatDate(iso: string): string {
 
 export default function WhatsNew() {
   return (
-    <div className="paper-dots">
-      <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <PageSheet width="prose">
         <Breadcrumbs trail={[{ label: "What's new" }]} />
 
         <header className="mt-6 mb-12">
@@ -112,7 +112,6 @@ export default function WhatsNew() {
           headline="Get the current version"
           sub={`${SITE.name} is free for your first three counters, with no account.`}
         />
-      </div>
-    </div>
+    </PageSheet>
   );
 }

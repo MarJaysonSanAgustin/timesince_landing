@@ -52,7 +52,7 @@ export const Logo: React.FC<FullLogoLayoutProps> = ({
       <LogoIcon size={size} />
       {showText && (
         <span
-          className={`font-display text-xl font-bold tracking-tight ${textClass} leading-none`}
+          className={`font-[family-name:var(--font-display-nunito)] text-xl font-bold tracking-tight ${textClass} leading-none`}
         >
           TimeSince
         </span>

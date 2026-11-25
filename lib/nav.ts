@@ -39,7 +39,11 @@ export const FOOTER_GROUPS: NavGroup[] = [
   },
   {
     title: strings.footer.learn,
-    links: [{ href: localizedPath('/guides'), label: strings.nav.guides }, { href: localizedPath('/scenarios'), label: strings.nav.scenarios }],
+    links: [
+      { href: localizedPath('/guides'), label: strings.nav.guides },
+      { href: localizedPath('/scenarios'), label: strings.nav.scenarios },
+      { href: localizedPath('/tools'), label: strings.nav.tools },
+    ],
   },
   {
     title: strings.footer.company,

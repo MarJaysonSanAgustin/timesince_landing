@@ -1,4 +1,4 @@
-/** Practical product explanations, based on docs/research.md and the app's existing feature catalogue. */
+/** Practical product explanations, checked against the release and implementation sources in docs/content-accuracy.md. */
 export interface FeatureDetail {
   answer: string;
   use: string;
@@ -29,11 +29,15 @@ export const FEATURE_DETAILS: Record<string, FeatureDetail> = {
     limits: ['Hiding a counter does not retract information you already shared.', 'It is not a substitute for securing your phone and Apple account.'],
   },
   'custom-logging': {
-    answer: 'Custom fields let a log keep more than its date. Record a number, some text or a photo alongside the moment so you can understand it later. For a maintenance counter, that might be the cost, an odometer reading or a photograph of the receipt.',
+    answer: 'Add Notes to a counter for free. When you log a service, write down what the mechanic did. With Pro you can also add a number field for mileage or a photo field for the receipt.',
     use: 'A car service log can hold the date plus the mileage and work performed. Keep the original service documents too; a personal entry is useful context, not an official service record.',
-    steps: [{ title: 'Choose the detail you need', body: 'Add number, text or photo fields to the counter rather than collecting detail you will never read.' }, { title: 'Fill them when logging', body: 'Record the details while they are available, such as the mileage printed on a service receipt.' }, { title: 'Read the context later', body: 'Return to the entry when a timestamp alone is not enough to answer your question.' }],
+    steps: [
+      { title: 'Choose what to keep', body: 'In the counter’s extra details, turn on Notes. Adding or changing a photo or number field requires Pro.' },
+      { title: 'Fill it in when logging', body: 'Write the service note or enter the odometer reading while you have it in front of you.' },
+      { title: 'Look back at the service', body: 'Open the log to find your note, mileage or receipt alongside the date.' },
+    ],
     gives: ['Numbers, text and photos alongside timestamps.', 'A built-in calculator keyboard for number inputs.'],
-    limits: ['Entries are only as accurate as the information you supply.', 'Custom fields do not independently verify a service or measurement.'],
+    limits: ['Existing photo and number fields still accept entries if Pro lapses.', 'Removing a field is free.'],
   },
   timeline: {
     answer: 'The timeline brings recorded moments into a date-based view. Use it to look back at logs, counter starts and resets without opening each counter in turn. A calendar helps narrow the view to a day when you remember roughly when something happened.',
@@ -50,14 +54,18 @@ export const FEATURE_DETAILS: Record<string, FeatureDetail> = {
     limits: ['A visible widget is not proof that an action happened.', 'Widget refresh timing is managed by iOS.'],
   },
   'siri-shortcuts': {
-    answer: 'Siri and Shortcuts give you another way to log a counter or ask how long it has been. Use the built-in TimeSince phrases, create a shorter shortcut name, or connect a shortcut to your Action Button. Pick the route that fits where you do the activity.',
-    use: 'After watering a plant, a spoken log can save you from putting everything down to find the counter. Use a specific counter name so the intended action is clear.',
-    steps: [{ title: 'Choose a counter', body: 'Use its Siri options to see the phrases available for that counter.' }, { title: 'Try the phrase', body: 'Ask Siri to log it or ask how long it has been. Check that the intended counter was used.' }, { title: 'Make it convenient', body: 'Give a shortcut a memorable name or assign it to a supported Action Button setup.' }],
+    answer: 'With Pro, built-in Siri phrases let you log an interval counter, reset a quit counter or hear how long it has been. They work as soon as you have a visible, active counter. Open Ask Siri on that counter to see the exact wording.',
+    use: 'For a counter named Plants, say “Log Plants in TimeSince” after watering. Later, ask “How long since Plants in TimeSince?” for a spoken answer.',
+    steps: [
+      { title: 'Try the built-in phrase', body: 'Say the log phrase shown in Ask Siri, then check the new entry in the counter’s history.' },
+      { title: 'Choose a shorter phrase', body: 'Use Add to Siri on the counter to save a personal phrase. Saying this phrase opens TimeSince.' },
+      { title: 'Run a shortcut', body: 'In Apple Shortcuts, add Log or Reset Counter and choose Plants. Use Progress for Counter to read elapsed time. On a supported iPhone, assign the saved shortcut to the Action Button.' },
+    ],
     gives: ['Spoken logging and elapsed-time queries.', 'Integration with Apple Shortcuts and the Action Button.'],
-    limits: ['Siri availability depends on your device settings.', 'An automation records its trigger; it does not verify that you performed the real-world action.'],
+    limits: ['Hidden and archived counters are left out of the counter picker.', 'Siri availability depends on your iPhone settings.'],
   },
   'nfc-tags': {
-    answer: 'Pair an NTAG215 NFC tag with a counter, then tap it with your iPhone to log the action. A tag beside the place you do something can make recording it easier to remember. The ordinary log controls remain available; the tag is a shortcut, not a requirement.',
+    answer: 'With Pro, pair an NTAG215 sticker with a counter. Scan it after doing the task to log an interval counter or confirm a quit-counter reset. A tag you already paired can still log after your subscription ends.',
     use: 'A tag by a watering can can prompt a log after watering. Keep the meaning precise: scanning the tag means you are recording the action, not just checking the plant.',
     steps: [{ title: 'Pair the tag', body: 'Use the counter’s NFC pairing option with an NTAG215 tag.' }, { title: 'Place it by the action', body: 'Choose a convenient location where you can tap it after completing the task.' }, { title: 'Check your first log', body: 'Scan once and confirm that the intended counter received the entry.' }],
     gives: ['A physical shortcut to logging a chosen counter.', 'Logging without navigating to the counter first.'],
@@ -78,10 +86,14 @@ export const FEATURE_DETAILS: Record<string, FeatureDetail> = {
     limits: ['Delivery depends on device permissions and settings.', 'A reminder is not a guarantee of completion or a safety monitoring service.'],
   },
   'icloud-backup': {
-    answer: 'Optional iCloud sync keeps a copy of your TimeSince data in your own private iCloud account. Your database is encrypted on the device, and the developer does not operate a server for your counters. Sync is available on the free tier and stays off until you enable it.',
-    use: 'Turn on sync if you want your records available through your own iCloud setup. If you intentionally use the app only on one phone, you can leave it off and keep logging locally.',
-    steps: [{ title: 'Choose whether to sync', body: 'Open TimeSince Settings and review the iCloud option.' }, { title: 'Enable it when wanted', body: 'Use your own Apple account and allow the initial sync to complete.' }, { title: 'Understand deletion', body: 'Read the distinction between erasing this device and erasing everywhere before deleting your records.' }],
-    gives: ['Optional backup and sync through your private iCloud container.', 'Local logging without a developer-operated account.'],
-    limits: ['Sync is not shared household collaboration.', 'Deleting everywhere also clears the iCloud copy; it is not a permanent archive.'],
+    answer: 'Sync merges changes across iPhones using your Apple Account. A dated, encrypted backup keeps a copy you can return to after an unwanted change. Both are free and share one setting for automatic backups.',
+    use: 'Use sync to see a log from your other iPhone. To recover the history you had before deleting a counter, choose a backup from before the deletion. Restoring that copy replaces the data on this iPhone.',
+    steps: [
+      { title: 'Open Backups', body: 'In Settings, open Your data, then Backups. Turn on automatic backups to sync and save dated copies when your data changes.' },
+      { title: 'Make a copy now', body: 'Choose Back up now before a change you may want to undo. This also works with automatic backups off.' },
+      { title: 'Choose what to restore', body: 'Restore from iCloud merges the available device records. Restoring a dated copy replaces the records on this phone with the contents of that copy.' },
+    ],
+    gives: ['Changes synced across your own iPhones.', 'Dated, encrypted copies you can restore from your private iCloud.'],
+    limits: ['Restoring an encrypted backup on a new iPhone requires access to its key through iCloud Keychain.', 'Exporting or importing a portable JSON file requires Pro. The exported file is plain JSON.'],
   },
 };

@@ -5,7 +5,7 @@ import { SITE } from '@/lib/site';
 import { pageMetadata } from '@/lib/page-metadata';
 import { serializeJsonLd } from '@/lib/json-ld';
 import { organization } from '@/lib/schema';
-import { PageSheet } from '@/components/site/page-sheet';
+import { PageLayout } from '@/components/site/page-layout';
 import { Breadcrumbs } from '@/components/content/breadcrumbs';
 import { CtaBlock } from '@/components/content/cta-block';
 
@@ -45,7 +45,7 @@ export default function About() {
   if (ABOUT.draft && !SHOW_DRAFT) notFound();
 
   return (
-    <PageSheet width="prose">
+    <PageLayout width="prose">
         {!ABOUT.draft && (
           <script
             type="application/ld+json"
@@ -69,12 +69,12 @@ export default function About() {
           <p className="mt-4 text-lg leading-relaxed text-muted">{ABOUT.deck}</p>
         </header>
 
-        <div className="ticket mb-12 px-5 py-4">
+        <div className="surface mb-12 px-5 py-4">
           <dl className="space-y-2">
             {ABOUT.facts.map((fact) => (
-              <div key={fact.label} className="stub-row">
-                <dt className="stub-label">{fact.label}</dt>
-                <dd className="stub-value text-sm">{fact.value}</dd>
+              <div key={fact.label} className="detail-row">
+                <dt className="section-label">{fact.label}</dt>
+                <dd className="detail-value text-sm">{fact.value}</dd>
               </div>
             ))}
           </dl>
@@ -93,9 +93,9 @@ export default function About() {
           ))}
         </div>
 
-        <div className="ticket mt-8 px-5 py-4">
-          <div className="stub-row">
-            <span className="stub-label">FEEDBACK BOARD</span>
+        <div className="surface mt-8 px-5 py-4">
+          <div className="detail-row">
+            <span className="section-label">FEEDBACK BOARD</span>
             <a
               href={SITE.supportUrl}
               target="_blank"
@@ -105,8 +105,8 @@ export default function About() {
               {SITE.supportUrl.replace('https://', '')}
             </a>
           </div>
-          <div className="stub-row mt-2">
-            <span className="stub-label">EMAIL</span>
+          <div className="detail-row mt-2">
+            <span className="section-label">EMAIL</span>
             <a href={`mailto:${SITE.email}`} className="text-sm text-ube hover:underline">
               {SITE.email}
             </a>
@@ -118,6 +118,6 @@ export default function About() {
           headline={`See what ${SITE.name} does`}
           sub="Free for your first three counters, with no account."
         />
-    </PageSheet>
+    </PageLayout>
   );
 }

@@ -86,6 +86,23 @@ for (const item of list.itemListElement) {
 }
 let expectedImages = list.numberOfItems + 2; // guides + their hub + home
 
+const libraryPath = '/guides/premade-counters';
+const collections = await checkHub(libraryPath, 'Premade counter library for iPhone | TimeSince');
+const sitemap = await html('/sitemap.xml');
+const libraryUrl = list.itemListElement.find((item) => new URL(item.url).pathname === libraryPath)?.url;
+assert.ok(libraryUrl && sitemap.includes(`<loc>${libraryUrl}</loc>`), 'guide index and sitemap include the library');
+for (const item of collections.itemListElement) {
+  const path = new URL(item.url).pathname;
+  const page = await html(path);
+  assert.ok(page.includes(`rel="canonical" href="${item.url}"`), path);
+  assert.ok(sitemap.includes(`<loc>${item.url}</loc>`), path);
+  assert.equal(meta(page, 'og:url'), item.url);
+  assert.ok(meta(page, 'og:image').includes(`${path}/opengraph-image`), path);
+  assert.ok(schemas(page).some((s) => s['@type'] === 'BreadcrumbList'));
+  await checkImage(`${path}/opengraph-image`);
+  expectedImages += 1;
+}
+
 // ── Features: product pages, so BreadcrumbList but deliberately no Article ──
 const featureList = await checkHub('/features', 'Features | TimeSince');
 await checkImage('/features/opengraph-image');
@@ -155,6 +172,7 @@ for (const item of expectedFeed) assert.ok(feed.includes(`<link>${item.url}</lin
 for (const path of [
   '/does-not-exist',
   '/guides/does-not-exist',
+  '/guides/premade-counters/does-not-exist',
   '/features/does-not-exist',
   '/tools/does-not-exist',
   '/scenarios/does-not-exist',

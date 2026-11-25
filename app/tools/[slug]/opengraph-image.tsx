@@ -19,8 +19,8 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
       <OgFrame
         kicker={`TOOL · ${tool?.kicker ?? ''}`}
         title={tool?.title ?? 'TimeSince'}
-        stubLabel="RUNS IN YOUR BROWSER"
-        stubValue="FREE"
+        label="RUNS IN YOUR BROWSER"
+        value="FREE"
       />
     ),
     { ...size, fonts: ogFonts() },

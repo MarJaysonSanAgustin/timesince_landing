@@ -14,10 +14,10 @@ type Comparison = NonNullable<z.infer<typeof guideSchema>['comparison']>;
 export function ComparisonTable({ caption, columns, rows }: Comparison) {
   return (
     <section className="not-prose my-12">
-      <div className="ticket overflow-x-auto">
+      <div className="surface overflow-x-auto">
         <table className="w-full border-collapse text-left">
           {caption && (
-            <caption className="stub-label px-5 pt-4 text-left uppercase">{caption}</caption>
+            <caption className="section-label px-5 pt-4 text-left uppercase">{caption}</caption>
           )}
           <thead>
             <tr className="border-b border-line">
@@ -25,7 +25,7 @@ export function ComparisonTable({ caption, columns, rows }: Comparison) {
                 <span className="sr-only">Feature</span>
               </th>
               {columns.map((col) => (
-                <th key={col} scope="col" className="stub-label px-5 py-3 uppercase">
+                <th key={col} scope="col" className="section-label px-5 py-3 uppercase">
                   {col}
                 </th>
               ))}
@@ -43,7 +43,7 @@ export function ComparisonTable({ caption, columns, rows }: Comparison) {
                 {row.cells.map((cell, i) => (
                   <td
                     key={`${row.label}-${columns[i]}`}
-                    className="stub-value px-5 py-3 text-sm whitespace-nowrap"
+                    className="detail-value px-5 py-3 text-sm whitespace-nowrap"
                   >
                     {cell}
                   </td>

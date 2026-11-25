@@ -1,6 +1,6 @@
 import { serializeJsonLd } from '@/lib/json-ld';
 import type { Metadata } from 'next';
-import { Nunito } from 'next/font/google';
+import { Inter, Nunito, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SITE } from '@/lib/site';
@@ -9,9 +9,13 @@ import { SiteHeader } from '@/components/site/header';
 import { themeScript } from '@/components/site/theme-toggle';
 import { SiteFooter } from '@/components/site/footer';
 
-const nunitoSans = Nunito({
+const headlineFont = Inter({ subsets: ['latin'], variable: '--site-headline' });
+const quoteFont = Source_Serif_4({
   subsets: ['latin'],
-  variable: '--font-sans',
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--site-serif',
+  preload: false,
 });
 
 const nunitoDisplay = Nunito({
@@ -55,7 +59,7 @@ const jsonLd = siteGraph();
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${nunitoSans.variable} ${nunitoDisplay.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${headlineFont.variable} ${quoteFont.variable} ${nunitoDisplay.variable}`} suppressHydrationWarning>
       <head>
         {/* Applies a stored theme before paint, so there is no flash. */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

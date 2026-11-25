@@ -22,7 +22,7 @@ export function SiteFooter() {
 
           {FOOTER_GROUPS.map((group) => (
             <div key={group.title}>
-              <h2 className="stub-label uppercase">
+              <h2 className="section-label">
                 {group.title}
               </h2>
               <ul className="mt-3 space-y-2">

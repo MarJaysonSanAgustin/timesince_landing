@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import badgeIosImg from '@/assets/badge-ios-en.svg';
+import { Smartphone } from 'lucide-react';
+import { landing } from '@/lib/strings/home';
 import { appStoreUrl, type CtaPlacement } from '@/lib/cta';
 
 /**
@@ -16,7 +16,7 @@ export function CtaBlock({
   sub?: string;
 }) {
   return (
-    <section className="not-prose my-12 ticket p-8 text-center">
+    <section className="not-prose download-panel">
       {headline && (
         <h2 className="font-display text-2xl font-bold text-ink">{headline}</h2>
       )}
@@ -25,9 +25,9 @@ export function CtaBlock({
         href={appStoreUrl(placement)}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 inline-block transition-transform hover:scale-105"
+        className="download-button mt-6"
       >
-        <Image src={badgeIosImg} alt="Download on the App Store" className="h-[52px] w-auto" />
+        <Smartphone size={18} aria-hidden="true" />{landing.download}
       </a>
     </section>
   );

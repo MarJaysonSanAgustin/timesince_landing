@@ -7,12 +7,14 @@ import { relatedContent } from '@/lib/content/related';
 import { CLUSTER_LABELS } from '@/lib/content/schema';
 import { CLUSTER_ICONS } from '@/lib/content/clusters';
 import { mdxComponents } from '@/components/mdx';
-import { PageSheet } from '@/components/site/page-sheet';
+import { PageLayout } from '@/components/site/page-layout';
 import { Breadcrumbs } from '@/components/content/breadcrumbs';
 import { AnswerBox } from '@/components/content/answer-box';
 import { FaqAccordion } from '@/components/content/faq-accordion';
 import { RelatedGrid } from '@/components/content/related-grid';
 import { SourceList } from '@/components/content/source-list';
+import { CounterCollectionIndex } from '@/components/content/counter-collection-index';
+import { librarySlug } from '@/lib/counter-library';
 import { ContentVisual } from '@/components/content/content-visual';
 import { CtaBlock } from '@/components/content/cta-block';
 import { StepList } from '@/components/content/step-list';
@@ -78,6 +80,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   if (!guide) notFound();
 
   const { data, body } = guide;
+  const isLibrary = slug === librarySlug;
   const related = relatedContent(guide, '/guides', allContent());
   const Icon = CLUSTER_ICONS[data.cluster];
   const updated = data.updated ?? data.date;
@@ -94,48 +97,52 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   });
 
   return (
-    <PageSheet width="prose"><article>
+    <PageLayout width="prose"><article>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleJsonLd) }}
       />
       <Breadcrumbs
-        trail={[{ href: '/guides', label: 'Guides' }, { label: data.title }]}
+        trail={[{ href: '/guides', label: 'Guides' }, { label: isLibrary ? 'Premade counters' : data.title }]}
       />
 
       <header className="mt-6">
         <p className="meta uppercase">
-          {CLUSTER_LABELS[data.cluster]}
+          {isLibrary ? 'Counter library' : CLUSTER_LABELS[data.cluster]}
         </p>
         <h1 className="mt-2 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
           {data.title}
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted">{data.deck}</p>
-        <p className="mt-4 text-sm text-muted">By {SITE.developerName}</p>
-        <p className="meta mt-4">
-          {strings.content.updatedOn}{' '}
-          <time dateTime={updated}>
-            {new Date(`${updated}T00:00:00Z`).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              timeZone: 'UTC',
-            })}
-          </time>
-        </p>
+        <div className={isLibrary ? 'mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1' : 'mt-4 space-y-4'}>
+          <p className="text-sm text-muted">By {SITE.developerName}</p>
+          <p className="meta">
+            {strings.content.updatedOn}{' '}
+            <time dateTime={updated}>
+              {new Date(`${updated}T00:00:00Z`).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                timeZone: 'UTC',
+              })}
+            </time>
+          </p>
+        </div>
       </header>
 
-      <div className="mt-8">
-        <ContentVisual
-          hero={data.hero}
-          feature={data.feature}
-          accent={data.accent}
-          icon={Icon}
-          kicker={data.keywords.primary}
-          alt={data.title}
-          priority
-        />
-      </div>
+      {isLibrary ? <CounterCollectionIndex /> : (
+        <div className="mt-8">
+          <ContentVisual
+            hero={data.hero}
+            feature={data.feature}
+            accent={data.accent}
+            icon={Icon}
+            kicker={data.keywords.primary}
+            alt={data.title}
+            priority
+          />
+        </div>
+      )}
 
       <AnswerBox text={data.answer} />
 
@@ -164,11 +171,11 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
 
       <CtaBlock
         placement={`web_guide_${slug}`}
-        headline="Track it without the guilt trip"
-        sub={`${SITE.name} counts the time since you last did something. No streaks to break.`}
+        headline={isLibrary ? 'Try your first counter on iPhone' : 'Track it without the guilt trip'}
+        sub={isLibrary ? `Explore is included on Free, with room for ${SITE.freeCounterLimit} active counters.` : `${SITE.name} counts the time since you last did something. No streaks to break.`}
       />
 
       <RelatedGrid items={related} title={strings.content.relatedHeading} />
-    </article></PageSheet>
+    </article></PageLayout>
   );
 }

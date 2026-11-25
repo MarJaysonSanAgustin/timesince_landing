@@ -42,13 +42,13 @@ export interface Feature {
   image: StaticImageData;
   alt: string;
   accent: Accent;
-  tier: 'free' | 'pro';
+  tier: 'free' | 'mixed' | 'pro';
   /** A hardware or OS requirement worth stating up front. */
   requires?: string;
 }
 
 /**
- * The 11 features, lifted verbatim from the homepage's copy.
+ * The 11 features, shown on the homepage.
  *
  * This replaces eleven copy-pasted markup blocks. One source now feeds the
  * homepage, the /features hub, every /features/<slug> page, and the structured
@@ -84,7 +84,7 @@ export const FEATURES: Feature[] = [
     nav: 'Hidden counters',
     h1: 'Keep it personal',
     homeHeadline: { lead: 'Keep it', emphasis: 'personal.' },
-    deck: 'Lock sensitive habits and routines behind FaceID. TimeSince features a dedicated hidden layer shielded by biometric security, fully masked from the main UI and encrypted locally.',
+    deck: 'With Pro, hide a counter from the main list and use Face ID or Touch ID to open the hidden list. Its history stays in the encrypted database on your iPhone.',
     icon: Lock,
     image: privateImg,
     alt: 'Privacy-First Hidden Counters',
@@ -96,12 +96,12 @@ export const FEATURES: Feature[] = [
     nav: 'Custom logging fields',
     h1: 'Advanced custom logging',
     homeHeadline: { lead: 'Advanced Custom', emphasis: 'Logging' },
-    deck: 'Go far beyond simple date-and-time stamps. Define custom inputs for each counter: numbers for doses or costs (with a built-in calculator), text fields for detailed journaling, or photos for visual evidence.',
+    deck: 'Add a free note to remember what you did. With Pro, add a photo field for a service receipt or a number field to track the odometer reading at each oil change.',
     icon: Pencil,
     image: customInputsImg,
     alt: 'Advanced Custom Logging',
     accent: 'cool',
-    tier: 'pro',
+    tier: 'mixed',
   },
   {
     slug: 'timeline',
@@ -120,7 +120,7 @@ export const FEATURES: Feature[] = [
     nav: 'Home screen widget',
     h1: 'Logging you don’t have to remember',
     homeHeadline: { lead: 'Logging you don’t have to', emphasis: 'remember.' },
-    deck: 'The best log is the one you never had to remember to make. Add the TimeSince widget to your home screen and tap once to log or reset a counter, no need to unlock into the app.',
+    deck: 'Add the free widget to your Home Screen to see the time since your last log. Tap its button to log or reset a counter without finding it in the app.',
     icon: LayoutGrid,
     image: widgetImg,
     alt: 'TimeSince home screen widget',
@@ -130,9 +130,9 @@ export const FEATURES: Feature[] = [
   {
     slug: 'siri-shortcuts',
     nav: 'Siri & Shortcuts',
-    h1: 'Just say “log it.”',
-    homeHeadline: { lead: 'Just say', emphasis: '“log it.”' },
-    deck: 'Ask Siri to log or reset any counter, or ask how long it’s been, right from Siri, Spotlight, the Shortcuts app, or the Action Button.',
+    h1: 'Log a counter with Siri',
+    homeHeadline: { lead: 'Log a counter', emphasis: 'with Siri.' },
+    deck: 'With Pro, say “Log Plants in TimeSince” after watering, or ask “How long since Plants in TimeSince?” to hear the elapsed time. You can also run a shortcut from a supported iPhone’s Action Button.',
     icon: Mic,
     image: siriImg,
     alt: 'Logging a counter with Siri',
@@ -144,7 +144,7 @@ export const FEATURES: Feature[] = [
     nav: 'NFC tap-to-log',
     h1: 'Tap a tag, done',
     homeHeadline: { lead: 'Tap a tag,', emphasis: 'done.' },
-    deck: 'Pair a cheap NFC sticker with any counter, then stick it somewhere relevant: a pillbox, a water filter, a fridge. Tapping your phone against it logs that counter instantly, no app required.',
+    deck: 'With Pro, pair an NFC sticker with a counter. Put it on the watering can and scan it with your iPhone to record a watering. A quit counter asks you to confirm the reset.',
     icon: Nfc,
     image: nfcImg,
     alt: 'Logging a counter by tapping an NFC tag',
@@ -169,7 +169,7 @@ export const FEATURES: Feature[] = [
     nav: 'Reminders & alarms',
     h1: 'Reminders that actually reach you',
     homeHeadline: { lead: 'Reminders that', emphasis: 'actually reach you.' },
-    deck: 'Set up to 5 reminders per counter, one-time or repeating, at a custom time or relative to your last log. On supported devices, alarms can ring through silent mode and Focus so the important ones never get missed.',
+    deck: 'Set up to five reminders per counter. Choose a time or count from your last log. On iOS 26 or later, supported reminders can ring through silent mode and Focus with your permission.',
     icon: BellRing,
     image: remindersImg,
     alt: 'Reminders scheduled for a counter',
@@ -182,7 +182,7 @@ export const FEATURES: Feature[] = [
     nav: 'Encrypted iCloud backup',
     h1: 'Your data, backed up to your iCloud',
     homeHeadline: { lead: 'Your data, backed up to', emphasis: 'your iCloud.' },
-    deck: 'Your database is encrypted on your device from the start. Turn on sync and a copy goes straight to your own private iCloud account, never to a server we run. It’s free for everyone, and it stays off until you switch it on.',
+    deck: 'Turn on free iCloud backups to keep your iPhones in sync and save dated, encrypted copies in your own iCloud. Choose a dated copy to restore this phone to that point.',
     icon: CloudCheck,
     image: icloudImg,
     alt: 'iCloud backup enabled in Settings',

@@ -5,6 +5,7 @@ description: "You think of a habit on Tuesday but want it to begin Saturday. Set
 deck: "The moment you think of something is rarely the moment to begin it. A reminder can be set up now and stay silent until the day you actually meant."
 answer: "Set the reminder now and give it a Start on date. Nothing arrives until that day, so you can capture the intention on Tuesday and have it begin on Saturday. The part worth knowing is what happens afterwards: once you log it, the next reminder counts from when you actually did it, not from the calendar. Do it on Sunday instead of Saturday and the next one comes the following Sunday, so the app never nags you about something you have just done."
 date: "2026-10-23"
+updated: "2026-11-22"
 cluster: "interval-tracking"
 accent: "cool"
 tags:
@@ -29,7 +30,7 @@ solves:
   - "Keeps the app silent until the day you actually meant"
   - "Shifts future reminders to when you really did it, not the calendar"
 doesNotSolve:
-  - "The counter itself still starts from your first log, not the date"
+  - "The reminder’s Start on setting only changes reminder timing"
   - "It will not stop you dismissing a reminder once it does arrive"
   - "A reminder is a nudge, not a lock or a commitment device"
 checklist:
@@ -48,7 +49,7 @@ faq:
   - q: "If I do it a day late, does the schedule slip permanently?"
     a: "It moves to match you. Once you log, the next reminder counts from when you actually did it rather than the original calendar day, so doing it on Sunday means the next reminder is the following Sunday."
   - q: "Does the counter start on that date too?"
-    a: "No. The counter measures time since your first log, so it starts when you actually do the thing. Start on affects the reminder, not the count."
+    a: "The counter has its own Start date. In version 1.16, choose a future start for an interval counter if you want the count to begin later too. A quit counter starts in the present or the past."
 sources:
   - title: "Start On date and time, request and reply"
     publisher: "TimeSince feedback board"
@@ -85,6 +86,6 @@ It is the same reason there are no streaks: the measurement follows what you did
 
 ## What it does not do
 
-Start on moves the reminder, not the counter. The counter measures time since your first log, so it begins when you actually do the thing — which is correct, because a counter that started on a day you did nothing would be counting the wrong interval from the first moment.
+Start on sets the reminder’s timing. To begin the interval itself on Saturday, choose Saturday as the counter’s own Start date. Future starts for interval counters are available in version 1.16.
 
 And a reminder is still only a nudge. It arrives saying the thing is there whenever you have a free moment. If you want it to be harder to ignore than that, [logging from a widget or a tag](/guides/log-a-habit-without-opening-the-app) does more than a louder notification would.

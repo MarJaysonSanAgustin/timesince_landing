@@ -1,3 +1,4 @@
+import { strings } from '@/lib/strings/en';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Feature } from '@/lib/features';
@@ -24,17 +25,14 @@ export function FeatureRow({
   const Icon = feature.icon;
 
   return (
-    <section className="w-full paper-dots py-4">
+    <section className="w-full paper py-4">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        {/* A ticket on the paper. The accent class scopes --accent-fill and
-            --accent-ink to this card, so the block below reads its own colour. */}
         <div
-          className={`${ACCENT_CLASS[feature.accent]} ticket flex flex-col items-center gap-12 p-8 md:p-12 lg:gap-20 lg:p-16 ${
+          className={`${ACCENT_CLASS[feature.accent]} surface flex flex-col items-center gap-12 p-8 md:p-12 lg:gap-20 lg:p-16 ${
             reverse ? 'md:flex-row-reverse' : 'md:flex-row'
           }`}
         >
           <div className="flex-1 space-y-6">
-            {/* Flat block, not a gradient chip. ADR-012 rule 8. */}
             <div className="accent-block flex h-14 w-14 items-center justify-center rounded-card">
               <Icon className="h-7 w-7" />
             </div>
@@ -45,19 +43,17 @@ export function FeatureRow({
             </Heading>
 
             <p className="text-lg leading-relaxed text-muted">{feature.deck}</p>
-
-            {/* Stub rows: label left, value right (ADR-012 rule 5). */}
             <div className="space-y-2 border-t border-line pt-4">
-              <div className="stub-row">
-                <span className="stub-label">INCLUDED IN</span>
-                <span className="stub-value text-sm">
-                  {feature.tier === 'pro' ? 'TimeSince Pro' : 'Free tier'}
+              <div className="detail-row">
+                <span className="section-label">INCLUDED IN</span>
+                <span className="detail-value text-sm">
+                  {strings.content.tiers[feature.tier]}
                 </span>
               </div>
               {feature.requires && (
-                <div className="stub-row">
-                  <span className="stub-label">REQUIRES</span>
-                  <span className="stub-value text-sm">{feature.requires}</span>
+                <div className="detail-row">
+                  <span className="section-label">REQUIRES</span>
+                  <span className="detail-value text-sm">{feature.requires}</span>
                 </div>
               )}
             </div>

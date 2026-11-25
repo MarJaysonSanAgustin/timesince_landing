@@ -13,8 +13,8 @@ export default function OgImage() {
       <OgFrame
         kicker="TIMESINCE · TOOLS"
         title="Free date calculators that run in your browser"
-        stubLabel="NO UPLOAD · NO ACCOUNT"
-        stubValue={String(TOOLS.length).padStart(3, '0')}
+        label="NO UPLOAD · NO ACCOUNT"
+        value={String(TOOLS.length).padStart(3, '0')}
       />
     ),
     { ...size, fonts: ogFonts() },

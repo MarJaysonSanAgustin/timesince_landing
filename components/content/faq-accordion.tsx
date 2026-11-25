@@ -42,13 +42,13 @@ export function FaqAccordion({
       {heading && (
         <h2 className="mb-6 font-display text-2xl font-bold text-ink">{heading}</h2>
       )}
-      <div className="space-y-4">
+      <div className="divide-y divide-line">
         {items.map((item) => (
           <details
             key={item.q}
-            className="ticket group px-6 py-5"
+            className="group"
           >
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium text-ink">
               <span>{item.q}</span>
               <span className="shrink-0 text-xl leading-none text-ube transition-transform group-open:rotate-45">
                 +

@@ -1,8 +1,11 @@
 # Share-card fonts
 
-ImageResponse reads these local TTFs through `lib/og.ts`; no font download is required
-when generating share cards. Both fonts use the SIL Open Font License 1.1. The
-copyright notices and license texts are included beside the binaries.
+The shared preview uses Inter Regular from Google Fonts. ImageResponse reads the local TrueType file at build time. The SIL Open Font License is included in Inter-OFL.txt.
+
+- [Inter Regular](https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf)
+- [Inter license](https://github.com/google/fonts/blob/main/ofl/inter/OFL.txt)
+
+## Earlier share-card fonts
 
 Fetched 2026-10-23 from Google Fonts:
 
@@ -13,7 +16,3 @@ License sources:
 
 - https://github.com/google/fonts/blob/main/ofl/nunito/OFL.txt
 - https://github.com/google/fonts/blob/main/ofl/jetbrainsmono/OFL.txt
-
-These are the full supplied fonts (237,620 bytes combined), not custom subsets.
-Retaining their glyph coverage keeps punctuation and accented names available.
-Reassess subsetting as more scripts or weights are added during localization.

@@ -1,8 +1,8 @@
 # Screenshots — what to capture
 
-**This is the one thing I cannot do.** Capturing these needs the app running with
-believable data, and invented-looking counters would undo the point of having real
-screenshots at all.
+## Homepage capture still needed · 22 November 2026
+
+The homepage uses a labeled, interactive watering example with sample dates. For a product screenshot, capture the counters list and the same plant counter’s history on the distributed iPhone app. Record the app version and iOS version with the originals. The August images below predate the ticket redesign.
 
 ## Why they need replacing
 

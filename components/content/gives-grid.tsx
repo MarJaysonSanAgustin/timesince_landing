@@ -10,8 +10,8 @@ import { strings } from '@/lib/strings/en';
 export function GivesGrid({ gives, doesNot }: { gives: string[]; doesNot: string[] }) {
   return (
     <section className="not-prose my-12 grid gap-4 sm:grid-cols-2">
-      <div className="accent-calm ticket p-6">
-        <h2 className="stub-label mb-3 uppercase accent-text">
+      <div className="accent-calm surface p-6">
+        <h2 className="section-label mb-3 accent-text">
           {strings.content.solved}
         </h2>
         <ul className="space-y-2">
@@ -23,8 +23,8 @@ export function GivesGrid({ gives, doesNot }: { gives: string[]; doesNot: string
           ))}
         </ul>
       </div>
-      <div className="ticket p-6">
-        <h2 className="stub-label mb-3 uppercase">
+      <div className="surface p-6">
+        <h2 className="section-label mb-3">
           {strings.content.notSolved}
         </h2>
         <ul className="space-y-2">

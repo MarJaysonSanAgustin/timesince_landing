@@ -1,3 +1,4 @@
+import { PageLayout } from '@/components/site/page-layout';
 import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function TermsAndConditions() {
   return (
-    <div className="w-full max-w-3xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
+    <PageLayout>
       <div className="mb-12">
         <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl mb-4">Terms &amp; Conditions</h1>
         <p className="text-lg text-muted">Last updated: {SITE.legalLastUpdated}</p>
@@ -40,7 +41,7 @@ export default function TermsAndConditions() {
         <div>
           <h2 className="text-ink font-display text-2xl font-bold mb-2">3. Subscriptions and purchases</h2>
           <p>
-            The free tier of {SITE.name} lets you track up to <strong>3 active counters</strong>, with core logging, reminders, the widget, and iCloud sync. <strong>{SITE.name} Pro</strong> removes that limit and adds hidden counters, archiving, custom logging fields (notes, photos, numbers), NFC pairing, Siri Shortcuts, and exporting your data to a file. iCloud sync is free for everyone and is not part of Pro. Pro is offered as an auto-renewable subscription and, separately, as a one-time lifetime purchase. A lifetime purchase is not a subscription: it does not renew and is not billed again.
+            The free tier of {SITE.name} lets you track up to <strong>3 active counters</strong>, with notes, reminders, widgets, archiving, archive browsing, private iCloud sync and dated backups. <strong>{SITE.name} Pro</strong> adds unlimited active counters, hidden counters, access to archived details and unarchiving. Pro also lets you add photo and number fields, add session timers, set goals, use Siri and Shortcuts, pair NFC tags, and export and import JSON files. Pro is offered as an auto-renewable subscription and, separately, as a one-time lifetime purchase. A lifetime purchase is not a subscription: it does not renew and is not billed again.
           </p>
           <p className="mt-2 font-semibold">For auto-renewable subscriptions:</p>
           <ul className="list-disc pl-6 space-y-2 mt-2">
@@ -58,7 +59,7 @@ export default function TermsAndConditions() {
         <div>
           <h2 className="text-ink font-display text-2xl font-bold mb-2">4. If your subscription lapses</h2>
           <p>
-            If a {SITE.name} Pro subscription ends and you have more than 3 active counters, you&apos;ll be asked to choose up to 3 to keep active; the rest are <strong>archived, not deleted</strong>. Archived counters and their history return automatically if you resubscribe or restore your purchase. Hidden counters also become unavailable on the free tier until Pro is restored.
+            If a {SITE.name} Pro subscription ends and you have more than 3 active counters, you&apos;ll be asked to choose up to 3 to keep active. The rest keep their history in the <strong>archive</strong>. You can browse the archive list for free and use Pro to open or unarchive a counter.
           </p>
         </div>
 
@@ -71,7 +72,7 @@ export default function TermsAndConditions() {
             Please review our complete <a href="/privacy" className="text-ube hover:underline">Privacy Policy</a> to understand our data practices in full.
           </p>
           <p className="mt-2">
-            Because we run no server-side copy of your data, we cannot recover it for you if a device is lost, reset, or damaged and iCloud backup was not enabled. You are responsible for enabling iCloud backup or using the in-app manual export to maintain your own copies.
+            Because we run no server-side copy of your data, we cannot recover it for you if a device is lost, reset, or damaged and iCloud backup was not enabled. You are responsible for maintaining your own copies using iCloud backups or the file export available with Pro.
           </p>
         </div>
 
@@ -127,6 +128,6 @@ export default function TermsAndConditions() {
           </p>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 }

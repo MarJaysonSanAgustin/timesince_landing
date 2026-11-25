@@ -10,5 +10,5 @@ export const dynamicParams = false;
 export function generateStaticParams() { return getScenarios().map(d => ({ slug: d.slug })); }
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const doc = getScenario(slug); if (!doc) notFound();
-  return new ImageResponse(<OgFrame kicker="TIMESINCE · SCENARIOS" title={doc.data.title} stubLabel="WHEN DID I LAST…?" stubValue="SCENARIOS" />, { ...size, fonts: ogFonts() });
+  return new ImageResponse(<OgFrame kicker="TIMESINCE · SCENARIOS" title={doc.data.title} label="WHEN DID I LAST…?" value="SCENARIOS" />, { ...size, fonts: ogFonts() });
 }

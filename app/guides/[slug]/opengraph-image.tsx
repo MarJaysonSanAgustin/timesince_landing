@@ -18,15 +18,14 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
   const { slug } = await params;
   const guide = getGuide(slug);
   if (!guide) notFound();
-  const index = getGuides().findIndex((g) => g.slug === slug);
 
   return new ImageResponse(
     (
       <OgFrame
-        kicker={`TIMESINCE · NO. ${String(index + 1).padStart(3, '0')}`}
+        kicker="TimeSince"
         title={guide?.data.title ?? 'TimeSince'}
-        stubLabel={guide ? CLUSTER_LABELS[guide.data.cluster].toUpperCase() : 'GUIDE'}
-        stubValue={guide?.data.kind === 'note' ? 'NOTE' : 'GUIDE'}
+        label={guide ? CLUSTER_LABELS[guide.data.cluster].toUpperCase() : 'GUIDE'}
+        value={guide?.data.kind === 'note' ? 'NOTE' : 'GUIDE'}
       />
     ),
     { ...size, fonts: ogFonts() },

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/site';
 import { allContent } from '@/lib/content';
+import { counterCollections, libraryPath } from '@/lib/counter-library';
 import { TOOLS } from '@/lib/tools';
 
 /**
@@ -24,5 +25,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return [...staticRoutes, ...toolRoutes, ...contentRoutes];
+  const collectionRoutes = counterCollections.map(({ slug }) => ({
+    url: `${SITE.url}${libraryPath}/${slug}`,
+  }));
+
+  return [...staticRoutes, ...toolRoutes, ...contentRoutes, ...collectionRoutes];
 }

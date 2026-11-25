@@ -13,10 +13,10 @@ export type Source = z.infer<typeof source>;
 export function SourceList({ sources, disclaimer }: { sources: Source[]; disclaimer: string }) {
   if (sources.length === 0 && disclaimer === 'none') return null;
   return (
-    <section className="not-prose my-12 ticket p-6">
+    <section className="not-prose my-12 border-t border-line pt-6">
       {sources.length > 0 && (
         <>
-          <h2 className="stub-label mb-3 uppercase">
+          <h2 className="section-label mb-3">
             {strings.content.sourcesHeading}
           </h2>
           <ul className="space-y-2">

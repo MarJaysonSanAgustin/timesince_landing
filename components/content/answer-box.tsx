@@ -6,8 +6,8 @@ import { strings } from '@/lib/strings/en';
  */
 export function AnswerBox({ text, label = strings.content.answerLabel }: { text: string; label?: string }) {
   return (
-    <div className="not-prose my-8 ticket p-6">
-      <h2 className="stub-label mb-2 uppercase">
+    <div className="not-prose my-8 surface p-6">
+      <h2 className="section-label mb-2">
         {label}
       </h2>
       <p className="text-base leading-relaxed text-ink">{text}</p>

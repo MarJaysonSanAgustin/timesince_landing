@@ -12,9 +12,9 @@ export default function OgImage() {
     (
       <OgFrame
         kicker="TIMESINCE"
-        title="How long since you last did it?"
-        stubLabel="CHORES · MEDS · QUITTING"
-        stubValue="NO STREAKS"
+        title="How long has it been?"
+        label="TIME SINCE TRACKER"
+        value="12 DAYS"
       />
     ),
     { ...size, fonts: ogFonts() },

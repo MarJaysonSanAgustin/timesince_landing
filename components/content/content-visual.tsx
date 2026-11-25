@@ -44,7 +44,7 @@ export function ContentVisual({
           src={img}
           alt={alt}
           priority={priority}
-          className="h-auto w-full max-w-[260px] object-contain drop-shadow-2xl"
+          className="h-auto w-auto max-h-[400px] max-w-full object-contain "
         />
       </div>
     );

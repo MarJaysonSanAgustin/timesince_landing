@@ -10,5 +10,5 @@ export const dynamicParams = false;
 export function generateStaticParams() { return FEATURES.map(d => ({ slug: d.slug })); }
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const doc = getFeature(slug); if (!doc) notFound();
-  return new ImageResponse(<OgFrame kicker="TIMESINCE · FEATURES" title={doc.nav} stubLabel="WHEN DID I LAST…?" stubValue="FEATURES" />, { ...size, fonts: ogFonts() });
+  return new ImageResponse(<OgFrame kicker="TIMESINCE · FEATURES" title={doc.nav} label="WHEN DID I LAST…?" value="FEATURES" />, { ...size, fonts: ogFonts() });
 }

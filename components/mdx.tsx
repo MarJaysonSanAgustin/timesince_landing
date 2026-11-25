@@ -2,7 +2,7 @@ import type { AnchorHTMLAttributes, ReactNode } from 'react';
 
 export function Callout({ children }: { children: ReactNode }) {
   return (
-    <div className="not-prose my-8 ticket p-6 text-ink text-base leading-relaxed">
+    <div className="not-prose my-8 surface p-6 text-ink text-base leading-relaxed">
       {children}
     </div>
   );

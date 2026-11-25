@@ -1,3 +1,4 @@
+import { PageLayout } from '@/components/site/page-layout';
 import { serializeJsonLd } from '@/lib/json-ld';
 import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
@@ -24,7 +25,7 @@ export default function FaqPage() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
+    <PageLayout>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
@@ -41,12 +42,12 @@ export default function FaqPage() {
         {faqCategories.map((category) => (
           <div key={category}>
             <h2 className="font-display text-2xl font-bold text-ink mb-6">{category}</h2>
-            <div className="space-y-4">
+            <div className="divide-y divide-line">
               {faqs
                 .filter((item) => item.category === category)
                 .map((item) => (
-                  <details key={item.question} className="ticket group px-6 py-5">
-                    <summary className="flex cursor-pointer list-none items-center justify-between font-semibold text-ink gap-4">
+                  <details key={item.question} className="group">
+                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium text-ink gap-4">
                       <span>{item.question}</span>
                       <span className="shrink-0 text-ube transition-transform group-open:rotate-45 text-xl leading-none">+</span>
                     </summary>
@@ -58,12 +59,12 @@ export default function FaqPage() {
         ))}
       </div>
 
-      <div className="mt-16 ticket p-6">
+      <div className="mt-16 surface p-6">
         <h3 className="text-ink font-bold mb-2">Still have questions?</h3>
         <p className="text-sm text-muted">
           Reach out <a href={`mailto:${SITE.email}`} className="text-ube hover:underline">via email</a>, or post on our <a href={SITE.supportUrl} target="_blank" rel="noopener noreferrer" className="text-ube hover:underline">feedback board</a>.
         </p>
       </div>
-    </div>
+    </PageLayout>
   );
 }

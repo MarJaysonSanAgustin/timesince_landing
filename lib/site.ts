@@ -2,8 +2,8 @@
  * Site-wide facts. The single source of truth — if a number or a claim appears
  * twice in the codebase, it belongs here.
  *
- * Verified against the App Store listing and the app's own strings on
- * 2026-10-23. See docs/research.md for where each figure comes from.
+ * Product facts checked against the US App Store on 2026-11-22.
+ * See docs/content-accuracy.md for release and entitlement evidence.
  */
 export const SITE = {
   /**
@@ -24,14 +24,14 @@ export const SITE = {
    */
   fullName: 'Time Since Tracker — TimeSince',
 
-  title: 'TimeSince — How long since you last did it?',
+  title: 'TimeSince — Time Since Tracker for iPhone',
   description:
-    'An iPhone tracker that counts the time since you last did something: chores, medication, calling home. No streaks, no due dates, nothing to break.',
+    'Track how long it’s been since something last happened. Keep a history of recurring events, count from important dates, and see your counters on your iPhone.',
 
   /** The App Store subtitle. The ADHD framing is the developer's own. */
   tagline: 'Days since counter & ADHD help',
 
-  appStoreUrl: 'https://apps.apple.com/us/app/habit-tracker-timesince/id6769251517',
+  appStoreUrl: 'https://apps.apple.com/us/app/time-since-tracker-timesince/id6769251517',
   appStoreId: '6769251517',
   supportUrl: 'https://timesince.userjot.com',
   email: 'mjsanagustin.dev@gmail.com',

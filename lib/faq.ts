@@ -11,27 +11,28 @@ export const faqs: FaqItem[] = [
     category: 'Getting started',
     question: 'What is TimeSince?',
     answer:
-      "TimeSince is an interval tracker for iPhone: it counts the time since you last did something, and keeps counting. Chores, medication, car maintenance, calling home, habits you are building or quitting — anything that recurs without a fixed schedule.",
+      "TimeSince is an iPhone app that shows how long it’s been since a date or your last entry. Each counter keeps its own history.",
     featured: true,
   },
   {
     category: 'Getting started',
     question: 'How is it different from a streak tracker?',
     answer:
-      "Most trackers reset to zero and treat that as failure. TimeSince just keeps counting: logging a counter resets the timer, but missing a day never breaks anything or wipes out progress.",
+      'The counter keeps counting between entries. You can come back after a gap and pick up with your whole history intact.',
     featured: true,
   },
   {
     category: 'Getting started',
     question: 'Do I need an account?',
     answer:
-      'No. There’s no sign-up, no email, and no login. TimeSince works fully offline the moment you install it.',
+      'No. You can create counters and log offline without signing up. Optional iCloud backups use your own Apple Account.',
     featured: true,
   },
   {
     category: 'Getting started',
     question: 'Is TimeSince available on Android?',
-    answer: 'Not yet. TimeSince is currently iOS only.',
+    answer:
+      'TimeSince is available only for iPhone.',
   },
   {
     category: 'Getting started',
@@ -44,7 +45,7 @@ export const faqs: FaqItem[] = [
     category: 'Using it',
     question: 'What kinds of things can I track?',
     answer:
-      "Anything without a fixed schedule: watering plants, replacing a water filter, calling a family member, therapy sessions, car maintenance, or a habit you're trying to quit.",
+      "You can track something that repeats, count the time since you quit a habit, or remember a date that matters to you.",
     featured: true,
   },
   {
@@ -63,25 +64,31 @@ export const faqs: FaqItem[] = [
     category: 'Using it',
     question: 'Can I log something without opening the app?',
     answer:
-      'Yes, three ways: tap the home screen widget, ask Siri (or use the Action Button or Shortcuts app), or tap your phone against a paired NFC sticker.',
+      'The free Home Screen widget logs in one tap. With Pro, use a built-in Siri phrase or run a shortcut from the Action Button on a supported iPhone. You can also pair an NFC sticker with Pro and scan it to record the action.',
   },
   {
     category: 'Using it',
     question: 'What are NFC tags and where do I get them?',
     answer:
-      'They’re inexpensive NTAG215 stickers you can buy online. Pair one with a counter in TimeSince, stick it somewhere relevant (a pillbox, a water filter, a fridge), and tapping your phone on it logs that counter instantly.',
+      'You can buy NTAG215 stickers online. With Pro, pair one with a counter and stick it where you do the task. Scan it to log an interval counter. For a quit counter, confirm the reset.',
   },
   {
     category: 'Using it',
     question: 'Can I attach notes, photos, or numbers to a log?',
     answer:
-      'Yes, with TimeSince Pro. Add a text note, a photo, or a number (with a built-in calculator keypad, handy for doses or costs) to any log entry.',
+      'Notes are free. With Pro, you can add or change photo and number fields, such as a receipt or a cost. Number fields include a calculator. Existing fields still accept entries if Pro lapses.',
   },
   {
     category: 'Using it',
     question: 'Can I hide sensitive counters?',
     answer:
-      'Yes. Hidden counters are removed from the main list and unlock only with Face ID or Touch ID.',
+      'With Pro you can hide a counter from the main list. Use Face ID or Touch ID to open the hidden list.',
+  },
+  {
+    category: 'Using it',
+    question: 'Can I time a session or set a goal?',
+    answer:
+      'With Pro you can add a session timer to an interval counter. In version 1.16 you can run timers on several counters at once and control them from the Lock Screen. You can also set one goal per counter, such as three walks in a week or a week since your last reset. Completed goals stay in your history.',
   },
   // Privacy & data
   {
@@ -94,7 +101,8 @@ export const faqs: FaqItem[] = [
   {
     category: 'Privacy & data',
     question: 'Can you see my data?',
-    answer: 'No. There’s no account and no server-side copy, so we have nothing to see.',
+    answer:
+      'We have no access to your counter history. Your iPhone stores it locally, and any iCloud copies go to your own Apple Account.',
   },
   {
     category: 'Privacy & data',
@@ -106,33 +114,33 @@ export const faqs: FaqItem[] = [
     category: 'Privacy & data',
     question: 'How does iCloud backup work?',
     answer:
-      'If you turn it on, TimeSince writes a copy of your data to your own private iCloud account, not to a server we run. It’s free for everyone, and it stays off until you switch it on.',
+      'In Settings, open Your data, then Backups. One optional switch syncs changes between your iPhones and saves dated, encrypted backups in your private iCloud. Restoring a dated backup replaces the data on this iPhone. Sync, backups and iCloud restore are free.',
   },
   {
     category: 'Privacy & data',
     question: 'Can I export my data?',
     answer:
-      'Yes, anytime, as a JSON file you control. You can import it back on the same device or a new one.',
+      'With Pro, you can export a portable JSON file and import it on an iPhone running TimeSince. This file is plain JSON. Keep it somewhere private.',
   },
   {
     category: 'Privacy & data',
     question: 'What happens to my data if I delete the app?',
     answer:
-      'Local data is removed with the app. If you had iCloud backup enabled, your last backup remains in your iCloud until you delete it yourself.',
+      'Deleting the app removes its local data. If you saved a copy in your private iCloud, you can restore it after reinstalling.',
   },
   // Pricing
   {
     category: 'Pricing',
     question: "What's included for free?",
     answer:
-      'Up to 3 active counters, with logging, reminders, categories, the home screen widget, and iCloud sync. No time limit, no trial required.',
+      'Up to three active counters with logging, notes, reminders, categories and widgets. You can archive counters, browse the archive list and use private iCloud sync and dated backups. The free tier has no time limit.',
     featured: true,
   },
   {
     category: 'Pricing',
     question: 'What does TimeSince Pro add?',
     answer:
-      'Unlimited counters, hidden counters, archiving, custom logging fields (notes, photos, numbers), NFC pairing, Siri Shortcuts, and exporting your data to a file. iCloud sync is not part of Pro; it’s free for everyone.',
+      'Pro lets you keep unlimited active counters, hide counters, open archived details and unarchive counters. It also lets you add photo or number fields, add session timers, set goals, use Siri and Shortcuts, pair NFC tags, and export or import JSON files.',
   },
   {
     category: 'Pricing',
@@ -144,7 +152,7 @@ export const faqs: FaqItem[] = [
     category: 'Pricing',
     question: 'What happens if my subscription lapses?',
     answer:
-      'If you have more than 3 active counters, you’ll choose up to 3 to keep active; the rest are archived, not deleted, and come back automatically if you resubscribe.',
+      'If you have more than three active counters when Pro ends, choose up to three to keep active. The others go into the archive with their history. You can browse the archive list for free. With Pro, you can open an archived counter or make it active again.',
   },
 ];
 

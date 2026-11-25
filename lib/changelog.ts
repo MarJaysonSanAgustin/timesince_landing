@@ -1,5 +1,5 @@
 /**
- * Release history, transcribed from the App Store listing on 2026-10-23.
+ * Release history, transcribed from the App Store listing on 2026-11-22 (US storefront).
  *
  * The listing is the source of truth. Notes here are condensed rather than
  * copied wholesale — the App Store entries run long, and a changelog page
@@ -19,6 +19,7 @@ export interface Release {
   bullets: string[];
   /** An honest footnote where the listing itself is odd. */
   note?: string;
+  guide?: { href: string; label: string };
 }
 
 export interface RoadmapItem {
@@ -26,22 +27,45 @@ export interface RoadmapItem {
   note: string;
 }
 
-/**
- * From the public board's In Progress column.
- *
- * Deliberately excludes "Ability to duplicate an existing counter", which the
- * board still lists as In Progress but which shipped in 1.13 — the release
- * notes say so. Publishing it as upcoming would contradict our own changelog.
- */
-export const ROADMAP: RoadmapItem[] = [
-  {
-    title: 'Customisable lock screen widget',
-    note: 'Choosing which counter a lock screen widget shows, from inside the app rather than the iOS editor.',
-  },
-];
+// The Lock Screen picker request is now marked Completed on the public board.
+export const ROADMAP: RoadmapItem[] = [];
 
 /** Newest first. */
 export const RELEASES: Release[] = [
+  {
+    version: '1.16',
+    date: '2026-11-21',
+    theme: 'Session timers and personal goals',
+    deck: 'Time sessions on several interval counters at once, or set a goal and look back on it once you reach it.',
+    bullets: [
+      'Control running timers from the Lock Screen',
+      'Choose a future start for an interval counter',
+      'Preview widgets in the gallery',
+      'Backup improvements and a fix for duplicate Siri logs',
+    ],
+  },
+  {
+    version: '1.15',
+    date: '2026-11-05',
+    theme: 'An illustrated Timeline',
+    deck: 'Timeline cards gained artwork and milestone highlights. French joined the app’s supported languages.',
+    bullets: [
+      'See upcoming reminders on the Timeline and a countdown on counter cards',
+      'Archive and browse the list for free. Opening archived details requires Pro.',
+      'Fixed missing photos in backups',
+    ],
+  },
+  {
+    version: '1.14',
+    date: '2026-10-27',
+    theme: 'Dated iCloud backups',
+    deck: 'Go back to an earlier copy of your counters, logs and photos in your own iCloud.',
+    bullets: [
+      'Make an encrypted backup on demand or automatically when data changes',
+      'Choose a dated copy in Settings under Your data and Backups',
+      'Sync moves less data when logs contain photos',
+    ],
+  },
   {
     version: '1.13',
     date: '2026-10-22',
@@ -63,8 +87,9 @@ export const RELEASES: Release[] = [
   },
   {
     version: '1.11',
-    date: '2026-10-13',
+    date: '2026-10-12',
     theme: 'The ticket design',
+    guide: { href: '/guides/premade-counters', label: 'Find your first counter in Explore' },
     deck: 'The visual identity the site now shares: paper, receipts, and a tear line.',
     bullets: [
       'A consistent ticket-inspired design throughout the app',
@@ -127,9 +152,9 @@ export const RELEASES: Release[] = [
   },
   {
     version: '1.6',
-    date: '2026-08-23',
+    date: '2026-08-22',
     theme: 'Your whole history at once',
-    deck: 'A multi-year calendar, shareable cards, and an NFC tap that logs without opening anything.',
+    deck: 'A multi-year calendar, shareable cards, and an NFC tap that logs without navigating to the counter.',
     bullets: [
       'A multi-year calendar view, one strip per year',
       'Share a card of four spans, on a light, dark or transparent ground',
@@ -152,14 +177,14 @@ export const RELEASES: Release[] = [
   },
   {
     version: '1.4',
-    date: '2026-07-21',
+    date: '2026-07-20',
     theme: 'Polish',
     deck: 'Interface polish and faster response times.',
     bullets: ['Polished UI and faster response times', 'Bug fixes and improvements'],
   },
   {
     version: '1.3',
-    date: '2026-07-02',
+    date: '2026-07-01',
     theme: 'Onboarding and free notes',
     deck: 'A redesigned first run, and notes free for everyone.',
     bullets: [
@@ -171,7 +196,7 @@ export const RELEASES: Release[] = [
   },
   {
     version: '1.2',
-    date: '2026-06-30',
+    date: '2026-06-29',
     theme: 'Onboarding and free notes',
     deck: 'A redesigned first run, and notes free for everyone.',
     bullets: [
@@ -191,6 +216,13 @@ export const RELEASES: Release[] = [
       'Share milestones and progress',
       'Upcoming and overdue counters visible on the Timeline',
     ],
+  },
+  {
+    version: '1.0',
+    date: '2026-05-29',
+    theme: 'First release',
+    deck: 'TimeSince became available for iPhone.',
+    bullets: [],
   },
 ];
 

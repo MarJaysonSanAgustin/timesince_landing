@@ -1,3 +1,4 @@
+import { PageLayout } from '@/components/site/page-layout';
 import type { Metadata } from 'next';
 import { SITE } from '@/lib/site';
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="w-full max-w-3xl mx-auto px-4 py-24 sm:px-6 lg:px-8">
+    <PageLayout>
       <div className="mb-12">
         <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl mb-4">Privacy Policy</h1>
         <p className="text-lg text-muted">Last updated: {SITE.legalLastUpdated}</p>
@@ -37,13 +38,13 @@ export default function PrivacyPolicy() {
         <div>
           <h2 className="text-ink font-display text-2xl font-bold mb-2">2. iCloud backup (optional)</h2>
           <p>
-            If you turn on iCloud backup, {SITE.name} writes a copy of your data to <strong>your own private iCloud account</strong>: counters, categories, logs (including note text and photos), custom field values, reminders, and your profile name and photo. That data lives inside a container only you and your devices can access, and you can see the file yourself in the Files app under &quot;{SITE.name}&quot;.
+            If you turn on iCloud backup, {SITE.name} writes a copy of your data to <strong>your own private iCloud account</strong>: counters, categories, logs (including note text and photos), custom field values, reminders, and your profile name and photo. That data lives inside a container only you and your devices can access, and you can see the files yourself in the Files app under &quot;{SITE.name}&quot;.
           </p>
           <p className="mt-2">
             This transfer goes directly to Apple&apos;s iCloud infrastructure under your Apple ID and is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer" className="text-ube hover:underline">Apple&apos;s privacy policy</a>. We do not operate this storage and cannot read its contents.
           </p>
           <p className="mt-2">
-            iCloud sync is free for everyone and is <strong>off until you turn it on</strong>; nothing enables it for you. Choosing &quot;Erase Everywhere&quot; in Settings removes your iCloud backups along with your on-device data.
+            Sync and dated, encrypted backups are free. The automatic backup switch is <strong>off by default</strong>. Sync merges changes across your iPhones. Restoring a dated backup replaces the data on this iPhone. Choosing &quot;Erase Everywhere&quot; in Settings removes your iCloud backups along with your on-device data.
           </p>
         </div>
 
@@ -122,7 +123,7 @@ export default function PrivacyPolicy() {
         <div>
           <h2 className="text-ink font-display text-2xl font-bold mb-2">8. Export and import</h2>
           <p>
-            You can export your data to a JSON file that remains completely under your control, and import a compatible JSON file back in. This file never passes through our servers; it goes directly between your device and wherever you choose to save it.
+            With Pro you can export and import a portable plain JSON file. Anyone with access to that file can read the exported records. This file never passes through our servers; it goes directly between your device and wherever you choose to save it.
           </p>
         </div>
 
@@ -175,6 +176,6 @@ export default function PrivacyPolicy() {
           </p>
         </div>
       </div>
-    </div>
+    </PageLayout>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import { Sun, Moon, Monitor } from 'lucide-react';
 
 type Theme = 'system' | 'light' | 'dark';
@@ -15,25 +15,23 @@ const ICON = { system: Monitor, light: Sun, dark: Moon } as const;
 
 export const THEME_KEY = 'timesince-theme';
 
-/**
- * Read from the DOM rather than from storage.
- *
- * The pre-paint script has already applied any stored choice to the html
- * element, so the attribute is the truth by the time this runs — and reading
- * it in the initialiser avoids setting state from an effect.
- */
+// The pre-paint script applies the saved preference to the root element.
 function currentTheme(): Theme {
-  if (typeof document === 'undefined') return 'system';
   const attr = document.documentElement.getAttribute('data-theme');
   return attr === 'light' || attr === 'dark' ? attr : 'system';
 }
 
+function subscribeTheme(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributeFilter: ['data-theme'] });
+  return () => observer.disconnect();
+}
+
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(currentTheme);
+  const theme = useSyncExternalStore(subscribeTheme, currentTheme, () => 'system' as const);
 
   function cycle() {
     const next = ORDER[(ORDER.indexOf(theme) + 1) % ORDER.length];
-    setTheme(next);
 
     const root = document.documentElement;
     if (next === 'system') root.removeAttribute('data-theme');
@@ -56,7 +54,6 @@ export function ThemeToggle() {
       onClick={cycle}
       aria-label={LABEL[theme]}
       title={LABEL[theme]}
-      suppressHydrationWarning
       className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-card border border-line text-muted transition-colors hover:text-ink"
     >
       <Icon className="h-4 w-4" aria-hidden="true" />

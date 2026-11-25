@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { TOOLS, getTool } from '@/lib/tools';
 import { SITE } from '@/lib/site';
 import { pageMetadata } from '@/lib/page-metadata';
-import { PageSheet } from '@/components/site/page-sheet';
+import { PageLayout } from '@/components/site/page-layout';
 import { Breadcrumbs } from '@/components/content/breadcrumbs';
 import { CtaBlock } from '@/components/content/cta-block';
 import { DaysSince } from '@/components/tools/days-since';
@@ -47,7 +47,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
   const others = TOOLS.filter((t) => t.slug !== slug);
 
   return (
-    <PageSheet width="prose">
+    <PageLayout width="prose">
         <Breadcrumbs trail={[{ href: '/tools', label: 'Tools' }, { label: tool.nav }]} />
 
         <header className="mt-6">
@@ -60,8 +60,8 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
         <Calculator />
 
-        <div className="ticket p-6">
-          <h2 className="stub-label mb-2 uppercase">Where this runs</h2>
+        <div className="surface p-6">
+          <h2 className="section-label mb-2">Where this runs</h2>
           <p className="text-sm leading-relaxed text-muted">
             Entirely in your browser. The dates you type are never sent anywhere, there is no
             request behind the answer, and nothing is stored when you close the tab. The same
@@ -77,13 +77,13 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
         />
 
         <section className="not-prose mt-12">
-          <h2 className="stub-label mb-4 uppercase">Other tools</h2>
+          <h2 className="section-label mb-4 uppercase">Other tools</h2>
           <ul className="space-y-3">
             {others.map((other) => (
               <li key={other.slug}>
                 <Link
                   href={`/tools/${other.slug}`}
-                  className="ticket group flex items-baseline justify-between gap-4 px-5 py-4 transition-transform hover:-translate-y-0.5"
+                  className="surface group flex items-baseline justify-between gap-4 px-5 py-4 transition-transform hover:-translate-y-0.5"
                 >
                   <span>
                     <span className="font-semibold text-ink group-hover:underline">
@@ -99,6 +99,6 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
             ))}
           </ul>
         </section>
-    </PageSheet>
+    </PageLayout>
   );
 }

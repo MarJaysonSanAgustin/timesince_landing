@@ -14,8 +14,8 @@ export default function OgImage() {
       <OgFrame
         kicker="TIMESINCE · GUIDES"
         title="Tracking what recurs on no fixed schedule"
-        stubLabel="GUIDES"
-        stubValue={String(count).padStart(3, '0')}
+        label="GUIDES"
+        value={String(count).padStart(3, '0')}
       />
     ),
     { ...size, fonts: ogFonts() },
